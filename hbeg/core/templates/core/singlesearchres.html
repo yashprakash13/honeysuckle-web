@@ -1,21 +1,57 @@
-<div class="card m-3">
-    <div class="card-content">
-        <div class="columns is-centered">
-            <div class="column is-8">
-                <p class="subtitle">{{res.title}}</p>
-            </div>
-            <div class="column is-2">
-                <p class="subtitle">{{res.author_name}}</p>
-            </div>
-            <div class="column is-2">
-                <p class="subtitle">Rated {{res.rating}}</p>
-            </div>
-        </div>
-        <p class="is-size-6">
-            {{res.summary}}
-        </p>
-        <p class="is-size-7">
-            {{res.num_words}} words
-        </p>
+{% load static %}
+<div class="card search-singlecard-content">
+  <header class="card-header ">
+    <p 
+        style= "
+            background:#C35355;
+            font-size: 1.35em;
+        " 
+        class="card-header-title has-text-weight-bold has-text-white">
+        {{res.title}}   &nbsp;
+        by &nbsp;
+        {{res.author_name}}
+    </p>
+    <button style="background:transparent;" class="card-header-icon" aria-label="more options">
+      <span style="background:transparent;" class="icon">
+        <i style="background:transparent;" class="fas fa-external-link-alt" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content" style="background:#fff;">
+    <div style="background:transparent;" class="content" >
+      {{res.summary}}
     </div>
+    <div class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+        <ul>
+            <li>{{res.num_words}} words</li>&nbsp;
+            <li>&nbsp; {{res.rated}} rated</li>&nbsp;
+            <li>&nbsp;{{res.status}}</li>&nbsp;
+            <li>&nbsp;{{res.chars}}</li>&nbsp;
+            <li>&nbsp;{{res.genres}}</li>
+        </ul>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="#" style="background:#C35355;" 
+    class="card-footer-item  has-text-white has-text-weight-bold">Add to Reading List</a> 
+  </footer>
 </div>
+
+<style>
+@media screen and (min-width: 1200px) {
+    .search-singlecard-content{
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+}
+@media screen and (max-width: 1199px) and (min-width: 601px){
+    .search-singlecard-content{
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+}
+ul, a, .breadcrumb a{
+    background:white;
+    color:#527F67;
+}
+</style>
