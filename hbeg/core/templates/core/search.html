@@ -1,0 +1,36 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content %}
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title" id="HeroProjectName">HisBrownEyedGirl</p>
+            <form class="searchForm" method="POST">
+                {% csrf_token %}
+                <input class="input is-rounded is-medium m-6" 
+                    type="text" 
+                    id="search_id"
+                    name="query"
+                    placeholder="Search...">
+            </form>
+        </div>
+    </div>
+    {% if results %}
+        <section class="searchResultsSection m-6">
+            {% for res in results %}
+                {% include 'core/singlesearchres.html' %}
+            {% endfor %}
+        </section>
+    {% endif %}
+</div>
+<script>
+    // to submit query on return/enter key press
+    $('.input').keypress(function (e) {
+        if (e.which == 13) {
+            $('#search_id').submit();
+            return false;    //<---- Add this line
+        }
+    });
+</script>
+  
+{% endblock %}
