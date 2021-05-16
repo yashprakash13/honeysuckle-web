@@ -1,0 +1,18 @@
+/* for the whole website */
+*{
+    /* background: #edd9ca; */
+    background: #f4f3ea;
+    font-family: 'Antic Slab', serif;
+}
+
+/* Search things */
+#search_id{
+    font-family: 'Antic Slab', serif;
+    margin: 7rem;
+    width: 50vw;
+}
+
+#HeroProjectName{
+    font-family: 'Allura', cursive;
+}
+
