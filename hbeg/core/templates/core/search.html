@@ -9,7 +9,7 @@
                 {% csrf_token %}
                 <input class="input is-rounded is-medium m-6" 
                     type="text" 
-                    id="search_id"
+                    id="searchBar"
                     name="query"
                     placeholder="Search...">
             </form>
@@ -22,7 +22,10 @@
             {% endfor %}
         </section>
     {% endif %}
-</div>
+</section>
+
+
+{% comment %} scripts go here {% endcomment %}
 <script>
     // to submit query on return/enter key press
     $('.input').keypress(function (e) {
@@ -34,3 +37,4 @@
 </script>
   
 {% endblock %}
+
