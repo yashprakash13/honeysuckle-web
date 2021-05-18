@@ -8,6 +8,7 @@
 *.orig
 
 data/*
+db.sqlite3
 
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
