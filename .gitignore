@@ -7,7 +7,7 @@
 # $ git config --global mergetool.keepBackup false
 *.orig
 
-data/
+data/*
 
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
