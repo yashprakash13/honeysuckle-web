@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+pandas = "*"
+django = "*"
+rapidfuzz = "*"
+stopwords = "*"
+pillow = "*"
+pickle5 = "*"
+whoosh = "*"
+django-crispy-forms = "*"
+django-widget-tweaks = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

@@ -28,8 +28,6 @@
 profile_default/
 ipython_config.py
 
-Pipfile
-Pipfile.locl
 
 # Remove previous ipynb_checkpoints
 #   git rm -r .ipynb_checkpoints/
@@ -228,5 +226,3 @@ Thumbs.db
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
-
-# End of https://www.toptal.com/developers/gitignore/api/python,vscode,jupyternotebooks,macos,powershell,spreadsheet,git
