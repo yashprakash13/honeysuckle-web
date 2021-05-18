@@ -11,18 +11,17 @@
 
     <div class="field">
         <label class="label" for="{{form.nickname.id_for_label}}">Choose your Nickname</label>
-        {% comment %} <input class="input is-primary" type="text" placeholder="my cool nickname..."> {% endcomment %}
-        {{ form.nickname|add_class:"input is-primary" }}
+        {% render_field form.nickname class="input is-primary" placeholder="my cool nickname..." %}
     </div>
     <p class="help is-danger">{{ form.nickname.errors }}</p>
     <div class="field">
-        <label class="label" for="{{form.password1.id_for_label}}">and your Password</label>
-        {{ form.password1|add_class:"input is-primary" }}
+        <label class="label" for="{{form.password1.id_for_label}}">your Password</label>
+        {% render_field form.password1 class="input is-primary" placeholder="my unique password..." %}
     </div>
     <p class="help is-danger">{{ form.password1.errors }}</p>
     <div class="field">
-        <label class="label" for="{{form.password2.id_for_label}}">...one more time</label>
-        {{ form.password2|add_class:"input is-primary" }}
+        <label class="label" for="{{form.password2.id_for_label}}">...and your Password again</label>
+        {% render_field form.password2 class="input is-primary" placeholder="my unique password..." %}
     </div>
     <p class="help is-danger">{{ form.password2.errors }}</p>
     <div class="field">

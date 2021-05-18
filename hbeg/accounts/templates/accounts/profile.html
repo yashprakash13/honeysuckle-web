@@ -1,0 +1,10 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+
+<div class="title">Hi, {{request.user.nickname}}. </div>
+
+<a class="button is-outlined is-warning" href="{% url 'logout' %}">Logout</a>
+
+{% endblock  %}

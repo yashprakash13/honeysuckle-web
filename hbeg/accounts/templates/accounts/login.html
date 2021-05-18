@@ -5,19 +5,22 @@
 {% comment %} the style for login/register forms {% endcomment %}
 {% include 'accounts/form_style.html' %}
 
-<form class="box" method="POST">{% csrf_token %}
+<form class="box" action="{% url 'login' %}" method="POST" autocomplete="off">
+    {% csrf_token %}
     <div class="title">Login</div>
 
     <div class="field">
-        <label class="label" for="username">Nickname</label>
-        <input class="input is-primary" type="text" placeholder="my cool nickname...">
+        <label class="label" for="{{form.nickname.id_for_label}}">Nickname</label>
+        {% render_field form.nickname class="input is-primary" placeholder="my nickname..." %}
     </div>
+    <p class="help is-danger">{{ form.nickname.errors }}</p>
     <div class="field">
-        <label class="label" for="password">Password</label>
-        <input type="password" class="input is-primary" type="text" placeholder="my unique password...">
+        <label class="label" for="{{form.password.id_for_label}}">Password</label>
+        {% render_field form.password class="input is-primary" placeholder="my password..." %}
     </div>
+    <p class="help is-danger">{{ form.password.errors }}</p>
     <div class="field">
-        <button type="submit" class="button is-primary">Log In</button>
+        <button class="button is-primary">Log In</button>
     </div>
     <div class="field">
         Not registered yet? <a href="{% url 'register' %}">Register</a>.
