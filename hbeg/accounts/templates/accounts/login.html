@@ -1,7 +1,7 @@
 {% extends 'core/main.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block content %}
-{% load crispy_forms_tags %}
 {% comment %} the style for login/register forms {% endcomment %}
 {% include 'accounts/form_style.html' %}
 
@@ -16,9 +16,11 @@
         <label class="label" for="password">Password</label>
         <input type="password" class="input is-primary" type="text" placeholder="my unique password...">
     </div>
-    <button type="submit" class="button is-primary">Log In</button>
     <div class="field">
-        Not registered yet? <a href="{% url 'register' %}">Register </a>.
+        <button type="submit" class="button is-primary">Log In</button>
+    </div>
+    <div class="field">
+        Not registered yet? <a href="{% url 'register' %}">Register</a>.
     </div>
 </form>
 

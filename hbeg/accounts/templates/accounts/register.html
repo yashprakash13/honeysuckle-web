@@ -1,27 +1,38 @@
 {% extends 'core/main.html' %}
 {% load static %}
 {% block content %}
-{% load crispy_forms_tags %}
+{% load widget_tweaks %}
 {% comment %} the style for login/register forms {% endcomment %}
 {% include 'accounts/form_style.html' %}
 
-<form class="box" method="POST">{% csrf_token %}
+<form class="box" action="{% url 'register' %}" method="POST" autocomplete="off">
+    {% csrf_token %}
     <div class="title">Register</div>
 
     <div class="field">
-        <label class="label" for="username">Choose your Nickname</label>
-        <input class="input is-primary" type="text" placeholder="my cool nickname...">
+        <label class="label" for="{{form.nickname.id_for_label}}">Choose your Nickname</label>
+        {% comment %} <input class="input is-primary" type="text" placeholder="my cool nickname..."> {% endcomment %}
+        {{ form.nickname|add_class:"input is-primary" }}
     </div>
+    <p class="help is-danger">{{ form.nickname.errors }}</p>
     <div class="field">
-        <label class="label" for="password">...and your Password</label>
-        <input type="password" class="input is-primary" type="text" placeholder="my unique password...">
+        <label class="label" for="{{form.password1.id_for_label}}">and your Password</label>
+        {{ form.password1|add_class:"input is-primary" }}
     </div>
+    <p class="help is-danger">{{ form.password1.errors }}</p>
+    <div class="field">
+        <label class="label" for="{{form.password2.id_for_label}}">...one more time</label>
+        {{ form.password2|add_class:"input is-primary" }}
+    </div>
+    <p class="help is-danger">{{ form.password2.errors }}</p>
     <div class="field">
         By registering, you agree to the <a href="#">privacy policy </a>of HBEG.
     </div>
-    <button type="submit" class="button is-primary">Register</button>
     <div class="field">
-        Have an account? <a href="{% url 'login' %}">Log In </a>.
+        <button class="button is-primary">Register</button>
+    </div>
+    <div class="field">
+        Have an account? <a href="{% url 'login' %}">Log In</a>.
     </div>
 </form>
 {% endblock %}
