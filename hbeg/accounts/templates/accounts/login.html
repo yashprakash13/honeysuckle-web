@@ -11,9 +11,9 @@
 
     <div class="field">
         <label class="label" for="{{form.nickname.id_for_label}}">Nickname</label>
-        {% render_field form.nickname class="input is-primary" placeholder="my nickname..." %}
+        {% render_field form.username class="input is-primary" placeholder="my nickname..." %}
     </div>
-    <p class="help is-danger">{{ form.nickname.errors }}</p>
+    <p class="help is-danger">{{ form.username.errors }}</p>
     <div class="field">
         <label class="label" for="{{form.password.id_for_label}}">Password</label>
         {% render_field form.password class="input is-primary" placeholder="my password..." %}
