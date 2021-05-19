@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('acc/', include('accounts.urls')),
+    path('profiles/', include('profiles.urls')),
+    # path('members/', include('members.urls')), this will be the public view of a member profile
 ]

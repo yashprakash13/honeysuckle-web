@@ -47,7 +47,3 @@ class RegisterView(View):
                 elif msg == 'password2' and password1 != password2:
                     messages.error(request, f"Password: '{password1}' and Confirmation Password: '{password2}' do not match.")
             return render(request, 'accounts/register.html', {'form': RegisterForm()})
-
-class ProfileView(LoginRequiredMixin, View):
-    def get(self, request):
-        return render(request, 'accounts/profile.html')
