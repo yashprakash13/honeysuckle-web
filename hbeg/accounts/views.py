@@ -1,5 +1,6 @@
 from django.views import View
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -34,8 +35,18 @@ class RegisterView(View):
             member = authenticate(nickname=nickname, password=password)
             login(self.request, member)
             return redirect('profile')
-
-
+        else:
+            password1 = form.data['password1']
+            password2 = form.data['password2']
+            nickname = form.data['nickname']
+            for msg in form.errors.as_data():
+                if msg == 'nickname':
+                    messages.error(request, f"Declared {nickname} is not valid")
+                if msg == 'password2' and password1 == password2:
+                    messages.error(request, f"Selected password: {password1} is not strong enough.")
+                elif msg == 'password2' and password1 != password2:
+                    messages.error(request, f"Password: '{password1}' and Confirmation Password: '{password2}' do not match.")
+            return render(request, 'accounts/register.html', {'form': RegisterForm()})
 
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request):

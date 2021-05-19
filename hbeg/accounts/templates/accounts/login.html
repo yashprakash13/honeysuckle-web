@@ -7,18 +7,21 @@
 
 <form class="box" action="{% url 'login' %}" method="POST" autocomplete="off">
     {% csrf_token %}
+    {% comment %} show any erros if there {% endcomment %}
     <div class="title">Login</div>
+    {% if form.errors %}
+    <p class="help is-danger">Nickname or Password is incorrect.</p>
+    {% endif %}
 
+    {% comment %} the login form {% endcomment %}
     <div class="field">
         <label class="label" for="{{form.nickname.id_for_label}}">Nickname</label>
         {% render_field form.username class="input is-primary" placeholder="my nickname..." %}
     </div>
-    <p class="help is-danger">{{ form.username.errors }}</p>
     <div class="field">
         <label class="label" for="{{form.password.id_for_label}}">Password</label>
         {% render_field form.password class="input is-primary" placeholder="my password..." %}
     </div>
-    <p class="help is-danger">{{ form.password.errors }}</p>
     <div class="field">
         <button class="button is-primary">Log In</button>
     </div>

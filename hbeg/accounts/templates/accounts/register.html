@@ -8,7 +8,12 @@
 <form class="box" action="{% url 'register' %}" method="POST" autocomplete="off">
     {% csrf_token %}
     <div class="title">Register</div>
+    {% comment %} display form error messages {% endcomment %}
+    {% for message in messages %}
+        <p class="help is-danger m-1 is-size-6">{{message}}</p>
+    {% endfor %}
 
+    {% comment %} Registration form {% endcomment %}
     <div class="field">
         <label class="label" for="{{form.nickname.id_for_label}}">Choose your Nickname</label>
         {% render_field form.nickname class="input is-primary" placeholder="my cool nickname..." %}
