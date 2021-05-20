@@ -1,5 +1,5 @@
 <style>
-/* tags styling*/
+{% comment %} tags styling {% endcomment %}
 .tag:not(body){
     color:white;
 }
@@ -30,7 +30,7 @@
     background-color:#C35355;
 }
 
-{% comment %} bio column style {% endcomment %}
+{% comment %} bio column style for all screen types{% endcomment %}
 @media screen and (min-width: 1200px) {
     #bio-column{
         height:90vh; position: sticky; top: 3.2rem;
@@ -46,5 +46,25 @@
         height:90vh;
     }
 }
+
+{% comment %} "see all" outlined button hover should be brown{% endcomment %}
+#see-all-outlined-button:hover{
+    background-color: #C35355;
+    border-color:#C35355;
+}
+
+{% comment %} "new folder" button link {% endcomment %}
+#new-folder-button.button.is-primary.is-outlined{
+    color: #C35355;
+    border-color:#C35355;
+ }
+#new-folder-button.button.is-primary.is-outlined:hover{
+     background-color:#C35355;
+     color:white;
+ }
+#new-folder-button{
+    font-weight:bold;
+}
+
 
 </style>

@@ -9,7 +9,7 @@
     <div class="column is-4" id="bio-column">
         <div class="title has-text-centered">{{request.user.nickname}}</div>
         <div class="content has-text-centered">
-                <img id="pfp_img" src="{% static 'images/default-profile_picture.png' %}">
+                <img id="pfp_img" src="{% static 'images/default_profile_picture.png' %}">
         </div>
         {% comment %} the tags begin here {% endcomment %}
         <div class="content has-text-centered" id="tags">
@@ -28,7 +28,7 @@
     </div>
     {% comment %} for Reading List, all folders to be included for the member {% endcomment %}
     <div class="column is-8">
-        {% comment %} include buttons {% endcomment %}
+        {% comment %} include contribute and search buttons {% endcomment %}
         <div class="content">
             <div class="button is-success">
                 <span class="icon">
@@ -43,8 +43,15 @@
                 <span>Contribute New Story</span>
             </div>
         </div>
-            
-        {% comment %} add folders one by one here {% endcomment %}
+        {% comment %} New folder button {% endcomment %}
+        <div class="content">
+            <a class="button is-fullwidth is-primary is-outlined" 
+            id="new-folder-button" 
+            href="#">
+                New Folder...
+            </a>
+        </div>
+        {% comment %} adding folders one by one here {% endcomment %}
         {% include 'profiles/single_folder_layout.html' %}
         {% include 'profiles/single_folder_layout.html' %}
         {% include 'profiles/single_folder_layout.html' %}
