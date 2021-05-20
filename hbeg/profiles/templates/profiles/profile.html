@@ -2,9 +2,54 @@
 {% load static %}
 {% block content  %}
 {% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
 
-<div class="title">Hi, {{request.user.nickname}}. </div>
+<div class="columns is-centered m-6 p-3">
+    {% comment %} for bio and info about member {% endcomment %}
+    <div class="column is-4" style="height:90vh; position: sticky; top: 3.2rem;">
+        <div class="title has-text-centered">{{request.user.nickname}}</div>
+        <div class="content has-text-centered">
+                <img id="pfp_img" src="{% static 'images/default-profile_picture.png' %}">
+        </div>
+        {% comment %} the tags begin here {% endcomment %}
+        <div class="content has-text-centered" id="tags">
+            <span class="tag is-medium m-2 p-2" id="is-maker-tag">Maker</span>
+            <span class="tag is-medium" id="is-member-tag">Member</span>
+            <span class="tag is-medium" id="is-author-tag">Author</span>
+            <span class="tag is-medium" id="is-peoples-choice">People'sFav</span>
+            <span class="tag is-medium" id="is-c-lv7-tag">Contributer Lv7</span>
+            <span class="tag is-medium" id="is-reader-tag">Reader Lv13</span>
+        </div>
+        {% comment %} bio goes here {% endcomment %}
+        <div class="content has-text-centered">
+        This is my bio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit maxime commodi, sunt repellendus aperiam officia quae placeat. Facere id aspernatur assumenda similique voluptate exercitationem eaque, provident quidem tenetur. Voluptatibus excepturi hic consequuntur eos, fugiat id ducimus suscipit debitis vero maiores autem totam similique neque alias repellat! Officiis reiciendis optio et.
+        </div>
 
-<a class="button is-outlined is-warning" href="{% url 'logout' %}">Logout</a>
+    </div>
+    {% comment %} for Reading List, all folders to be included for the member {% endcomment %}
+    <div class="column is-8">
+        {% comment %} include buttons {% endcomment %}
+        <div class="content">
+            <div class="button is-success">
+                <span class="icon">
+                    <i class="fas fa-search"></i>
+                </span>
+                <span>Search</span>
+            </div>
+            <div class="button is-success">
+                <span class="icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>Contribute New Story</span>
+            </div>
+        </div>
+            
+        {% comment %} add folders one by one here {% endcomment %}
+        {% include 'profiles/single_folder_layout.html' %}
+        {% include 'profiles/single_folder_layout.html' %}
+        {% include 'profiles/single_folder_layout.html' %}
+        {% include 'profiles/single_folder_layout.html' %}
+    </div>
+</div>
 
 {% endblock  %}

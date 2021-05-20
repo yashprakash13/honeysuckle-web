@@ -1,10 +1,14 @@
 {
     "python.pythonPath": "/Users/costa/.local/share/virtualenvs/his_brown_eyed_girl-tYj-Go4z/bin/python",
     "python.languageServer": "Microsoft",
-    "emmet.includeLanguages": {
-        "vue-html": "html",
-        "javascript": "javascriptreact",
-        "django-html": "html",
-      },
+    "emmet.includeLanguages": {"django-html": "html"},
+    "[django-html]": {
+
+    },
+    "files.associations": {
+      "*.html": "html"
+  },
+  "emmet.triggerExpansionOnTab": true
+
 
 }
