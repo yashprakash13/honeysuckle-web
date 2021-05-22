@@ -25,7 +25,7 @@
         {% endif %}
         {% comment %} profile settings button {% endcomment %}
         <div class="content has-text-centered">
-            <div class="button is-danger is-outlined">
+            <div class="button is-dark ">
                 <span class="icon">
                     <i class="fas fa-cog"></i>
                 </span>
@@ -37,12 +37,12 @@
     <div class="column is-8">
         {% comment %} include contribute and search buttons {% endcomment %}
         <div class="content">
-            <div class="button" id="search-btn">
+            <a class="button" id="search-btn" href="{% url 'search' %}">
                 <span class="icon">
                     <i class="fas fa-search"></i>
                 </span>
                 <span>Search</span>
-            </div>
+            </a>
             <div class="button" id="contribute-story-btn">
                 <span class="icon">
                     <i class="fas fa-plus"></i>

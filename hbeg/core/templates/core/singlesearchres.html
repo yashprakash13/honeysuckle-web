@@ -1,21 +1,17 @@
 {% load static %}
 <div class="card search-singlecard-content">
   <header class="card-header ">
-    <p 
+    <a 
         style= "
             background:#C35355;
             font-size: 1.35em;
         " 
-        class="card-header-title has-text-weight-bold has-text-white">
+        class="card-header-title has-text-weight-bold has-text-white"
+        href="#">
         {{res.title}}   &nbsp;
-        by &nbsp;
+        <i>by</i> &nbsp;
         {{res.author_name}}
-    </p>
-    <button style="background:transparent;" class="card-header-icon" aria-label="more options">
-      <span style="background:transparent;" class="icon">
-        <i style="background:transparent;" class="fas fa-external-link-alt" aria-hidden="true"></i>
-      </span>
-    </button>
+    </a>
   </header>
   <div class="card-content" style="background:#fff;">
     <div style="background:transparent;" class="content" >
@@ -31,10 +27,10 @@
         </ul>
     </div>
   </div>
-  <footer class="card-footer">
+  {% comment %} <footer class="card-footer">
     <a href="#" style="background:#C35355;" 
     class="card-footer-item  has-text-white has-text-weight-bold">Add to Reading List</a> 
-  </footer>
+  </footer> {% endcomment %}
 </div>
 
 <style>
@@ -50,7 +46,7 @@
         margin-right: 10vw;
     }
 }
-ul, a, .breadcrumb a{
+ul, .breadcrumb a{
     background:white;
     color:#527F67;
 }
