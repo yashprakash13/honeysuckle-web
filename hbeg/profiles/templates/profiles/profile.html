@@ -23,18 +23,27 @@
                 {{profile.bio}}
             </div>
         {% endif %}
+        {% comment %} profile settings button {% endcomment %}
+        <div class="content has-text-centered">
+            <div class="button is-danger is-outlined">
+                <span class="icon">
+                    <i class="fas fa-cog"></i>
+                </span>
+                <span>Settings</span>
+            </div>
+        </div>
     </div>
     {% comment %} for Reading List, all folders to be included for the member {% endcomment %}
     <div class="column is-8">
         {% comment %} include contribute and search buttons {% endcomment %}
         <div class="content">
-            <div class="button is-success">
+            <div class="button" id="search-btn">
                 <span class="icon">
                     <i class="fas fa-search"></i>
                 </span>
                 <span>Search</span>
             </div>
-            <div class="button is-success">
+            <div class="button" id="contribute-story-btn">
                 <span class="icon">
                     <i class="fas fa-plus"></i>
                 </span>
@@ -50,10 +59,9 @@
             </a>
         </div>
         {% comment %} adding folders one by one here {% endcomment %}
-        {% include 'profiles/single_folder_layout.html' %}
-        {% include 'profiles/single_folder_layout.html' %}
-        {% include 'profiles/single_folder_layout.html' %}
-        {% include 'profiles/single_folder_layout.html' %}
+        {% for folder in folders %}
+            {% include 'profiles/single_folder_layout.html' %}
+        {% endfor %}
     </div>
 </div>
 

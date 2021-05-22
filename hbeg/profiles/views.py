@@ -6,4 +6,7 @@ from .models import *
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
         profile = Profile.objects.filter(member = request.user)[0]
-        return render(request, 'profiles/profile.html', {'profile': profile})
+        folders = Folder.objects.filter(created_by = request.user)
+        
+        return render(request, 'profiles/profile.html', {'profile': profile,
+                                                        'folders':folders})

@@ -1,6 +1,23 @@
 from django.db import models
 from accounts.models import Member
 
+
+# define a single story
+class Story(models.Model):
+    story_name = models.CharField(max_length=100)
+    author_name = models.CharField(max_length=100)
+    link = models.CharField(max_length=100)
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['story_name']
+        verbose_name_plural = 'Stories'
+
+    def __str__(self):
+        return self.story_name
+
+
+
 # to define a folder to keep stories
 class Folder(models.Model):
     folder_name = models.CharField(max_length=120, unique=True)
@@ -8,6 +25,7 @@ class Folder(models.Model):
     is_visible = models.BooleanField(default=True)
     created_by = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='Folders')
     created_at = models.DateTimeField(auto_now_add=True)
+    story = models.ManyToManyField(Story, null=True, blank=True)
 
     def __str__(self):
         return self.folder_name
@@ -17,21 +35,6 @@ class Folder(models.Model):
         ordering = ['folder_name']
 
 
-# define a single story
-class Story(models.Model):
-    story_name = models.CharField(max_length=100)
-    author_name = models.CharField(max_length=100)
-    link = models.CharField(max_length=100)
-    added_on = models.DateTimeField(auto_now_add=True)
-    folder = models.ManyToManyField(Folder)
-
-    class Meta:
-        ordering = ['story_name']
-        verbose_name_plural = 'Stories'
-
-    def __str__(self):
-        return self.story_name
-    
 
 # to define tags shown on member profile
 class Tag(models.Model):
@@ -41,6 +44,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag_name
     
+
     
 # define the profile created upon member registration
 class Profile(models.Model):
