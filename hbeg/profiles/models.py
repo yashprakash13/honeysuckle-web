@@ -32,7 +32,7 @@ class Folder(models.Model):
     
     class Meta:
         verbose_name_plural = 'Folders'
-        ordering = ['folder_name']
+        ordering = ['-created_at']
 
 
 
