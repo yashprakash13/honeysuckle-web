@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from .models import *
 
+
 class ProfileView(LoginRequiredMixin, View):
     """View to display profile page
     """
@@ -18,7 +19,7 @@ class ProfileView(LoginRequiredMixin, View):
 
 
 class FolderDetailView(LoginRequiredMixin, View):
-    """View to show detail view of a folder
+    """View to show detail view of a folder including stories within it
     """
     def get(self, request, folder_id):
         folder = Folder.objects.get(pk=folder_id)
@@ -27,3 +28,15 @@ class FolderDetailView(LoginRequiredMixin, View):
         }
 
         return render(request, 'profiles/folder_detail.html', context)
+
+
+class StoryDetailView(LoginRequiredMixin, View):
+    """View Story detail and go to story/delete from folder options
+    """
+    def get(self, request, story_id):
+        story = Story.objects.get(pk=story_id)
+        context = {
+            'story' : story
+        }
+
+        return render(request, 'profiles/story_detail.html', context)

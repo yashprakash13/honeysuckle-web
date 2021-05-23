@@ -1,0 +1,20 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+
+
+<div class="container">
+    <div class="columns-is-multiline">
+        <div class="title column is-12">
+            {{story.story_name}}
+        </div>
+        <div class="column is-12">
+            {% comment %} open story in a new tab {% endcomment %}
+            <a href="{{story.link}}" target='_blank' class="button is-light">Go to story</a>
+            {% comment %} to delete story from all your folders {% endcomment %}
+            <a href="#" class="button is-danger">Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
