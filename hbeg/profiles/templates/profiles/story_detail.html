@@ -6,8 +6,11 @@
 
 <div class="container">
     <div class="columns-is-multiline">
-        <div class="title column is-12">
-            {{story.story_name}}
+        <div class="column is-12">
+            <div class="title">{{story.story_name}}</div>
+        </div>
+        <div class="column is-12">
+            <div class="is-size-5">{{story.author_name}}</div>
         </div>
         <div class="column is-12">
             {% comment %} open story in a new tab {% endcomment %}
