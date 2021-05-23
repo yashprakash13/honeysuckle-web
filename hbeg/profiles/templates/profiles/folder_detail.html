@@ -1,0 +1,30 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+
+
+<div class="content">
+    <div class="title">{{folder.folder_name}}</div>
+</div>
+<div class="content">
+    <p class="is-size-5">{{folder.folder_desc}}</p>
+</div>
+<div class="box">    
+     {% comment %}display stories one by one (max 4)  {% endcomment %}
+<div class="content">
+    <div class="columns is-multiline">
+    {% for story in folder.story.all %}
+        {% include 'profiles/single_fic_card_layout.html' %}
+    {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

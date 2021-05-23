@@ -1,23 +1,28 @@
 <div class="box">
+    {% comment %} Folder name and detail view button {% endcomment %}
     <div class="columns">
         <div class="column is-4">
             <div class="is-size-4 mb-3">{{folder.folder_name}}</div>
         </div>
         <div class="column ">
         {% if folder.story.all %}
-            <div id="see-all-outlined-button" class="button is-dark is-outlined is-pulled-right">See All</div>
+            <a id="see-all-outlined-button" 
+            class="button is-dark is-outlined is-pulled-right"
+            href="{% url 'folder_detail' folder.id %}">
+                See All
+            </a>
         {% endif %}
         </div>
     </div>
-        
-        <div class="content">
-            <div class="columns">
-            {% if not folder.story.all %}
-                <p class="is-size-6 m-3">Empty Folder.</p>
-            {% endif %}
-            {% for story in folder.story.all %}
-                {% include 'profiles/single_fic_card_layout.html' %}
-            {% endfor %}
-            </div>
+     {% comment %}display stories one by one (max 4)  {% endcomment %}
+    <div class="content">
+        <div class="columns">
+        {% if not folder.story.all %}
+            <p class="is-size-6 m-3">Empty Folder.</p>
+        {% endif %}
+        {% for story in folder.story.all|slice:":4"  %}
+            {% include 'profiles/single_fic_card_layout.html' %}
+        {% endfor %}
         </div>
+    </div>
 </div>
