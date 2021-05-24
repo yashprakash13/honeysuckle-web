@@ -3,8 +3,8 @@
     font-family: 'Antic Slab', serif;
 }
 html{
-    /* background: #edd9ca; */
     background: #edd9ca;
+    /* background-image: linear-gradient(to right bottom, #f6a09a, #dc8079, #c16059, #a6413a, #8a1f1d); */
 }
 
 /* Search things */

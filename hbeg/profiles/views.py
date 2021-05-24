@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
+from django.contrib import messages
 from .models import *
+from .forms import *
 
 
 class ProfileView(LoginRequiredMixin, View):
@@ -40,3 +42,22 @@ class StoryDetailView(LoginRequiredMixin, View):
         }
 
         return render(request, 'profiles/story_detail.html', context)
+
+# Add Views
+class FolderAddView(LoginRequiredMixin, View):
+    """Add a new folder
+    """
+    def get(self, request):
+        return render(request, 'profiles/folder_add.html', {'form': NewFolderForm()})
+
+    def post(self, request):
+        form = NewFolderForm(request.POST)
+        if form.is_valid():
+            folder = form.save(commit=False)
+            folder.created_by = request.user
+            folder.save()
+
+            messages.success(request, 'The folder has been created!')
+
+            return redirect('profile')
+

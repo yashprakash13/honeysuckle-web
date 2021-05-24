@@ -1,0 +1,57 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+<div class="container">
+    <form action="{% url 'folder_add' %}" method="POST" autocomplete="off" class="columns is-multiline">
+        {% csrf_token %}
+        <div class="column is-12">
+            <div class="title">Add new Folder</div>
+        </div>
+        {% comment %} display form error messages {% endcomment %}
+        <div class="column is-12">
+            {% for message in messages %}
+                <p class="help is-danger m-1 is-size-6">{{message}}</p>
+            {% endfor %}
+        </div>
+
+        {% comment %} Folder Add form {% endcomment %}
+        <div class="column is-12">
+            <div class="field">
+                <label class="label" for="{{form.folder_name.id_for_label}}">Folder name</label>
+                {% render_field form.folder_name class="input is-primary" placeholder="My awesome folder..." %}
+            </div>
+        </div>
+        <p class="help is-danger">{{ form.folder_name.errors }}</p>
+
+        <div class="column is-12">
+            <div class="field">
+                <label class="label" for="{{form.folder_desc.id_for_label}}">Folder description</label>
+                {% render_field form.folder_desc class="input is-primary" placeholder="Describe what the folder will store..." %}
+            </div>
+        </div>
+        <p class="help is-danger">{{ form.folder_desc.errors }}</p>
+
+        <div class="column is-2">
+            <div class="field">
+                <label class="label has-tooltip-multiline" 
+                for="{{form.is_visible.id_for_label}}"
+                data-tooltip="Choose whether your folder should be visible on your public profile."
+                >Choose visibility</label>
+                {% render_field form.is_visible class="input select"  %}
+            </div>
+        </div>
+
+        <div class="column is-12">
+            <div class="field">
+                <button class="button is-primary">Create</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}

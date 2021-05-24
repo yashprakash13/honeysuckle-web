@@ -5,6 +5,7 @@ from django.forms import ModelForm
 class NewFolderForm(ModelForm):
     """Form to create a new folder
     """
+    # TODO: Make folder desc optional
     class Meta:
         model = Folder
         fields = ('folder_name', 'folder_desc', 'is_visible')
@@ -24,3 +25,4 @@ class ProfileEditForm(ModelForm):
         model = Profile
         # TODO: Add another field to change nickname too
         fields = ('bio', 'is_author')
+     

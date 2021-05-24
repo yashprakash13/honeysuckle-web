@@ -22,7 +22,8 @@ class Story(models.Model):
 class Folder(models.Model):
     folder_name = models.CharField(max_length=120, unique=True)
     folder_desc = models.CharField(max_length=512, blank=True, null=True)
-    is_visible = models.BooleanField(default=True)
+    BOOL_VISIBILITY_CHOICES = ((True, 'Visible'), (False, 'Invisible'))
+    is_visible = models.BooleanField(choices=BOOL_VISIBILITY_CHOICES, default=True)
     created_by = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='Folders')
     created_at = models.DateTimeField(auto_now_add=True)
     story = models.ManyToManyField(Story, null=True, blank=True)
