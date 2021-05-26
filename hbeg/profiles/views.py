@@ -43,9 +43,9 @@ class StoryDetailView(LoginRequiredMixin, View):
 
         return render(request, 'profiles/story_detail.html', context)
 
-# Add Views
+
 class FolderAddView(LoginRequiredMixin, View):
-    """Add a new folder
+    """View to add a new folder
     """
     def get(self, request):
         return render(request, 'profiles/folder_add.html', {'form': NewFolderForm()})
@@ -61,3 +61,24 @@ class FolderAddView(LoginRequiredMixin, View):
 
             return redirect('profile')
 
+
+class ProfileSettingsView(LoginRequiredMixin, View):
+    """View to edit profile
+    """
+    def get(self, request):
+        return render(request, 'profiles/profile_settings.html', 
+                    {'form':ProfileEditForm(initial={'is_author': request.user.profile.is_author})})
+    
+    def post(self, request):
+        form = ProfileEditForm(request.POST, request.FILES, 
+                                instance=request.user.profile, 
+                                initial={'is_author': request.user.profile.is_author})
+        if form.is_valid():
+            if str(form.cleaned_data.get('bio')).strip() != '':
+                choice = request.POST['is_author']
+                print(choice)
+                form.save()
+            return redirect('profile')
+        else:
+            # TODO handle errors
+            return redirect('profile')

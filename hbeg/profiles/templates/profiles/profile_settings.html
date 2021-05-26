@@ -1,0 +1,87 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+
+<form method="POST" enctype="multipart/form-data" action=".">
+    {% csrf_token %}
+    {% comment %} {{form.as_p}} {% endcomment %}
+    <div class="field">
+        <div class="is-size-5">Write your bio</div>
+        <textarea name="bio" id="" cols="30" rows="10" class="textarea is-primary">
+            {{request.user.profile.bio}}
+        </textarea>
+    </div>
+    <div class="field">
+        <div class="is-size-5">Are you an author?</div>
+        <div class="select">
+            {{form.is_author}}
+        </div>
+    </div>
+    <div class="field">
+        <div class="is-size-5">New profile picture</div>
+            <div class="file has-name">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="profile_pic">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Choose image
+                        </span>
+                    </span>
+                    {% comment %} if default pic present, show no pic selected message {% endcomment %}
+                    {% if not 'profiles/default_profile_picture' in request.user.profile.profile_pic.url %}
+                        <span class="file-name">
+                            {{request.user.profile.profile_pic}}
+                        </span>  
+                    {% else %}
+                        <span class="file-name">
+                            No picture selected.
+                        </span>  
+                    {% endif %}
+                </label>
+            </div>
+        </div>
+    </div>
+     <div class="field">
+        <div class="control">
+            <button class="button is-success">Save changes</button>
+        </div>
+    </div>
+</form>
+
+
+
+<script>
+{% comment %} to make sure image selected displays correctly {% endcomment %}
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Display file name when select file
+  let fileInputs = document.querySelectorAll('.file.has-name')
+  for (let fileInput of fileInputs) {
+    let input = fileInput.querySelector('.file-input')
+    let name = fileInput.querySelector('.file-name')
+    input.addEventListener('change', () => {
+      let files = input.files
+      if (files.length === 0) {
+        name.innerText = 'No picture selected.'
+      } else {
+        name.innerText = files[0].name
+      }
+    })
+  }
+
+  // 2. Remove file name when form reset
+  let forms = document.getElementsByTagName('form')
+  for (let form of forms) {
+    form.addEventListener('reset', () => {
+      let names = form.querySelectorAll('.file-name')
+      for (let name of names) {
+        name.innerText = 'No picture selected.'
+      }
+    })
+  }
+})
+</script>
+{% endblock %}

@@ -1,4 +1,5 @@
 from .models import *
+from django import forms
 from django.forms import ModelForm
 
 
@@ -23,6 +24,9 @@ class ProfileEditForm(ModelForm):
     """
     class Meta:
         model = Profile
-        # TODO: Add another field to change nickname too
-        fields = ('bio', 'is_author')
-     
+        fields = ('bio', 'profile_pic', 'is_author')
+        widgets = {
+          'is_author': forms.Select(attrs={'class': 'select'}),
+        }
+    def __init__(self, *args, **kwargs):
+        super(ProfileEditForm, self).__init__(*args, **kwargs)

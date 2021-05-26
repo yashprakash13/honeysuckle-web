@@ -25,12 +25,13 @@
         {% endif %}
         {% comment %} profile settings button {% endcomment %}
         <div class="content has-text-centered">
-            <div class="button is-dark ">
+            <a class="button is-dark "
+            href="{% url 'profile_settings' %}">
                 <span class="icon">
                     <i class="fas fa-cog"></i>
                 </span>
                 <span>Settings</span>
-            </div>
+            </a>
         </div>
     </div>
     {% comment %} for Reading List, all folders to be included for the member {% endcomment %}

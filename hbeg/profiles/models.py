@@ -49,13 +49,15 @@ class Tag(models.Model):
     
 # define the profile created upon member registration
 class Profile(models.Model):
-    member = models.OneToOneField(Member, on_delete=models.CASCADE, blank=True, null=True)
+    member = models.OneToOneField(Member, on_delete=models.CASCADE)
     bio = models.CharField(max_length=999, null=True, blank=True)
     profile_pic = models.ImageField(null=True, 
                                     blank=True, 
                                     upload_to="profiles/", 
                                     default="profiles/default_profile_picture.png")
-    is_author = models.BooleanField(default=False)
+    
+    BOOL_ISAUTHOR_CHOICES = ((True, 'Yes,I am.'), (False, 'Nope.'))
+    is_author = models.BooleanField(choices=BOOL_ISAUTHOR_CHOICES, default=False)
     tags = models.ManyToManyField(Tag, null=True, blank=True)
     
     def __str__(self):

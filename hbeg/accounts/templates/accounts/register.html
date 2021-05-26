@@ -15,7 +15,7 @@
 
     {% comment %} Registration form {% endcomment %}
     <div class="field">
-        <label class="label" for="{{form.nickname.id_for_label}}">Choose your Nickname</label>
+        <label class="label" for="{{form.nickname.id_for_label}}">Choose your Nickname. It's permanent.</label>
         {% render_field form.nickname class="input is-primary" placeholder="my cool nickname..." %}
     </div>
     <p class="help is-danger">{{ form.nickname.errors }}</p>

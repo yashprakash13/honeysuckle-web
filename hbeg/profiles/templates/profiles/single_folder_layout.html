@@ -4,6 +4,7 @@
         <div class="column is-8">
             <div class="is-size-4 mb-3">{{folder.folder_name}}
             {% if not folder.is_visible %}
+                {% comment %} display lock if folder is set to invisible {% endcomment %}
                 <span class="icon">
                     <i class="fas fa-lock"></i>
                 </span>
