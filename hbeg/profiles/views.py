@@ -15,7 +15,7 @@ class ProfileView(LoginRequiredMixin, View):
         context = {
             'profile': profile,
             'folders':folders
-                    }
+        }
 
         return render(request, 'profiles/profile.html', context)
 
@@ -57,8 +57,6 @@ class FolderAddView(LoginRequiredMixin, View):
             folder.created_by = request.user
             folder.save()
 
-            messages.success(request, 'The folder has been created!')
-
             return redirect('profile')
 
 
@@ -82,3 +80,13 @@ class ProfileSettingsView(LoginRequiredMixin, View):
         else:
             # TODO handle errors
             return redirect('profile')
+
+
+class FolderDeleteView(LoginRequiredMixin, View):
+    """View to delete a folder
+    """
+    def get(self, request, folder_id):
+        folder = Folder.objects.filter(created_by = request.user).get(pk=folder_id)
+        folder.delete()
+
+        return redirect('profile')
