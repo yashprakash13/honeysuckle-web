@@ -20,46 +20,6 @@ class ProfileView(LoginRequiredMixin, View):
         return render(request, 'profiles/profile.html', context)
 
 
-class FolderDetailView(LoginRequiredMixin, View):
-    """View to show detail view of a folder including stories within it
-    """
-    def get(self, request, folder_id):
-        folder = Folder.objects.get(pk=folder_id)
-        context = {
-            'folder' : folder
-        }
-
-        return render(request, 'profiles/folder_detail.html', context)
-
-
-class StoryDetailView(LoginRequiredMixin, View):
-    """View Story detail and go to story/delete from folder options
-    """
-    def get(self, request, story_id):
-        story = Story.objects.get(pk=story_id)
-        context = {
-            'story' : story
-        }
-
-        return render(request, 'profiles/story_detail.html', context)
-
-
-class FolderAddView(LoginRequiredMixin, View):
-    """View to add a new folder
-    """
-    def get(self, request):
-        return render(request, 'profiles/folder_add.html', {'form': NewFolderForm()})
-
-    def post(self, request):
-        form = NewFolderForm(request.POST)
-        if form.is_valid():
-            folder = form.save(commit=False)
-            folder.created_by = request.user
-            folder.save()
-
-            return redirect('profile')
-
-
 class ProfileSettingsView(LoginRequiredMixin, View):
     """View to edit profile
     """
@@ -82,6 +42,37 @@ class ProfileSettingsView(LoginRequiredMixin, View):
             return redirect('profile')
 
 
+
+class FolderDetailView(LoginRequiredMixin, View):
+    """View to show detail view of a folder including stories within it
+    """
+    def get(self, request, folder_id):
+        folder = Folder.objects.get(pk=folder_id)
+        context = {
+            'folder' : folder
+        }
+
+        return render(request, 'profiles/folder_detail.html', context)
+
+
+
+class FolderAddView(LoginRequiredMixin, View):
+    """View to add a new folder
+    """
+    def get(self, request):
+        return render(request, 'profiles/folder_add.html', {'form': NewFolderForm()})
+
+    def post(self, request):
+        form = NewFolderForm(request.POST)
+        if form.is_valid():
+            folder = form.save(commit=False)
+            folder.created_by = request.user
+            folder.save()
+
+            return redirect('profile')
+
+
+
 class FolderDeleteView(LoginRequiredMixin, View):
     """View to delete a folder
     """
@@ -90,3 +81,41 @@ class FolderDeleteView(LoginRequiredMixin, View):
         folder.delete()
 
         return redirect('profile')
+
+
+
+class FolderEditView(LoginRequiredMixin, View):
+    """View to edit a folder and its stories
+    """
+    def get(self, request, folder_id):
+        folder = Folder.objects.filter(created_by=request.user).get(pk=folder_id)
+        return render(request, 'profiles/folder_edit.html',
+                    {'form':FolderEditForm(instance=folder)})
+    
+    def post(self, request, folder_id):
+        folder = Folder.objects.filter(created_by=request.user).get(pk=folder_id)
+        form = FolderEditForm(request.POST, instance=folder)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            print(form.cleaned_data)
+            # TODO Handle the errors
+        
+
+    
+
+class StoryDetailView(LoginRequiredMixin, View):
+    """View Story detail and go to story/delete from folder options
+    """
+    def get(self, request, story_id):
+        story = Story.objects.get(pk=story_id)
+        context = {
+            'story' : story
+        }
+
+        return render(request, 'profiles/story_detail.html', context)
+
+
+
+

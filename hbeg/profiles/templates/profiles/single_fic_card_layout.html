@@ -1,15 +1,13 @@
 <div class="column is-3">
-    <div class="card">
+    <div class="card card-link">
         <div class="card-content">
-            <div class="content">
-                <a class="subtitle" href="{% url 'story_detail' story.id %}">
-                    {{story.story_name}}
-                </a>
+            <div class="media">
+                <div class="media-content">
+                    <a href="{% url 'story_detail' story.id %}" class="title is-4">{{story.story_name}}</a>
+                </div>
             </div>
             <div class="content">
-                <p class="is-size-6" id="author_name">
-                   {{story.author_name}} 
-                </p>
+                {{story.author_name}} 
             </div>
         </div>
     </div>

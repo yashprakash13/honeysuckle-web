@@ -1,0 +1,56 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+
+<div class="container">
+    <div class="column is-12">
+        <div class="title">Edit Folder</div>
+    </div>
+    {% comment %} display form error messages {% endcomment %}
+    <div class="column is-12">
+        {% for message in messages %}
+            <p class="help is-danger m-1 is-size-6">{{message}}</p>
+        {% endfor %}
+    </div>
+</div>
+<div class="container">
+    <form action="." method="POST" autocomplete="off" class="columns is-multiline" novalidate>
+        {% csrf_token %}
+        {% comment %} Folder edit form {% endcomment %}
+        <div class="column is-12">
+            <div class="field">
+                 <label class="label">{{ form.folder_name.label_tag }}</label>
+                <div class="control">
+                    {{ form.folder_name }}
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                 <label class="label">{{ form.folder_desc.label_tag }}</label>
+                 <div class="control">
+                    {{ form.folder_desc }}
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                 <label class="label">{{ form.is_visible.label_tag }}</label>
+                <div class="control">
+                    <div class="select">
+                        {{form.is_visible}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button type="submit" class="button is-primary">Save changes</button>
+                <a href="{% url 'profile' %}" class="button is-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}
