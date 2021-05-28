@@ -4,13 +4,14 @@ from accounts.models import Member
 
 # define a single story
 class Story(models.Model):
+    story_id = models.CharField(max_length=30)
     story_name = models.CharField(max_length=100)
     author_name = models.CharField(max_length=100)
     link = models.CharField(max_length=100)
     added_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['story_name']
+        ordering = ['-added_on']
         verbose_name_plural = 'Stories'
 
     def __str__(self):

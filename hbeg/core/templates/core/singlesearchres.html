@@ -7,7 +7,7 @@
             font-size: 1.35em;
         " 
         class="card-header-title has-text-weight-bold has-text-white"
-        href="#">
+        href="{% url 'story_detail' story.id %}">
         {{res.title}}   &nbsp;
         <i>by</i> &nbsp;
         {{res.author_name}}

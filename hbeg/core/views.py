@@ -19,14 +19,14 @@ def search(request):
     #     res_to_show = res_df.to_dict('records')
 
     return render(request, 'core/search.html'
-    # , {'results':[ {
-    #     'title': 'Harry Potter and the Oroborus Light',
-    #     'author_name':'Circusphoenix',
-    #     'summary':'abc ighwo oihgowi oihoirwh hjiohji ohoih iihoarho;ioi owhiwriwij ohgihwariuohj ohwohiwohj iaihgiwrhiohiwrh ohairhw goww ghhaojg a hroahgw gw aajo jah  ha a jga',
-    #     'rated':'T',
-    #     'num_words':'297k',
-    #     'status': 'Complete',
-    #     'chars' : 'Harry P., Hermione G.',
-    #     'genres':'Romance, Adventure'
-    # }]}
+    , {'results':[ {
+        'title': 'Harry Potter and the Oroborus Light',
+        'author_name':'Circusphoenix',
+        'summary':'abc ighwo oihgowi oihoirwh hjiohji ohoih iihoarho;ioi owhiwriwij ohgihwariuohj ohwohiwohj iaihgiwrhiohiwrh ohairhw goww ghhaojg a hroahgw gw aajo jah  ha a jga',
+        'rated':'T',
+        'num_words':'297k',
+        'status': 'Complete',
+        'chars' : 'Harry P., Hermione G.',
+        'genres':'Romance, Adventure'
+    }]}
     )
