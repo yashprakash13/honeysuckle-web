@@ -46,4 +46,4 @@ class ContribStoryForm(ModelForm):
     """
     class Meta:
         model = Story
-        fields = ('link')
+        fields = ('link',)
