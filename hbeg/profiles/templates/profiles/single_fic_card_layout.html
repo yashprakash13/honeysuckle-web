@@ -3,7 +3,7 @@
         <div class="card-content">
             <div class="media">
                 <div class="media-content">
-                    <a href="#" class="title is-4">{{story.story_name}}</a>
+                    <a href="{% url 'story_detail' story.story_id %}" class="title is-4">{{story.story_name}}</a>
                 </div>
             </div>
             <div class="content">

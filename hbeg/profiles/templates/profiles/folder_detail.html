@@ -10,7 +10,12 @@
             <div class="title">{{folder.folder_name}}</div>
         </div>
         <div class="column is-12">
-            <p class="is-size-5">{{folder.folder_desc}}</p>
+            {% if folder.folder_desc %}
+                <p class="is-size-5">{{folder.folder_desc}}</p>
+            {% else %}
+                <p class="is-size-5">No description added.</p>
+            {% endif %}
+            
         </div>
         <div class="column is-12">
             {% comment %} edit folder details and delete stories within it {% endcomment %}
