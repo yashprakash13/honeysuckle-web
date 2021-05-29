@@ -9,5 +9,6 @@ urlpatterns = [
     path('folder/<int:folder_id>/edit/', views.FolderEditView.as_view(), name='folder_edit'),
     path('folder/<int:folder_id>/delete/', views.FolderDeleteView.as_view(), name='folder_delete'),
     path('story/<int:story_id>/', views.StoryDetailView.as_view(), name='story_detail'),
+    path('story/<int:story_id>/add/', views.StoryAddView.as_view(), name='story_add'),
 
 ]

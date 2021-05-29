@@ -1,0 +1,33 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+<div class="container">
+    <div class="column is-12">
+        <div class="title">Add To Folders</div>
+    </div>
+    <form action="." method="POST" autocomplete="off" novalidate>
+        {% csrf_token %}
+        {% if not folders %}
+            <div class="subtitle">No Folders Yet.</div>
+        {% else %}
+            <div class="columns is-multiline m-3">
+                {% for folder in folders %}
+                    <div class="column is-3">
+                        <label class="checkbox is-size-5">
+                            <input type="checkbox" value="{{folder.id}}" name="folder_checkboxes">
+                            {{folder.folder_name}}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-primary">Save Changes</button>
+                </div>
+            </div>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}

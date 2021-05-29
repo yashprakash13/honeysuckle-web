@@ -120,5 +120,36 @@ class StoryDetailView(LoginRequiredMixin, View):
         
 
 
+class StoryAddView(LoginRequiredMixin, View):
+    """View to add a story to folder(s)
+    """
+    def get(self, request, story_id):
+        folders_of_user = Folder.objects.filter(created_by=request.user)
+        context = {
+            'folders':folders_of_user
+        }
+        return render(request, 'profiles/add_story_to_folder.html', context)
+    
+    def post(self, request, story_id):
+        folders_of_user = Folder.objects.filter(created_by=request.user)
+        form = AddStoryToFolderForm(request.POST, folders_to_show=folders_of_user)
+        folders_selected = request.POST.getlist('folder_checkboxes')
+        folders_selected = Folder.objects.filter(pk__in=folders_selected)
+        for folder in folders_selected:
+            try:
+                story = Story.objects.get(story_id=story_id)
+                folder.story.add(Story.objects.get(story_id=story_id))
+            except Story.DoesNotExist:
+                storygotten = instance.get_story_details(story_id)[COLS_TO_SAVE_STORY]
+                storygotten = storygotten.to_dict(orient='records')[0]
+                storygotten['link'] = instance.get_story_link(story_id)
+                story = Story(story_id=story_id, 
+                              story_name=storygotten['title'], 
+                              author_name=storygotten['author_name'],
+                              link=storygotten['link'])
+                story.save()
 
+                folder.story.add(Story.objects.get(story_id=story_id))
+                
+        return redirect('search')
 

@@ -41,9 +41,24 @@ class FolderEditForm(ModelForm):
         self.fields['folder_desc'].widget.attrs['class'] = 'textarea'
         self.fields['is_visible'].widget.attrs['class'] = 'select'
 
+
+
 class ContribStoryForm(ModelForm):
     """Form to Contribute new story to the database
     """
     class Meta:
         model = Story
         fields = ('link',)
+
+
+class AddStoryToFolderForm(forms.Form):
+    folder_checkboxes = forms.MultipleChoiceField(
+        widget = forms.CheckboxSelectMultiple,
+    )
+    def __init__(self, *args, **kwargs):
+        folder_list = kwargs.pop('folders_to_show', None)
+        super(AddStoryToFolderForm, self).__init__(*args, **kwargs)
+        self.fields['folder_checkboxes'] = forms.MultipleChoiceField(
+                                                widget=forms.CheckboxSelectMultiple(), 
+                                                choices=folder_list)
+        
