@@ -37,7 +37,7 @@ class FolderEditForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(FolderEditForm, self).__init__(*args, **kwargs)
         self.fields['folder_name'].widget.attrs['class'] = 'input'
-        self.fields['folder_name'].widget.attrs['v-model'] = 'subtitle'
+        self.fields['folder_name'].widget.attrs['type'] = 'text'
         self.fields['folder_desc'].widget.attrs['class'] = 'textarea'
         self.fields['is_visible'].widget.attrs['class'] = 'select'
 

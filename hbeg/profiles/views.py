@@ -72,6 +72,9 @@ class FolderAddView(LoginRequiredMixin, View):
             folder.save()
 
             return redirect('profile')
+        else:
+            # TODO: Handle errors
+            pass
 
 
 

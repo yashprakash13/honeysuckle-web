@@ -9,7 +9,7 @@
     <form action="." method="POST" autocomplete="off" novalidate>
         {% csrf_token %}
         {% if not folders %}
-            <div class="subtitle">No Folders Yet.</div>
+            <div class="subtitle">You haven't made any folders yet.</div>
         {% else %}
             <div class="columns is-multiline m-3">
                 {% for folder in folders %}

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from . import searcher
 
-# prepare the search engine to receive queries
+# prepare the search engine to receive queries, this object will be used by other apps such as profiles too.
 instance = searcher.SearchEngine()
 instance.prepare_s_engine()
 
