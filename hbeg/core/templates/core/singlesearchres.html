@@ -7,7 +7,7 @@
             font-size: 1.35em;
         " 
         class="card-header-title has-text-weight-bold has-text-white"
-        href="{% url 'story_detail' story.id %}">
+        href="{% url 'story_detail' res.story_id %}">
         {{res.title}}   &nbsp;
         <i>by</i> &nbsp;
         {{res.author_name}}
@@ -22,7 +22,8 @@
             <li>{{res.num_words}} words</li>&nbsp;
             <li>&nbsp; {{res.rated}} rated</li>&nbsp;
             <li>&nbsp;{{res.status}}</li>&nbsp;
-            <li>&nbsp;{{res.chars}}</li>&nbsp;
+            <li>&nbsp;{{res.num_chapters}} chapters</li>&nbsp;
+            <li>&nbsp;{{res.characters}}</li>&nbsp;
             <li>&nbsp;{{res.genres}}</li>
         </ul>
     </div>

@@ -550,6 +550,18 @@ class SearchEngine(Indices):
         indices = Indices()
         indices.load_psieindices()
         self.class_indices = indices
+
+
+    # MISC FUNCTIONS
+
+    def get_story_link(self, story_id):
+        return f'https://www.fanfiction.net/s/{story_id}'
+
+
+
+    def get_story_details(self, story_id):
+        df = self.class_indices.df
+        return df.loc[df.story_id == story_id]
         
 
         

@@ -46,3 +46,9 @@ M = 128
 DIMENSION = 768
 NLIST = 50  
 BYTES = 8
+
+
+# APP THINGS
+COLS_TO_SHOW_STORY_DETAIL = ['story_id', 'title', 'author_name', 'rated', 
+                            'summary', 'genres', 'num_chapters', 'num_words', 
+                            'status', 'characters']

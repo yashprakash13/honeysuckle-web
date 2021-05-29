@@ -4,7 +4,9 @@ from django.views import View
 from django.contrib import messages
 from .models import *
 from .forms import *
-
+# import the searcher instance from core app
+from core.views import instance
+from core.searcher.constants import *
 
 class ProfileView(LoginRequiredMixin, View):
     """View to display profile page
@@ -109,12 +111,13 @@ class StoryDetailView(LoginRequiredMixin, View):
     """View Story detail and go to story/delete from folder options
     """
     def get(self, request, story_id):
-        story = Story.objects.get(pk=story_id)
-        context = {
-            'story' : story
-        }
+        storygotten = instance.get_story_details(story_id)[COLS_TO_SHOW_STORY_DETAIL]
+        story = storygotten.to_dict(orient='records')[0]
+        story['link'] =  instance.get_story_link(story_id)
+        context = {'story':story}
 
         return render(request, 'profiles/story_detail.html', context)
+        
 
 
 

@@ -7,11 +7,32 @@
 <div class="container">
     <div class="columns-is-multiline">
         <div class="column is-12">
-            <div class="subtitle">{{story.story_name}}</div>
+            <div class="title">{{story.title}}</div>
         </div>
         <div class="column is-12">
             <div class="is-size-5">{{story.author_name}}</div>
         </div>
+        <div class="column is-12">
+            <div class="is-size-6"><strong>Summary:</strong> {{story.summary}}</div>
+        </div>
+        <div class="column is-12">
+            <div class="is-size-6"><strong>Rated:</strong> {{story.rated}}</div>
+        </div>
+        <div class="column is-12">
+            <div class="is-size-6"><strong>Characters:</strong> {{story.characters}}</div>
+        </div>
+        <div class="column is-12">
+            <div class="is-size-6"><strong>Genres:</strong> {{story.genres}}</div>
+        </div>
+        <div class="column is-12">
+            <div class="is-size-6"><strong>Chapters:</strong> {{story.num_chapters}}</div>
+        </div>
+        <div class="column is-12">
+            <div class="is-size-6"><strong>Words:</strong> {{story.num_words}}</div>
+        </div>
+        <div class="column is-12">
+            <div class="is-size-6"><strong>Status:</strong> {{story.status}}</div>
+        </div>        
         <div class="column is-12">
             {% comment %} open story in a new tab {% endcomment %}
             <a href="{{story.link}}" target='_blank' class="button is-light">Go to story</a>
