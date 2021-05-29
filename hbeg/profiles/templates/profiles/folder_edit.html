@@ -36,12 +36,23 @@
         </div>
         <div class="column is-12">
             <div class="field">
-                 <label class="label">{{ form.is_visible.label_tag }}</label>
+                <label class="label">{{ form.is_visible.label_tag }}</label>
                 <div class="control">
                     <div class="select">
                         {{form.is_visible}}
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                <label class="label">Select stories to delete:</label>
+                    {% for story in stories  %}
+                        <label class="checkbox is-size-5">
+                            <input type="checkbox" value="{{story.id}}" name="story_checkboxes">
+                            {{story.story_name}}
+                        </label>
+                    {% endfor %}
             </div>
         </div>
         <div class="field is-grouped">

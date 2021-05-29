@@ -43,6 +43,20 @@ class FolderEditForm(ModelForm):
 
 
 
+class FolderStoryEditForm(forms.Form):
+    """ Form to delete stories from a folder
+    """
+    story_checkboxes = forms.MultipleChoiceField(
+        widget = forms.CheckboxSelectMultiple,
+    )
+    def __init__(self, *args, **kwargs):
+        story_list = kwargs.pop('stories_to_show', None)
+        super(FolderStoryEditForm, self).__init__(*args, **kwargs)
+        self.fields['story_checkboxes'] = forms.MultipleChoiceField(
+                                                widget=forms.CheckboxSelectMultiple(), 
+                                                choices=story_list)
+
+
 class ContribStoryForm(ModelForm):
     """Form to Contribute new story to the database
     """

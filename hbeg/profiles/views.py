@@ -94,12 +94,29 @@ class FolderEditView(LoginRequiredMixin, View):
     """
     def get(self, request, folder_id):
         folder = Folder.objects.filter(created_by=request.user).get(pk=folder_id)
-        return render(request, 'profiles/folder_edit.html',
-                    {'form':FolderEditForm(instance=folder)})
+        stories = folder.story.all()
+        context = {
+            'form':FolderEditForm(instance=folder),
+            'stories': stories
+        }
+        return render(request, 'profiles/folder_edit.html', context)
     
     def post(self, request, folder_id):
         folder = Folder.objects.filter(created_by=request.user).get(pk=folder_id)
+        stories = folder.story.all()
+        # 'form' for regualar folder properties edit
         form = FolderEditForm(request.POST, instance=folder)
+        # 'form_story' for deleting stories in the folder
+        form_story = FolderStoryEditForm(request.POST, stories_to_show=stories)
+        
+        # get stories selected to delete from folder
+        stories_selected = request.POST.getlist('story_checkboxes')
+        stories_selected = Story.objects.filter(pk__in=stories_selected)
+        # delete selected stories from folder one by one
+        for story in stories_selected:
+            folder.story.remove(story)
+        
+        # save the regular form with title, description and visibility
         if form.is_valid():
             form.save()
             return redirect('profile')
