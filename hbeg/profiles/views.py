@@ -131,10 +131,14 @@ class StoryAddView(LoginRequiredMixin, View):
         return render(request, 'profiles/add_story_to_folder.html', context)
     
     def post(self, request, story_id):
+        # get all folders from profile
         folders_of_user = Folder.objects.filter(created_by=request.user)
+        # display form containing all folders
         form = AddStoryToFolderForm(request.POST, folders_to_show=folders_of_user)
+        # get all folders selected to add the story into
         folders_selected = request.POST.getlist('folder_checkboxes')
         folders_selected = Folder.objects.filter(pk__in=folders_selected)
+        # for every folder, create a story object if not already present and add it to folder(s)
         for folder in folders_selected:
             try:
                 story = Story.objects.get(story_id=story_id)
