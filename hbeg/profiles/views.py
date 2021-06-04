@@ -153,17 +153,25 @@ class StoryRateView(LoginRequiredMixin, View):
         return render(request, 'profiles/story_rating.html', context)
 
     def post(self, request, story_id):
+        # get the story name from story_id
         story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY]
+        # display rating form
         form = FolderEditForm(request.POST)
+        # get the rating choice selected
         choice = request.POST['rating']
+
+        # check if user rating for this story exists
+        exists_or_not = StoryRating.objects.filter(created_by = request.user, story_id=story_id)
+        if exists_or_not:
+            exists_or_not.update(rating=choice)
+        else:
+            StoryRating.objects.create(
+                rating = choice,
+                story_id = story_id,
+                created_by = request.user
+            )
         
-        StoryRating.objects.create(
-            rating = choice,
-            story_id = story_id,
-            created_by = request.user
-        )
-        
-        return redirect('search')
+        return redirect('profile')
 
 
 class StoryAddView(LoginRequiredMixin, View):
