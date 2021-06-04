@@ -19,6 +19,26 @@ class Story(models.Model):
 
 
 
+# to define the story rating
+class StoryRating(models.Model):
+    RATING_CHOICES = (
+        ('O', 'Outstanding'),
+        ('E', 'Exceeds Expectations'),
+        ('A', 'Acceptable'),
+        ('P', 'Poor'),
+        ('D', 'Dreadful'),
+        ('T', 'Troll')
+    )
+    rating = models.CharField(max_length=50, choices=RATING_CHOICES, null=True, blank=True)
+    story_id = models.CharField(max_length=30)
+    created_by = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='StoryRating')
+
+    def __str__(self):
+        return f"{self.story_id}_rating_by_{self.created_by.nickname}"
+    
+
+
+
 # to define a folder to keep stories
 class Folder(models.Model):
     folder_name = models.CharField(max_length=120, unique=True)

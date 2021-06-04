@@ -76,3 +76,12 @@ class AddStoryToFolderForm(forms.Form):
                                                 widget=forms.CheckboxSelectMultiple(), 
                                                 choices=folder_list)
         
+
+class AddStoryRatingForm(ModelForm):
+    class Meta:
+        model = StoryRating
+        fields = ('rating', )
+
+    def __init__(self, *args, **kwargs):
+        super(AddStoryRatingForm, self).__init__(*args, **kwargs)
+        self.fields['rating'].widget.attrs['class'] = 'select'

@@ -5,5 +5,6 @@ admin.site.register(Profile)
 admin.site.register(Folder)
 admin.site.register(Story)
 admin.site.register(Tag)
+admin.site.register(StoryRating)
 
 

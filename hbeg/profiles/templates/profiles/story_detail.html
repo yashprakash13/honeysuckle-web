@@ -13,6 +13,9 @@
             <div class="is-size-5">{{story.author_name}}</div>
         </div>
         <div class="column is-12">
+            <a href="{% url 'story_rating' story.story_id %}" class="button is-info">Rate this story</a>
+        </div>
+        <div class="column is-12">
             <div class="is-size-6"><strong>Summary:</strong> {{story.summary}}</div>
         </div>
         <div class="column is-12">

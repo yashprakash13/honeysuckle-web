@@ -35,8 +35,6 @@ class ProfileSettingsView(LoginRequiredMixin, View):
                                 initial={'is_author': request.user.profile.is_author})
         if form.is_valid():
             if str(form.cleaned_data.get('bio')).strip() != '':
-                choice = request.POST['is_author']
-                print(choice)
                 form.save()
             return redirect('profile')
         else:
@@ -128,16 +126,44 @@ class FolderEditView(LoginRequiredMixin, View):
     
 
 class StoryDetailView(LoginRequiredMixin, View):
-    """View Story detail and go to story/delete from folder options
+    """View Story detail and go to story/delete from folder options and 
+        to add story rating alongwith.
     """
     def get(self, request, story_id):
         storygotten = instance.get_story_details(story_id)[COLS_TO_SHOW_STORY_DETAIL]
         story = storygotten.to_dict(orient='records')[0]
         story['link'] =  instance.get_story_link(story_id)
-        context = {'story':story}
+        context = {
+            'story':story
+        }
 
         return render(request, 'profiles/story_detail.html', context)
+
+
+class StoryRateView(LoginRequiredMixin, View):
+    """View to rate a story
+    """
+    def get(self, request, story_id):
+        story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY]
+        print(story_to_rate)
+        context = {
+            'storyname':story_to_rate[COL_NAME_STORY].values[0][0],
+            'form': AddStoryRatingForm()
+        }
+        return render(request, 'profiles/story_rating.html', context)
+
+    def post(self, request, story_id):
+        story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY]
+        form = FolderEditForm(request.POST)
+        choice = request.POST['rating']
         
+        StoryRating.objects.create(
+            rating = choice,
+            story_id = story_id,
+            created_by = request.user
+        )
+        
+        return redirect('search')
 
 
 class StoryAddView(LoginRequiredMixin, View):

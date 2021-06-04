@@ -10,5 +10,6 @@ urlpatterns = [
     path('folder/<int:folder_id>/delete/', views.FolderDeleteView.as_view(), name='folder_delete'),
     path('story/<int:story_id>/', views.StoryDetailView.as_view(), name='story_detail'),
     path('story/<int:story_id>/add/', views.StoryAddView.as_view(), name='story_add'),
+    path('story/<int:story_id>/ratestory/', views.StoryRateView.as_view(), name='story_rating'),
 
 ]
