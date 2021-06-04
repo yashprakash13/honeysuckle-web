@@ -145,10 +145,15 @@ class StoryRateView(LoginRequiredMixin, View):
     """
     def get(self, request, story_id):
         story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY]
-        print(story_to_rate)
+        # check if user rated it before, if yes, then set initial value of rating
+        exists_or_not = StoryRating.objects.filter(created_by = request.user, story_id=story_id)
+        if exists_or_not:
+            form = AddStoryRatingForm(initial={'rating':exists_or_not[0].rating})
+        else:
+            form = AddStoryRatingForm()
         context = {
             'storyname':story_to_rate[COL_NAME_STORY].values[0][0],
-            'form': AddStoryRatingForm()
+            'form': form
         }
         return render(request, 'profiles/story_rating.html', context)
 
