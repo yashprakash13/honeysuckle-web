@@ -9,13 +9,11 @@ class ProfileEditForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('bio', 'profile_pic', 'is_author')
-        widgets = {
-          'is_author': forms.Select(attrs={'class': 'select'}),
-        }
+        
     def __init__(self, *args, **kwargs):
         super(ProfileEditForm, self).__init__(*args, **kwargs)
-
-
+        self.fields['is_author'].widget.attrs['class'] = 'select'
+        self.fields['bio'].widget.attrs['class'] = 'textarea'
 
 class NewFolderForm(ModelForm):
     """Form to create a new folder

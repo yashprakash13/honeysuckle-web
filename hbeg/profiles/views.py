@@ -27,12 +27,12 @@ class ProfileSettingsView(LoginRequiredMixin, View):
     """
     def get(self, request):
         return render(request, 'profiles/profile_settings.html', 
-                    {'form':ProfileEditForm(initial={'is_author': request.user.profile.is_author})})
+                    {'form':ProfileEditForm(instance=request.user.profile)})
     
     def post(self, request):
         form = ProfileEditForm(request.POST, request.FILES, 
                                 instance=request.user.profile, 
-                                initial={'is_author': request.user.profile.is_author})
+                            )
         if form.is_valid():
             if str(form.cleaned_data.get('bio')).strip() != '':
                 form.save()

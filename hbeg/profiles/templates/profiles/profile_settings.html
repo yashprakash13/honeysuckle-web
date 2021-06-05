@@ -3,55 +3,78 @@
 {% block content  %}
 {% load widget_tweaks %}
 
-<form method="POST" enctype="multipart/form-data" action=".">
-    {% csrf_token %}
-    {% comment %} {{form.as_p}} {% endcomment %}
-    <div class="field">
-        <div class="is-size-5">Write your bio</div>
-        <textarea name="bio" id="" cols="30" rows="10" class="textarea is-primary">
-            {{request.user.profile.bio}}
-        </textarea>
+
+<div class="container">
+    <div class="column is-12">
+        <div class="title">Edit Your Profile</div>
     </div>
-    <div class="field">
-        <div class="is-size-5">Are you an author?</div>
-        <div class="select">
-            {{form.is_author}}
-        </div>
+    {% comment %} display form error messages {% endcomment %}
+    <div class="column is-12">
+        {% for message in messages %}
+            <p class="help is-danger m-1 is-size-6">{{message}}</p>
+        {% endfor %}
     </div>
-    <div class="field">
-        <div class="is-size-5">New profile picture</div>
-            <div class="file has-name">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="profile_pic">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Choose image
-                        </span>
-                    </span>
-                    {% comment %} if default pic present, show no pic selected message {% endcomment %}
-                    {% if not 'profiles/default_profile_picture' in request.user.profile.profile_pic.url %}
-                        <span class="file-name">
-                            {{request.user.profile.profile_pic}}
-                        </span>  
-                    {% else %}
-                        <span class="file-name">
-                            No picture selected.
-                        </span>  
-                    {% endif %}
-                </label>
+</div>
+<div class="container">
+    <form action="." method="POST" enctype="multipart/form-data" autocomplete="off" class="columns is-multiline" novalidate>
+        {% csrf_token %}
+        {% comment %} Profile edit form {% endcomment %}
+        <div class="column is-12">
+            <div class="field">
+                 <label class="label">Write your bio</label>
+                <div class="control">
+                    {{ form.bio }}
+                </div>
             </div>
         </div>
-    </div>
-     <div class="field">
-        <div class="control">
-            <button class="button is-success">Save changes</button>
+        <div class="column is-12">
+            <div class="field">
+                <label class="label">Are you an author?</label>
+                <div class="control">
+                    <div class="select">
+                        {{form.is_author}}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</form>
-
+        <div class="column is-12">
+            <div class="field">
+                <div class="is-size-5">New profile picture</div>
+                    <div class="file has-name">
+                        <label class="file-label">
+                            <input class="file-input" type="file" name="profile_pic">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Choose image
+                                </span>
+                            </span>
+                            {% comment %} if default pic present, show no pic selected message {% endcomment %}
+                            {% if not 'profiles/default_profile_picture' in request.user.profile.profile_pic.url %}
+                                <span class="file-name">
+                                    {{request.user.profile.profile_pic}}
+                                </span>  
+                            {% else %}
+                                <span class="file-name">
+                                    No picture selected.
+                                </span>  
+                            {% endif %}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-primary">Save changes</button>
+                    <a href="{% url 'profile' %}" class="button is-danger">Cancel</a>
+                </div>
+            </div>
+        </div>
+</div>
 
 
 <script>
