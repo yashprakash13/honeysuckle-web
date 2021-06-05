@@ -18,9 +18,13 @@
             {% endfor %}
         </div>
         {% comment %} bio goes here if not None{% endcomment %}
-        {% if profile.bio %}
+        {% if profile.bio != 'None'%}
             <div class="content has-text-centered">
                 {{profile.bio}}
+            </div>
+        {% else %}
+            <div class="content has-text-centered">
+                No bio added.
             </div>
         {% endif %}
         {% comment %} profile settings button {% endcomment %}
