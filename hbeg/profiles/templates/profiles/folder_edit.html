@@ -2,6 +2,7 @@
 {% load static %}
 {% block content  %}
 {% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
 
 <div class="container">
     <div class="column is-12">
@@ -57,8 +58,8 @@
         </div>
         <div class="field is-grouped">
             <div class="control">
-                <button type="submit" class="button is-primary">Save changes</button>
-                <a href="{% url 'profile' %}" class="button is-danger">Cancel</a>
+                <button type="submit" class="button" id="folder-edit-save-btn">Save changes</button>
+                <a href="{% url 'profile' %}" class="button is-danger is-inverted">Cancel</a>
             </div>
         </div>
     </form>
