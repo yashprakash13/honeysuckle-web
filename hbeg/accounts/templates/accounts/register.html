@@ -30,13 +30,13 @@
     </div>
     <p class="help is-danger">{{ form.password2.errors }}</p>
     <div class="field">
-        By registering, you agree to the <a href="#">privacy policy </a>of HBEG.
+        By registering, you agree to the <a href="#" id="privacy-policy-link">privacy policy </a>of HBEG.
     </div>
     <div class="field">
-        <button class="button is-primary">Register</button>
+        <p class="button" id="register-btn">Register</p>
     </div>
     <div class="field">
-        Have an account? <a href="{% url 'login' %}">Log In</a>.
+        Have an account? <a href="{% url 'login' %}" id="to-log-in-link">Log In</a>.
     </div>
 </form>
 {% endblock %}

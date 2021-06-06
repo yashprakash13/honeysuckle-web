@@ -23,10 +23,10 @@
         {% render_field form.password class="input is-primary" placeholder="my password..." %}
     </div>
     <div class="field">
-        <button class="button is-primary">Log In</button>
+        <p class="button" id="log-in-btn">Log In</p>
     </div>
     <div class="field">
-        Not registered yet? <a href="{% url 'register' %}">Register</a>.
+        Not registered yet? <a href="{% url 'register' %}" id="to-register-link">Register</a>.
     </div>
 </form>
 

@@ -1,4 +1,5 @@
 <style>
+{% comment %} Responsiveness for login, register pages {% endcomment %}
 @media screen and (min-width: 1200px) {
     form{
         margin-left: 30vw;
@@ -17,7 +18,18 @@
         margin-right: 10vw;
     }
 }
+{% comment %} the form things {% endcomment %}
 form{
     margin-top: 3vh;
 }
+
+{% comment %} the button things {% endcomment %}
+#log-in-btn, #register-btn{
+    background-color:#6a676f;
+    color:white;
+}
+#to-register-link, #to-log-in-link, #privacy-policy-link{
+    color:green;
+}
+
 </style>
