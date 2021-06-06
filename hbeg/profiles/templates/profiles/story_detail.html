@@ -2,6 +2,7 @@
 {% load static %}
 {% block content  %}
 {% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
 
 
 <div class="container">
@@ -13,7 +14,7 @@
             <div class="is-size-5">{{story.author_name}}</div>
         </div>
         <div class="column is-12">
-            <a href="{% url 'story_rating' story.story_id %}" class="button is-info">Rate this story</a>
+            <a href="{% url 'story_rating' story.story_id %}" class="button" id="rate-story-btn">Rate this story</a>
         </div>
         <div class="column is-12">
             <div class="is-size-6"><strong>Summary:</strong> {{story.summary}}</div>
@@ -38,9 +39,9 @@
         </div>        
         <div class="column is-12">
             {% comment %} open story in a new tab {% endcomment %}
-            <a href="{{story.link}}" target='_blank' class="button is-light">Go to story</a>
+            <a href="{{story.link}}" target='_blank' class="button is-dark is-inverted" id="go-to-story-btn">Go to story</a>
             {% comment %} to add story to folder(s) {% endcomment %}
-            <a href="{% url 'story_add' story.story_id %}" class="button is-dark">Add To Folder</a>
+            <a href="{% url 'story_add' story.story_id %}" class="button" id="story-add-to-folder-btn">Add To Folder</a>
         </div>
     </div>
 </div>

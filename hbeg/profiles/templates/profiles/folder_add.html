@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 {% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
 
 
 <div class="container">
@@ -46,7 +47,7 @@
 
         <div class="column is-12">
             <div class="field">
-                <button class="button is-primary">Create</button>
+                <p class="button" id="folder-create-btn">Create</p>
             </div>
         </div>
     </form>

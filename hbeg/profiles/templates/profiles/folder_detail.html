@@ -2,6 +2,7 @@
 {% load static %}
 {% block content  %}
 {% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
 
 
 <div class="container">
@@ -19,9 +20,9 @@
         </div>
         <div class="column is-12">
             {% comment %} edit folder details and delete stories within it {% endcomment %}
-            <a href="{% url 'folder_edit' folder.id %}" class="button is-light">Edit</a>
+            <a href="{% url 'folder_edit' folder.id %}" class="button" id="go-to-edit-folder-btn">Edit</a>
             {% comment %} delete a folder and all its stories within {% endcomment %}
-            <a href="{% url 'folder_delete' folder.id %}" class="button is-danger is-outlined">Delete</a>        
+            <a href="{% url 'folder_delete' folder.id %}" class="button is-danger is-inverted">Delete</a>        
         </div>
         {% comment %}display stories one by one (max 4)  {% endcomment %}
     </div>

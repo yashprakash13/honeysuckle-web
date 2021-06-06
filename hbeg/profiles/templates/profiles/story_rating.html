@@ -2,6 +2,7 @@
 {% load static %}
 {% block content  %}
 {% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
 
 
 <div class="container">
@@ -23,7 +24,7 @@
         </div>
         <div class="field is-grouped">
             <div class="control">
-                <button type="submit" class="button is-primary">Rate</button>
+                <p type="submit" class="button" id="save-rating-story-btn">Rate</p>
             </div>
         </div>
     </form>
