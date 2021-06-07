@@ -30,7 +30,7 @@
         <div class="column is-12">
             <div class="field">
                 <label class="label" for="{{form.folder_desc.id_for_label}}">Folder description</label>
-                {% render_field form.folder_desc class="input is-primary" placeholder="Describe what the folder will store..." %}
+                {% render_field form.folder_desc class="textarea is-primary" placeholder="Describe what the folder will store..." %}
             </div>
         </div>
         <p class="help is-danger">{{ form.folder_desc.errors }}</p>

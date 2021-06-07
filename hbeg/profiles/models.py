@@ -42,7 +42,7 @@ class StoryRating(models.Model):
 # to define a folder to keep stories
 class Folder(models.Model):
     folder_name = models.CharField(max_length=120, unique=True)
-    folder_desc = models.CharField(max_length=512, blank=True, null=True)
+    folder_desc = models.TextField(blank=True, null=True)
     BOOL_VISIBILITY_CHOICES = ((True, 'Visible'), (False, 'Invisible'))
     is_visible = models.BooleanField(choices=BOOL_VISIBILITY_CHOICES, default=True)
     created_by = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='Folders')
@@ -71,7 +71,7 @@ class Tag(models.Model):
 # define the profile created upon member registration
 class Profile(models.Model):
     member = models.OneToOneField(Member, on_delete=models.CASCADE)
-    bio = models.CharField(max_length=999, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
     profile_pic = models.ImageField(null=True, 
                                     blank=True, 
                                     upload_to="profiles/", 

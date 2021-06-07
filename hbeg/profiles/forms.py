@@ -13,7 +13,7 @@ class ProfileEditForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileEditForm, self).__init__(*args, **kwargs)
         self.fields['is_author'].widget.attrs['class'] = 'select'
-        self.fields['bio'].widget.attrs['class'] = 'input'
+        self.fields['bio'].widget.attrs['class'] = 'textarea'
 
 class NewFolderForm(ModelForm):
     """Form to create a new folder
@@ -36,7 +36,7 @@ class FolderEditForm(ModelForm):
         super(FolderEditForm, self).__init__(*args, **kwargs)
         self.fields['folder_name'].widget.attrs['class'] = 'input'
         self.fields['folder_name'].widget.attrs['type'] = 'text'
-        self.fields['folder_desc'].widget.attrs['class'] = 'input'
+        self.fields['folder_desc'].widget.attrs['class'] = 'textarea'
         self.fields['is_visible'].widget.attrs['class'] = 'select'
 
 
