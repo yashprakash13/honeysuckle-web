@@ -1,15 +1,12 @@
 {% load static %}
-<div class="card search-singlecard-content">
-  <header class="card-header ">
-    <a 
-        style= "
-            background:#A55435;
-            font-size: 1.35em;
-        " 
-        class="card-header-title has-text-weight-bold has-text-white"
+{% include 'core/styles.html' %}
+
+<div class="card search-singlecard-content mt-3" id="search-res-card">
+  <header class="card-header" id="card-header">
+    <a class="card-header-title has-text-weight-bold has-text-white" id="title-of-fic"
         href="{% url 'story_detail' res.story_id %}">
         {{res.title}}   &nbsp;
-        <i>by</i> &nbsp;
+        <i id="by-fic-author-separator">by</i> &nbsp;
         {{res.author_name}}
     </a>
   </header>
@@ -28,27 +25,4 @@
         </ul>
     </div>
   </div>
-  {% comment %} <footer class="card-footer">
-    <a href="#" style="background:#C35355;" 
-    class="card-footer-item  has-text-white has-text-weight-bold">Add to Reading List</a> 
-  </footer> {% endcomment %}
 </div>
-
-<style>
-@media screen and (min-width: 1200px) {
-    .search-singlecard-content{
-        margin-left: 10vw;
-        margin-right: 10vw;
-    }
-}
-@media screen and (max-width: 1199px) and (min-width: 601px){
-    .search-singlecard-content{
-        margin-left: 10vw;
-        margin-right: 10vw;
-    }
-}
-ul, .breadcrumb a{
-    background:white;
-    color:green;
-}
-</style>

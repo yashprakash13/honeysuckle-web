@@ -1,7 +1,7 @@
 /* for the whole website */
 *{
     font-family: 'Antic Slab', serif;
-    color:#6a676f;
+
 }
 html{
     background-color:#efece8;
@@ -9,7 +9,7 @@ html{
 body{
 	background: #efece8;
     height: 100vh;
-    color:#6a676f;
+    
 }
 
 /* Search things */
