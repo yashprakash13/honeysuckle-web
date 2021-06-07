@@ -6,7 +6,7 @@
         <div class="container has-text-centered">
             <figure class="image" id="has-image-centered"  >
                 <img id="log-image"
-                src="https://see.fontimg.com/api/renderfont4/ZVOMx/eyJyIjoiZnMiLCJoIjoyNjgsInciOjIwMDAsImZzIjoxMzQsImZnYyI6IiM4NDU4NTgiLCJiZ2MiOiIjRkZGRkZGIiwidCI6MX0/SGlzIEJyb3duIEV5ZWQgR2lybA/authorized-signature.png"
+                src="{% static 'images/hbeg_logo_big.png' %}"
                 {% comment %} src="{% static 'images/hbeg_logo.png' %}"> {% endcomment %}
             </figure>
             {% comment %} <p class="title" id="HeroProjectName">His Brown Eyed Girl</p> {% endcomment %}
@@ -31,6 +31,9 @@
 
 <style>
 {% comment %} style for search bar {% endcomment %}
+html{
+    background-color:#efece8;
+}
 .input:focus, .input:hover{
     border-color:#2d2;
     box-shadow: 0 0 0 .125em rgba(50,115,220,.05);

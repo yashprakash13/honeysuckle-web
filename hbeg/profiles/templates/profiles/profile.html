@@ -4,7 +4,7 @@
 {% load widget_tweaks %}
 {% include 'profiles/styles.html' %}
 
-<div class="columns is-centered m-6 p-3">
+<div class="columns is-centered m-6 p-3" id="profile-everything">
     {% comment %} for bio and info about member {% endcomment %}
     <div class="column is-4" id="bio-column">
         <div class="title has-text-centered">{{request.user.nickname}}</div>
