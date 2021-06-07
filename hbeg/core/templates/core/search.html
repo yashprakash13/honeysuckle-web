@@ -4,7 +4,12 @@
 <section class="hero is-fullheight">
     <div class="hero-body">
         <div class="container has-text-centered">
-            <p class="title" id="HeroProjectName">HisBrownEyedGirl</p>
+            <figure class="image" id="has-image-centered"  >
+                <img id="log-image"
+                src="https://see.fontimg.com/api/renderfont4/ZVOMx/eyJyIjoiZnMiLCJoIjoyNjgsInciOjIwMDAsImZzIjoxMzQsImZnYyI6IiM4NDU4NTgiLCJiZ2MiOiIjRkZGRkZGIiwidCI6MX0/SGlzIEJyb3duIEV5ZWQgR2lybA/authorized-signature.png"
+                {% comment %} src="{% static 'images/hbeg_logo.png' %}"> {% endcomment %}
+            </figure>
+            {% comment %} <p class="title" id="HeroProjectName">His Brown Eyed Girl</p> {% endcomment %}
             <form class="searchForm" method="POST">
                 {% csrf_token %}
                 <input class="input is-rounded is-medium m-6" 
@@ -29,6 +34,14 @@
 .input:focus, .input:hover{
     border-color:#2d2;
     box-shadow: 0 0 0 .125em rgba(50,115,220,.05);
+}
+#has-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+#log-image{
+    width:47%; 
+    display:inline;
 }
 
 </style>
