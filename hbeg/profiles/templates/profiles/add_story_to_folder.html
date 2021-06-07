@@ -5,7 +5,7 @@
 {% include 'profiles/styles.html' %}
 
 
-<div class="container">
+<div class="container mt-6" id="form-container">
     <div class="column is-12">
         <div class="title">Add To Folders</div>
     </div>
@@ -24,9 +24,11 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="field is-grouped">
-                <div class="control">
-                    <p type="submit" class="button" id="add-story-to-folder-btn">Save Changes</p>
+            <div class="column is-12">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <p type="submit" class="button" id="add-story-to-folder-btn">Save Changes</p>
+                    </div>
                 </div>
             </div>
         {% endif %}

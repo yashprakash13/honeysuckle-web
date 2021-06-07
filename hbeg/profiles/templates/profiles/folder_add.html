@@ -4,20 +4,16 @@
 {% load widget_tweaks %}
 {% include 'profiles/styles.html' %}
 
-
-<div class="container">
+{% comment %} display form error messages {% endcomment %}
+{% for message in messages %}
+    <p class="help is-danger m-1 is-size-6">{{message}}</p>
+{% endfor %}
+<div class="container" id="form-container">
     <form action="{% url 'folder_add' %}" method="POST" autocomplete="off" class="columns is-multiline">
         {% csrf_token %}
-        <div class="column is-12">
+        <div class="column is-12 mt-6">
             <div class="title">Add new Folder</div>
         </div>
-        {% comment %} display form error messages {% endcomment %}
-        <div class="column is-12">
-            {% for message in messages %}
-                <p class="help is-danger m-1 is-size-6">{{message}}</p>
-            {% endfor %}
-        </div>
-
         {% comment %} Folder Add form {% endcomment %}
         <div class="column is-12">
             <div class="field">

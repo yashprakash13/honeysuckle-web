@@ -72,7 +72,7 @@ html{
 
 {% comment %} The two buttons at the top and settings button{% endcomment %}
 #search-btn, #contribute-story-btn, #profile-settings-btn, 
-#folder-edit-save-btn, #folder-create-btn, #story-add-to-folder-btn, 
+#folder-edit-save-btn, #folder-create-btn, #story-add-to-folder-btn, #profile-save-settings-btn,
 #rate-story-btn, #save-rating-story-btn, #add-story-to-folder-btn, #go-to-edit-folder-btn{
     background-color:#6a676f;
     color:white;
@@ -81,6 +81,13 @@ html{
 .button.is-danger.is-inverted, #go-to-story-btn{
     background-color:#efece8;
 }
-
+#form-container{
+    margin-left:6vw;
+    margin-right:6vw;
+}
+{% comment %} need to include this because of some reason that save btn isn't working with margin in above property {% endcomment %}
+#profile-save-settings-btn{
+    margin-left: 5vw;
+}
 
 </style>

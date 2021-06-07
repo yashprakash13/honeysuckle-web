@@ -5,8 +5,8 @@
 {% include 'profiles/styles.html' %}
 
 
-<div class="container">
-    <div class="columns-is-multiline">
+<div class="container" id="form-container">
+    <div class="columns-is-multiline mt-6">
         <div class="column is-12">
             <div class="title">{{story.title}}</div>
         </div>
@@ -38,10 +38,10 @@
             <div class="is-size-6"><strong>Status:</strong> {{story.status}}</div>
         </div>        
         <div class="column is-12">
-            {% comment %} open story in a new tab {% endcomment %}
-            <a href="{{story.link}}" target='_blank' class="button is-dark is-inverted" id="go-to-story-btn">Go to story</a>
             {% comment %} to add story to folder(s) {% endcomment %}
             <a href="{% url 'story_add' story.story_id %}" class="button" id="story-add-to-folder-btn">Add To Folder</a>
+            {% comment %} open story in a new tab {% endcomment %}
+            <a href="{{story.link}}" target='_blank' class="button is-dark is-inverted" id="go-to-story-btn">Go to story</a>
         </div>
     </div>
 </div>

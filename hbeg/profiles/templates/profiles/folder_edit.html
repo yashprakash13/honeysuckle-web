@@ -4,20 +4,18 @@
 {% load widget_tweaks %}
 {% include 'profiles/styles.html' %}
 
-<div class="container">
-    <div class="column is-12">
-        <div class="title">Edit Folder</div>
-    </div>
-    {% comment %} display form error messages {% endcomment %}
-    <div class="column is-12">
-        {% for message in messages %}
-            <p class="help is-danger m-1 is-size-6">{{message}}</p>
-        {% endfor %}
-    </div>
+{% comment %} display form error messages {% endcomment %}
+<div class="column is-12">
+    {% for message in messages %}
+        <p class="help is-danger m-1 is-size-6">{{message}}</p>
+    {% endfor %}
 </div>
-<div class="container">
+<div class="container" id="form-container">
     <form action="." method="POST" autocomplete="off" class="columns is-multiline" novalidate>
         {% csrf_token %}
+        <div class="column is-12">
+            <div class="title">Edit Folder</div>
+        </div>
         {% comment %} Folder edit form {% endcomment %}
         <div class="column is-12">
             <div class="field">
@@ -56,13 +54,14 @@
                     {% endfor %}
             </div>
         </div>
-        <div class="field is-grouped">
-            <div class="control">
-                <button type="submit" class="button" id="folder-edit-save-btn">Save changes</button>
-                <a href="{% url 'profile' %}" class="button is-danger is-inverted">Cancel</a>
+        <div class="column is-12">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button" id="folder-edit-save-btn">Save changes</button>
+                    <a href="{% url 'profile' %}" class="button is-danger is-inverted">Cancel</a>
+                </div>
             </div>
         </div>
     </form>
-
 </div>
 {% endblock %}

@@ -5,13 +5,13 @@
 {% include 'profiles/styles.html' %}
 
 
-<div class="container">
+<div class="container mt-6" id="form-container">
     <form action="." method="POST" autocomplete="off" class="columns is-multiline" novalidate>
         {% csrf_token %}
         <div class="column is-12">
         </div>
         <div class="columb is-12">
-            <content class="is-size-4 ml-3">Rate the story: {{storyname}}</content>
+            <content class="is-size-3 ml-3">Rate the story: {{storyname}}</content>
         </div>
         <div class="column is-12">
             <div class="field">
@@ -22,9 +22,11 @@
                 </div>
             </div>
         </div>
-        <div class="field is-grouped">
-            <div class="control">
-                <p type="submit" class="button" id="save-rating-story-btn">Rate</p>
+        <div class="column is-12">
+            <div class="field is-grouped">
+                <div class="control">
+                    <p type="submit" class="button" id="save-rating-story-btn">Rate</p>
+                </div>
             </div>
         </div>
     </form>
