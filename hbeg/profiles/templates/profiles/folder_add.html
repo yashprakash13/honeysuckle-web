@@ -40,10 +40,12 @@
                 {% render_field form.is_visible class="input select"  %}
             </div>
         </div>
-
         <div class="column is-12">
-            <div class="field">
-                <p class="button" id="folder-create-btn">Create</p>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button" id="folder-add-save-btn">Create</button>
+                    <a href="{% url 'profile' %}" class="button is-danger is-inverted">Cancel</a>
+                </div>
             </div>
         </div>
     </form>

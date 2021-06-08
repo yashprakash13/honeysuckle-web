@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import *
 from .forms import *
 # import the searcher instance from core app
@@ -97,6 +98,10 @@ class FolderEditView(LoginRequiredMixin, View):
             'form':FolderEditForm(instance=folder),
             'stories': stories
         }
+
+        # store previous page session path
+        request.session['this_form'] = request.META.get('HTTP_REFERER', '/')
+
         return render(request, 'profiles/folder_edit.html', context)
     
     def post(self, request, folder_id):
@@ -117,7 +122,8 @@ class FolderEditView(LoginRequiredMixin, View):
         # save the regular form with title, description and visibility
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            # return to previous page after submitting
+            return HttpResponseRedirect(request.session['this_form'])
         else:
             print(form.cleaned_data)
             # TODO Handle the errors
@@ -155,6 +161,10 @@ class StoryRateView(LoginRequiredMixin, View):
             'storyname':story_to_rate[COL_NAME_STORY].values[0][0],
             'form': form
         }
+
+        # store previous page session path
+        request.session['this_form'] = request.META.get('HTTP_REFERER', '/')
+
         return render(request, 'profiles/story_rating.html', context)
 
     def post(self, request, story_id):
@@ -175,8 +185,8 @@ class StoryRateView(LoginRequiredMixin, View):
                 story_id = story_id,
                 created_by = request.user
             )
-        
-        return redirect('profile')
+        # return to previous page after submitting
+        return HttpResponseRedirect(request.session['this_form'])
 
 
 class StoryAddView(LoginRequiredMixin, View):
@@ -187,6 +197,10 @@ class StoryAddView(LoginRequiredMixin, View):
         context = {
             'folders':folders_of_user
         }
+
+        # store previous page session path
+        request.session['this_form'] = request.META.get('HTTP_REFERER', '/')
+
         return render(request, 'profiles/add_story_to_folder.html', context)
     
     def post(self, request, story_id):
@@ -214,5 +228,6 @@ class StoryAddView(LoginRequiredMixin, View):
 
                 folder.story.add(Story.objects.get(story_id=story_id))
                 
-        return redirect('search')
+        # return to previous page after submitting
+        return HttpResponseRedirect(request.session['this_form'])
 

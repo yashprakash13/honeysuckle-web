@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import Member
-
+import os
 
 # define a single story
 class Story(models.Model):
@@ -67,6 +67,13 @@ class Tag(models.Model):
         return self.tag_name
     
 
+
+# Rename and Upload member profile picture
+def content_file_name(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{instance.member.id}_profile_pic.png"
+    return os.path.join('profiles', filename)
+
     
 # define the profile created upon member registration
 class Profile(models.Model):
@@ -74,7 +81,7 @@ class Profile(models.Model):
     bio = models.TextField(null=True, blank=True)
     profile_pic = models.ImageField(null=True, 
                                     blank=True, 
-                                    upload_to="profiles/", 
+                                    upload_to=content_file_name, 
                                     default="profiles/default_profile_picture.png")
     
     BOOL_ISAUTHOR_CHOICES = ((True, 'Yes,I am.'), (False, 'Nope.'))
