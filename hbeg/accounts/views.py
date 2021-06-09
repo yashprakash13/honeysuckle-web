@@ -1,11 +1,12 @@
 from django.views import View
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 # import custom Register form
-from .forms import RegisterForm
+from .forms import *
 
 class RegisterView(View):
     """View to register a user
@@ -31,7 +32,14 @@ class RegisterView(View):
                 if msg == 'nickname':
                     messages.error(request, f"Chosen nickname cannot be used as a valid nickname.")
                 if msg == 'password2' and password1 == password2:
-                    messages.error(request, f"Selected password: is not strong enough.")
+                    messages.error(request, f"Selected password is not strong enough.")
                 elif msg == 'password2' and password1 != password2:
                     messages.error(request, f"The Passwords do not match.")
-            return render(request, 'accounts/register.html', {'form': RegisterForm()})
+            
+            # return redirect(self.request.GET.get('next', 'search'))
+            # return render(request, 'accounts/register.html', {'form': RegisterForm()})
+
+
+
+    
+        

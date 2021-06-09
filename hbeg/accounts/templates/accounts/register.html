@@ -38,5 +38,6 @@
     <div class="field">
         Have an account? <a href="{% url 'login' %}" id="to-log-in-link">Log In</a>.
     </div>
+    <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
 </form>
 {% endblock %}

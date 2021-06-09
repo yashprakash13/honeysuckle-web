@@ -6,6 +6,3 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = Member
         fields = ('nickname', 'password1', 'password2')
-
-
-
