@@ -229,3 +229,5 @@ Thumbs.db
 !.vscode/extensions.json
 *.code-workspace
 hbeg/data/*
+hbeg/static/data/*
+hbeg/hide/*
