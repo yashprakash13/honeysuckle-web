@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -131,14 +133,16 @@ AUTH_USER_MODEL = 'accounts.Member'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+# MEDIA_URL = '/images/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static'
+# ]
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+# INSERT FROM hide/aws_cred.txt
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
