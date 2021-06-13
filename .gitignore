@@ -231,3 +231,5 @@ Thumbs.db
 hbeg/data/*
 hbeg/static/data/*
 hbeg/hide/*
+
+.env
