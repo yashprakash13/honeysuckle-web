@@ -16,6 +16,9 @@ django-crispy-forms = "*"
 django-widget-tweaks = "*"
 boto3 = "*"
 django-storages = "*"
+psycopg2 = "*"
+whitenoise = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

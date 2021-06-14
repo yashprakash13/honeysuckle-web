@@ -2,6 +2,7 @@ from .models import *
 from django import forms
 from django.forms import ModelForm
 
+from hbeg.form_validators import *
 
 class ProfileEditForm(ModelForm):
     """Form to edit a member profile
@@ -15,15 +16,21 @@ class ProfileEditForm(ModelForm):
         self.fields['is_author'].widget.attrs['class'] = 'select'
         self.fields['bio'].widget.attrs['class'] = 'textarea'
 
+
+
 class NewFolderForm(ModelForm):
     """Form to create a new folder
     """
-    # TODO: Make folder desc optional
     class Meta:
         model = Folder
         fields = ('folder_name', 'folder_desc', 'is_visible')
 
-
+    def clean_folder_name(self):
+        folder_name = self.cleaned_data['folder_name']
+        if not check_any_name_characters(folder_name):
+            raise forms.ValidationError("Sorry, the folder name can only have alphanumeric, spaces or _ characters.")
+        return folder_name
+    
 
 class FolderEditForm(ModelForm):
     """Form to edit a folder
@@ -38,6 +45,12 @@ class FolderEditForm(ModelForm):
         self.fields['folder_name'].widget.attrs['type'] = 'text'
         self.fields['folder_desc'].widget.attrs['class'] = 'textarea'
         self.fields['is_visible'].widget.attrs['class'] = 'select'
+
+    def clean_folder_name(self):
+        folder_name = self.cleaned_data['folder_name']
+        if not check_any_name_characters(folder_name):
+            raise forms.ValidationError("Sorry, the folder name can only have alphanumeric, spaces or _ characters.")
+        return folder_name
 
 
 

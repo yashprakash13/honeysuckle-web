@@ -29,7 +29,6 @@
     <div class="field">
         Not registered yet? <a href="{% url 'register' %}" id="to-register-link">Register</a>.
     </div>
-    <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
 
 </form>
 

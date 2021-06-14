@@ -12,7 +12,6 @@
     {% for message in messages %}
         <p class="help is-danger m-1 is-size-6">{{message}}</p>
     {% endfor %}
-
     {% comment %} Registration form {% endcomment %}
     <div class="field">
         <label class="label" for="{{form.nickname.id_for_label}}">Choose your Nickname. It's permanent.</label>
@@ -38,6 +37,5 @@
     <div class="field">
         Have an account? <a href="{% url 'login' %}" id="to-log-in-link">Log In</a>.
     </div>
-    <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
 </form>
 {% endblock %}

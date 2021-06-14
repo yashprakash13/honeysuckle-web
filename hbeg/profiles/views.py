@@ -40,8 +40,11 @@ class ProfileSettingsView(LoginRequiredMixin, View):
                 form.save()
             return redirect('profile')
         else:
-            # TODO handle errors
-            return redirect('profile')
+            for field, items in form.errors.items():
+                for item in items:
+                    messages.error(request, f'{item}')
+            return render(request, 'profiles/profile_settings.html', 
+                    {'form':ProfileEditForm(instance=request.user.profile)})
 
 
 
@@ -73,8 +76,10 @@ class FolderAddView(LoginRequiredMixin, View):
 
             return redirect('profile')
         else:
-            # TODO: Handle errors
-            pass
+            for field, items in form.errors.items():
+                for item in items:
+                    messages.error(request, f'{item}')
+            return render(request, 'profiles/folder_add.html', {'form': NewFolderForm()})
 
 
 
@@ -126,9 +131,16 @@ class FolderEditView(LoginRequiredMixin, View):
             # return to previous page after submitting
             return HttpResponseRedirect(request.session['this_form'])
         else:
-            print(form.cleaned_data)
-            # TODO Handle the errors
-        
+            for field, items in form.errors.items():
+                for item in items:
+                    messages.error(request, f'{item}')
+            folder = Folder.objects.filter(created_by=request.user).get(pk=folder_id)
+            stories = folder.story.all()
+            context = {
+                'form':FolderEditForm(instance=folder),
+                'stories': stories
+            }
+            return render(request, 'profiles/folder_edit.html', context)
 
     
 

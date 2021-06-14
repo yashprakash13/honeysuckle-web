@@ -36,8 +36,7 @@ class RegisterView(View):
                 elif msg == 'password2' and password1 != password2:
                     messages.error(request, f"The Passwords do not match.")
             
-            # return redirect(self.request.GET.get('next', 'search'))
-            # return render(request, 'accounts/register.html', {'form': RegisterForm()})
+            return render(request, 'accounts/register.html', {'form': RegisterForm()})
 
 
 
