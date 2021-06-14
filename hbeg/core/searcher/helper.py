@@ -65,7 +65,7 @@ class Indices(Data):
         self.sieindex = None
         self.sie_ids = None
         Data.load_data(self)
-        # Data.load_una_ids(self)
+        Data.load_una_ids(self)
     
     
     def _load_psieindex(self, pair):
