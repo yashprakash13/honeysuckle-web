@@ -19,6 +19,7 @@ django-storages = "*"
 psycopg2 = "*"
 whitenoise = "*"
 python-dotenv = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

@@ -20,7 +20,7 @@
         {% comment %} bio goes here if not None{% endcomment %}
         {% if profile.bio and profile.bio != 'None'%}
             <div class="content has-text-centered">
-                {{profile.bio}}
+                {{profile.bio|safe}}
             </div>
         {% else %}
             <div class="content has-text-centered">

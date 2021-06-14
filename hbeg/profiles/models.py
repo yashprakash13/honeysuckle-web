@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Member
 import os
+from ckeditor.fields import RichTextField
 
 # define a single story
 class Story(models.Model):
@@ -78,7 +79,7 @@ def content_file_name(instance, filename):
 # define the profile created upon member registration
 class Profile(models.Model):
     member = models.OneToOneField(Member, on_delete=models.CASCADE)
-    bio = models.TextField(null=True, blank=True)
+    bio = RichTextField(null=True, blank=True)
     profile_pic = models.ImageField(null=True, 
                                     blank=True, 
                                     upload_to=content_file_name, 

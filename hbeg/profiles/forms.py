@@ -1,6 +1,7 @@
 from .models import *
 from django import forms
 from django.forms import ModelForm
+from ckeditor.widgets import CKEditorWidget
 
 from hbeg.form_validators import *
 

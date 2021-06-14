@@ -14,6 +14,7 @@
 <div class="container" id="form-container">
     <form action="." method="POST" enctype="multipart/form-data" autocomplete="off" class="columns is-multiline" novalidate>
         {% csrf_token %}
+        {{form.media}}
         <div class="column is-12">
             <div class="title">Edit Your Profile</div>
         </div>
@@ -22,7 +23,7 @@
             <div class="field">
                  <label class="label">Write your bio</label>
                 <div class="control">
-                    {{ form.bio }}
+                    {{ form.bio|safe }}
                 </div>
             </div>
         </div>
