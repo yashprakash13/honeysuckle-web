@@ -13,6 +13,7 @@ class RegisterForm(UserCreationForm):
         password1 = self.cleaned_data['password1']
         if not check_password_size(password1):
             raise forms.ValidationError("The password is too short.")
+        return password1
     
     def clean_nickname(self):
         nickname = self.cleaned_data['nickname']
@@ -20,4 +21,4 @@ class RegisterForm(UserCreationForm):
             raise forms.ValidationError("The nickname is too short.")
         if not check_any_name_characters(nickname):
             raise forms.ValidationError("Sorry, the nickname can only have alphanumeric, _ or - characters.")
-            
+        return nickname

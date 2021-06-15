@@ -42,7 +42,7 @@ class StoryRating(models.Model):
 
 # to define a folder to keep stories
 class Folder(models.Model):
-    folder_name = models.CharField(max_length=120, unique=True)
+    folder_name = models.CharField(max_length=120)
     folder_desc = models.TextField(blank=True, null=True)
     BOOL_VISIBILITY_CHOICES = ((True, 'Visible'), (False, 'Invisible'))
     is_visible = models.BooleanField(choices=BOOL_VISIBILITY_CHOICES, default=True)
