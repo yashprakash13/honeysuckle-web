@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hbegproject',
         'USER': 'hbegprojectuser',
-        'PASSWORD': '',
+        'PASSWORD': os.environ.get("DB_PASSWORD"),
         'HOST': 'localhost',
         'PORT': '',
     }
