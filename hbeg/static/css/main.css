@@ -11,28 +11,13 @@ body{
     height: 100vh;
     max-width: 1400px;
 }
-
 /* Search things */
-@media screen and (min-width: 1200px) {
-    #searchBar{
-        font-family: 'Antic Slab', serif;
-        max-width: 50vw;
-        margin-right: 15rem;
-    } 
+#searchBar{
+    max-width: 80%;
+    font-family: 'Antic Slab', serif;
 }
-@media screen and (max-width: 1199px) and (min-width: 601px){
-    #searchBar{
-        font-family: 'Antic Slab', serif;
-        max-width: 60vw;
-        margin-right: 20rem;
-    } 
-}
-@media screen and (max-width: 600px) {
-    #searchBar{
-        font-family: 'Antic Slab', serif;
-        max-width: 80vw;
-        margin-right: 20rem;
-    } 
+.is-small.input{
+    font-size:1.05rem;
 }
 
 #HeroProjectName{

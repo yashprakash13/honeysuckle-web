@@ -5,22 +5,24 @@
 
 
 <section class="hero is-fullheight">
-    <div class="hero-body">
+    <div class="hero-body has-text-centered">
         <div class="container has-text-centered">
-            <figure class="image" id="has-image-centered"  >
-                <img id="log-image"
-                src="{% static 'images/hbeg_logo_big.png' %}"
-                {% comment %} src="{% static 'images/hbeg_logo.png' %}"> {% endcomment %}
-            </figure>
-            {% comment %} <p class="title" id="HeroProjectName">His Brown Eyed Girl</p> {% endcomment %}
-            <form class="searchForm" method="POST">
-                {% csrf_token %}
-                <input class="input is-rounded is-medium m-6" 
-                    type="text" 
-                    id="searchBar"
-                    name="query"
-                    placeholder="Search...">
-            </form>
+            <div class="container">
+                <figure class="image" id="has-image-centered"  >
+                    <img id="log-image"
+                    src="{% static 'images/hbeg_logo_big.png' %}"/>
+                    {% comment %} src="{% static 'images/hbeg_logo.png' %}"> {% endcomment %}
+                </figure>
+                {% comment %} <p class="title" id="HeroProjectName">His Brown Eyed Girl</p> {% endcomment %}
+                <form class="searchForm has-text-centered" method="POST">
+                    {% csrf_token %}
+                    <input class="input is-rounded is-small m-6" 
+                        type="text" 
+                        id="searchBar"
+                        name="query"
+                        placeholder="Search...">
+                </form>
+            </div>
         </div>
     </div>
     {% if results %}
