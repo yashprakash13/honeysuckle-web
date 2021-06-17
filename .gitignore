@@ -232,6 +232,6 @@ hbeg/data/*
 hbeg/static/data/*
 hbeg/hide/*
 
-../Pipfile
-../Pipfile.lock
+Pipfile
+Pipfile.lock
 .env
