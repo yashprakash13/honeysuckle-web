@@ -72,11 +72,12 @@ class Tag(models.Model):
 
 # Rename and ypload member profile picture, if one present then delete it first too.
 def content_file_name(instance, filename):
+    upload_to = 'profiles'
     ext = filename.split('.')[-1]
     filename = f"{instance.member.id}_profile_pic.png"
     if os.path.exists(os.path.join(settings.MEDIA_ROOT, 'profiles', filename)):
         os.remove(os.path.join(settings.MEDIA_ROOT, 'profiles', filename))
-    return os.path.join('profiles', filename)
+    return os.path.join(upload_to, filename)
 
     
 # Define the profile created upon member registration
@@ -85,7 +86,7 @@ class Profile(models.Model):
     bio = RichTextField(null=True, blank=True)
     profile_pic = models.ImageField(null=True, 
                                     blank=True, 
-                                    upload_to=content_file_name, 
+                                    upload_to=content_file_name,
                                     default="profiles/default_profile_picture.png"
                                 )
     
