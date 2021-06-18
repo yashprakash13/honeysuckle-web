@@ -4,29 +4,32 @@
 {% include 'core/styles.html' %}
 
 
-<section class="hero is-fullheight">
+<section class="hero is-fullheight-with-navbar">
     <div class="hero-body has-text-centered">
         <div class="container has-text-centered">
-            <div class="container">
-                <figure class="image" id="has-image-centered"  >
-                    <img id="log-image"
-                    src="{% static 'images/hbeg_logo_big.png' %}"/>
-                    {% comment %} src="{% static 'images/hbeg_logo.png' %}"> {% endcomment %}
-                </figure>
-                {% comment %} <p class="title" id="HeroProjectName">His Brown Eyed Girl</p> {% endcomment %}
-                <form class="searchForm has-text-centered" method="POST">
-                    {% csrf_token %}
-                    <input class="input is-rounded is-small m-6" 
-                        type="text" 
-                        id="searchBar"
-                        name="query"
-                        placeholder="Search...">
-                </form>
+            <div class="columns is-centered is-multiline">
+                <div class="column is-12">
+                    <figure class="image" id="has-image-centered"  >
+                        <img id="log-image"
+                        src="{% static 'images/hbeg_logo_big.png' %}"/>
+                        {% comment %} src="{% static 'images/hbeg_logo.png' %}"> {% endcomment %}
+                    </figure>
+                </div>
+                <div class="column is-12">
+                    <form class="searchForm has-text-centered" method="POST">
+                        {% csrf_token %}
+                        <input class="input is-rounded is-small " 
+                            type="text" 
+                            id="searchBar"
+                            name="query"
+                            placeholder="Search...">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     {% if results %}
-        <section class="searchResultsSection m-6">
+        <section class="searchResultsSection my-6">
             {% for res in results %}
                 {% include 'core/singlesearchres.html' %}
             {% endfor %}

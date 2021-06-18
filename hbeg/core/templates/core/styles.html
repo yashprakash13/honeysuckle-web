@@ -1,22 +1,40 @@
 <style>
+{% comment %} full search page styling--something akin to google.com page {% endcomment %}
+.hero.is-fullheight .hero-body, .hero.is-fullheight-with-navbar .hero-body, .hero.is-halfheight .hero-body{
+    margin-top: 15vh;
+    align-items:center;
+    display:block;
+}
+{% comment %} search bar styling {% endcomment %}
 @media screen and (min-width: 1200px) {
-    .search-singlecard-content{
-        margin-left: 10vw;
-        margin-right: 10vw;
+    .#searchBar{
+        max-width: 80%;
+        font-family: 'Antic Slab', serif;
     }
 }
 @media screen and (max-width: 1199px) and (min-width: 601px){
-    .search-singlecard-content{
-        margin-left: 10vw;
-        margin-right: 10vw;
+    #searchBar{
+        max-width: 80%;
+        font-family: 'Antic Slab', serif;
     }
 }
 @media screen and (max-width: 601px) {
-    .search-singlecard-content{
-        margin-left: .1rem;
-        margin-right: .1rem;
+    #searchBar{
+        max-width: 100%;
+        font-family: 'Antic Slab', serif;
     }
 }
+{% comment %} search result styling {% endcomment %}
+{% comment %} the search result card {% endcomment %}
+.search-singlecard-content{
+        margin:0px;
+}
+{% comment %} the container with the results {% endcomment %}
+.searchResultsSection{
+    margin-left:0.35rem;
+    margin-right:0.35rem;
+}
+{% comment %} the genres, characters display inside search result card {% endcomment %}
 ul, .breadcrumb a{
     background:#ffffff;
     color:green;
@@ -29,7 +47,6 @@ ul, .breadcrumb a{
 #by-fic-author-separator{
   color:#efece8;
 }
-
 {% comment %} style for search bar {% endcomment %}
 html{
     background-color:#efece8;
@@ -38,15 +55,29 @@ html{
     border-color:#2d2;
     box-shadow: 0 0 0 .125em rgba(50,115,220,.05);
 }
+{% comment %} logo image big styles {% endcomment %}
 #has-image-centered {
-  margin-left: auto;
-  margin-right: auto;
+  margin:auto;
 }
-#log-image{
-    width:47%; 
+@media screen and (min-width: 1200px) {
+    #log-image{
+        width:47%; 
+        display:inline;
+    }
+}
+@media screen and (max-width: 1199px) and (min-width: 601px){
+    #log-image{
+        width:67%; 
+        display:inline;
+    }
+}
+@media screen and (max-width: 601px) {
+    #log-image{
+    width:83%; 
     display:inline;
+    }
 }
-
+{% comment %} search result styles {% endcomment %}
 #search-res-card{
     border-radius:10rem;
 }
