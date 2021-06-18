@@ -2,6 +2,7 @@ from django.db import models
 from accounts.models import Member
 import os
 from ckeditor.fields import RichTextField
+from django.conf import settings
 
 # define a single story
 class Story(models.Model):
@@ -69,21 +70,24 @@ class Tag(models.Model):
     
 
 
-# Rename and Upload member profile picture
+# Rename and ypload member profile picture, if one present then delete it first too.
 def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"{instance.member.id}_profile_pic.png"
+    if os.path.exists(os.path.join(settings.MEDIA_ROOT, 'profiles', filename)):
+        os.remove(os.path.join(settings.MEDIA_ROOT, 'profiles', filename))
     return os.path.join('profiles', filename)
 
     
-# define the profile created upon member registration
+# Define the profile created upon member registration
 class Profile(models.Model):
     member = models.OneToOneField(Member, on_delete=models.CASCADE)
     bio = RichTextField(null=True, blank=True)
     profile_pic = models.ImageField(null=True, 
                                     blank=True, 
                                     upload_to=content_file_name, 
-                                    default="profiles/default_profile_picture.png")
+                                    default="profiles/default_profile_picture.png"
+                                )
     
     BOOL_ISAUTHOR_CHOICES = ((True, 'Yes,I am.'), (False, 'Nope.'))
     is_author = models.BooleanField(choices=BOOL_ISAUTHOR_CHOICES, default=False)
