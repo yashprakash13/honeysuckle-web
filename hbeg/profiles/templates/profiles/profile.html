@@ -4,12 +4,12 @@
 {% load widget_tweaks %}
 {% include 'profiles/styles.html' %}
 
-<div class="columns is-centered m-6 p-3" id="profile-everything">
+<div class="columns is-centered m-1 p-3 is-multiline" id="profile-everything">
     {% comment %} for bio and info about member {% endcomment %}
-    <div class="column is-4" id="bio-column">
+    <div class="column is-4-desktop is-12-tablet is-12-mobile" id="bio-column">
         <div class="title has-text-centered">{{request.user.nickname}}</div>
         <div class="content has-text-centered">
-            <img id="pfp_img" src="{{profile.profile_pic.url}}">   
+            <img id="pfp_img" src="{% static profile.profile_pic.url %}">   
         </div>
         {% comment %} the tags begin here {% endcomment %}
         <div class="content has-text-centered" id="tags">
@@ -39,7 +39,7 @@
         </div>
     </div>
     {% comment %} for Reading List, all folders to be included for the member {% endcomment %}
-    <div class="column is-8">
+    <div class="column is-8-desktop is-12-tablet is-12-mobile" style="margin:0;">
         {% comment %} include contribute and search buttons {% endcomment %}
         <div class="content">
             <a class="button" id="search-btn" href="{% url 'search' %}">
