@@ -149,12 +149,12 @@ AUTH_USER_MODEL = 'accounts.Member'
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = 'static/images/'
+MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images/')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
