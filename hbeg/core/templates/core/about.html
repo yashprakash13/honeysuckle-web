@@ -1,0 +1,66 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'core/styles.html' %}
+
+{% comment %} the about page for info about HBEG {% endcomment %}
+<div class="container ml-6 mt-6">
+    <div class="title">About <span id="about-site-title">His Brown Eyed Girl</span></div>
+    <div class="content is-size-5">
+        His Brown Eyed Girl (HBEG) is a small but passionate attempt to give all fanfiction readers an easy way to keep track of their reading habits, and, in a friend's words: keep track of every fanfiction that you ever read.  
+    </div>
+    <div class="content is-size-5">
+        It began as a hobby project by a couple of voracious Harry Potter fanfiction readers, and it grew to the point that it now sports a <strong>unique AI-based search engine<sup>Beta</sup> </strong>based on all HP stories from fanfiction.net! 
+    </div>
+    <div class="content is-size-5">
+        If you aren't already, <a id="about-discord-server-link" href="{% url 'register' %}">become a member today</a> to get the full advantage of HBEG!
+    </div>
+    <div class="content is-size-5">
+        HBEG now has a database spanning more than <strong>720k+</strong> HP fics, and is regularly updated with new stories that pop up on the site. The current list of features include:
+        <ul id="about-feature-list">
+            <li>Use search engine to find stories</li>
+            <li>Custom profile page and design for every member of the site</li>
+            <li>Organise stories into public and hidden folders</li>
+            <li>Rate individual stories as per taste</li>
+        </ul>
+    </div>
+    <div class="content is-size-5">
+        Upcoming features consist of:
+        <ul id="about-feature-list">
+            <li>Design and share your public profile with everyone</li>
+            <li>Boast some cool tags in your profile page</li>
+            <li>Refer stories to another member of HBEG</li>
+            <li>Listing of all stories that you've ever rated on the site</li>
+        </ul>
+    </div>
+    <div class="content is-size-5">
+        If you have any comments to make, suggestions to improve the site or any bugs to report, please join the official discord server of HBEG: 
+        <a href="https://discord.gg/Rw23m8J" target=" _blank" id="about-discord-server-link">Join community.</a> Any future updates and new features to the website will be listed here and talked over in detail there.
+    </div>
+    <div class="content">
+        <div class="is-size-3 is-bold"> How to use the HBEG search engine<sup>Beta</sup> </div>
+        <div class="content is-size-5">
+            The search engine is designed to require minimal effort to find a story that you're looking for. Thus, you can <strong>simply search for a story title and you will get the best results that get matched!</strong><br>
+         </div>   
+            <div class="content is-size-5">
+                <strong>Let's take an example.</strong> Say I am searching for a fic titled 'World Changer'. I can simply type and enter: <i>world changer</i> in the search and get what I'm looking for. <br><br>
+                Now, let's imagine that I don't remember the whole title of the story. If I only type: 'world', I'll get a multitude of relevant or non-relevant results. I can obviously do a little better. 
+            </div>
+            <div class="content is-size-5">
+                With that in mind, here are some simple ways to do a rather specialised search:
+                <ul id="about-feature-list">
+                    <li>If the story that you want comes with a specific ship, then mention it in the search. Like with the previous example, I can type: <i>world harmony</i>, as I know that the story is harmony based.</li>
+                    <li>If you remember the author's name even partially, just mention it in the search with the prefix <strong>a:</strong>. In the example that we're going with, I know who the author of the story is. So I can search for: <i>world a:arielriddle</i>  or even <i>world harmony a:arielriddle</i>. Any one of them should give me the results that I'm looking for.</li>
+                    <li>You can also filter stories based on a specific length by using the prefix <strong>l:</strong>. Type <i>l:short</i> for stories less than 50k words, <i>l:medium</i> for stories between 50k to 100k words and <i>l:long</i> for stories of more than 100k words.</li>
+                    <li>You can also mention a few words of the summary in the search to narrow down your results even further.</li>
+                </ul>
+            </div>
+            <div class="content is-size-5">
+                You can also combine any of the above methods or use them individually to browse a general list of stories. For instance, you can use  <i>l:long harmony</i> to get stories greater than 100k words and with the pairing harmony. 
+            </div>
+            <div class="content is-size-5">
+                Don't fret if don't find what you're looking for though. The search engine is still developing, and with time, it'll get better at knowing what you want. Until then, well, google isn't going anywhere, and nor are the other readers in the community. Take help if you can, we're all happy to put our minds together in finding an awesome, forgotten story :D. 
+            </div>
+    </div>
+</div>
+{% endblock %}
