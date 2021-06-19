@@ -25,6 +25,14 @@
                             placeholder="Search...">
                     </form>
                 </div>
+                {% if not request.user.is_authenticated %}
+                    <div class="column is-12">
+                        <a class="has-text-centered is-subtitle is-size-5" id="about-link-for-unauth-users"
+                            href="{% url 'about' %}">
+                            New here? Learn how to use HBEG.
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

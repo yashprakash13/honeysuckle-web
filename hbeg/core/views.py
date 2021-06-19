@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import View
 
 from . import searcher
 
@@ -31,3 +32,10 @@ def search(request):
     #     'genres':'Romance, Adventure'
     # }]}
     )
+
+class AboutView(View):
+    """View to show About HBEG page
+    """
+    def get(self, request):
+         return render(request, 'core/about.html')
+    
