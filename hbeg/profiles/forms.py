@@ -10,7 +10,7 @@ class ProfileEditForm(ModelForm):
     """
     class Meta:
         model = Profile
-        fields = ('bio', 'profile_pic', 'is_author')
+        fields = ('bio', 'is_author')
         
     def __init__(self, *args, **kwargs):
         super(ProfileEditForm, self).__init__(*args, **kwargs)
