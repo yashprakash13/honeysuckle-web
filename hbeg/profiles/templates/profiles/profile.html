@@ -8,9 +8,6 @@
     {% comment %} for bio and info about member {% endcomment %}
     <div class="column is-4-desktop is-12-tablet is-12-mobile" id="bio-column">
         <div class="title has-text-centered">{{request.user.nickname}}</div>
-        <div class="content has-text-centered">
-            <img id="pfp_img" src="{% static profile.profile_pic.url %}">   
-        </div>
         {% comment %} the tags begin here {% endcomment %}
         <div class="content has-text-centered" id="tags">
             {% for tag in profile.tags.all %}
