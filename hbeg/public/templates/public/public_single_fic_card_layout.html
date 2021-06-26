@@ -1,0 +1,14 @@
+<div class="column is-3 mt-3">
+    <div class="card card-link">
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <a href="{% url 'public_story_detail' story.story_id %}" class="title is-4">{{story.story_name}}</a>
+                </div>
+            </div>
+            <div class="content">
+                {{story.author_name}} 
+            </div>
+        </div>
+    </div>
+</div>

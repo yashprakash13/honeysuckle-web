@@ -34,6 +34,7 @@ ALL_LENGTHS = ['Small', 'Medium', 'Long', 'VeryLong']
 SPECIAL_SEARCH_TOKENS = ['a:', 'l:']
 AUTHOR_SEARCH_TOKEN = 'a:'
 LENGTH_SEARCH_TOKEN = 'l:'
+SUMM_TOKEN = 's:'
 
 STANDARD_LENGTHS_TO_RETURN = 10
 STANDARD_SCORE_CUTOFF = 75
@@ -53,4 +54,5 @@ COLS_TO_SHOW_STORY_DETAIL = ['story_id', 'title', 'author_name', 'rated',
                             'summary', 'genres', 'num_chapters', 'num_words', 
                             'status', 'characters']
 COLS_TO_SAVE_STORY = ['story_id', 'title', 'author_name']
+COLS_TO_SHOW_THUMB = ['title', 'author_name']
 COL_NAME_STORY = ['title']

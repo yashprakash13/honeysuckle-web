@@ -3,17 +3,28 @@
 {% block content  %}
 {% load widget_tweaks %}
 {% include 'profiles/styles.html' %}
+{% include 'profiles/scripts.html' %}
 
 <div class="columns is-centered m-1 p-3 is-multiline" id="profile-everything">
     {% comment %} for bio and info about member {% endcomment %}
     <div class="column is-4-desktop is-12-tablet is-12-mobile" id="bio-column">
         <div class="title has-text-centered">{{request.user.nickname}}</div>
+        {% comment %} public profile link {% endcomment %}
+        <div class="content has-text-centered">
+            <a href="#" onclick="return copyToClipboardFunction();" class="has-text-centered is-centered has-tooltip-bottom has-tooltip-multiline" id="public-profile-link" data-tooltip="Copy link to your public profile">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-link"></i>
+                    </span>
+                </span>
+            </a>
+        </div>
         {% comment %} the tags begin here {% endcomment %}
         <div class="content has-text-centered" id="tags">
-            {% for tag in profile.tags.all %}
-                <span class="tag is-medium" style="background-color:{{tag.tag_color}};">{{tag.tag_name}}</span>
+            {% for badge in badges.badges.all %}
+                <span class="tag is-medium m-1" style="background-color:{{badge.tag_color}};">{{badge.tag_name}}</span>
             {% endfor %}
-        </div>
+        </div> 
         {% comment %} bio goes here if not None{% endcomment %}
         {% if profile.bio and profile.bio != 'None'%}
             <div class="content has-text-centered">
@@ -35,8 +46,8 @@
             </a>
         </div>
     </div>
-    {% comment %} for Reading List, all folders to be included for the member {% endcomment %}
-    <div class="column is-8-desktop is-12-tablet is-12-mobile" style="margin:0;">
+    {% comment %} for all folders to be included for the member {% endcomment %}
+    <div class="column is-8-desktop is-12-tablet is-12-mobile"id="folder-column">
         {% comment %} include contribute and search buttons {% endcomment %}
         <div class="content">
             <a class="button" id="search-btn" href="{% url 'search' %}">
@@ -45,19 +56,25 @@
                 </span>
                 <span>Search</span>
             </a>
-            <div class="button" id="contribute-story-btn">
+            <a class="button" id="contribute-story-btn" href="{% url 'story_contrib' %}">
                 <span class="icon">
                     <i class="fas fa-plus"></i>
                 </span>
                 <span>Contribute New Story</span>
-            </div>
+            </a>
+            <a class="button" id="all-read-story-list-btn" href="{% url 'library' %}">
+                <span class="icon">
+                    <i class="fas fa-book"></i>
+                </span>
+                <span>Stories I've Read</span>
+            </a>
         </div>
         {% comment %} New folder button {% endcomment %}
         <div class="content">
             <a class="button is-fullwidth is-primary is-outlined" 
             id="new-folder-button" 
             href="{% url 'folder_add' %}">
-                New Folder...
+                New Folder
             </a>
         </div>
         {% comment %} adding folders one by one here {% endcomment %}
@@ -66,5 +83,6 @@
         {% endfor %}
     </div>
 </div>
-
+{% comment %} public profile link to be copied {% endcomment %}
+<span hidden id="link-span">{{link_to_public_page}}</span>
 {% endblock  %}
