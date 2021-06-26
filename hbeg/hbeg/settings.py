@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '134.209.156.80']
+ALLOWED_HOSTS = ['localhost', '134.209.156.80', 'hisbrowneyedgirl.com', 'www.hisbrowneyedgirl.com']
 
 # LOGGING = {
 #     'version': 1,
