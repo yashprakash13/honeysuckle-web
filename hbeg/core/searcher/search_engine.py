@@ -114,8 +114,9 @@ class SearchEngine(Indices):
             if dfdict['div_2']:
                 df_to_return = df_to_return._append_df([dftemp2.head(NUM_SUBSEQUENT_ROW_APPENDS)])
             if dfdict['div_3']:
-                df_to_return = df_to_return._append_df([dftemp3.head(NUM_SUBSEQUENT_ROW_APPENDS), 
-                                                    dftemp4.head(NUM_SUBSEQUENT_ROW_APPENDS)])
+                df_to_return = df_to_return._append_df([dftemp3.head(NUM_SUBSEQUENT_ROW_APPENDS)])
+                if dfdict['div_2']: 
+                    df_to_return = df_to_return._append_df([dftemp4.head(NUM_SUBSEQUENT_ROW_APPENDS)])
             
             # keep track of num rows appended and num rows left
             rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
@@ -123,7 +124,9 @@ class SearchEngine(Indices):
             if dfdict['div_2']:
                 df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp2]))
             if dfdict['div_3']:
-                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp3, dftemp4]))
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp3]))
+                if dfdict['div_2']:
+                    df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp4]))
             
             # remove duplicate rows appended 
             df_to_return = df_to_return.drop_duplicates(subset=['story_id'])
@@ -598,6 +601,24 @@ class SearchEngine(Indices):
     
     
     def search(self, query):
+        self.query_special_spl = None
+        self.query = None
+        self.query_spl = None
+        self.author_search_word = None
+        self.length_search_word = None
+        self.df_to_use = None
+        self.au_tokens_filt = None
+        self.le_tokens_filt = None
+        self.pairs_selected = None
+        self.st_model = None
+        self.psie_indices_filt = None
+        self.is_phase_2 = False
+
+        self.result_ids = None
+        self.dym_title = None
+
+
+
         self.query = query
         self._make_queries_and_load_model()
         return self._search_psie()
@@ -605,7 +626,7 @@ class SearchEngine(Indices):
 
     def prepare_s_engine(self):
         indices = Indices()
-        indices.load_psieindices()
+        # indices.load_psieindices()
         self.class_indices = indices
 
 

@@ -62,10 +62,12 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'public.apps.PublicConfig',
     'simplestorystorage.apps.SimplestorystorageConfig',
+    'honeysuckleAPI.apps.HoneysuckleapiConfig',
 
     'storages',
     'ckeditor',
     'django_filters',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

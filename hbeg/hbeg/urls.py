@@ -10,6 +10,9 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('hbeg/', include('public.urls')), 
     path('profiles/', include('simplestorystorage.urls')), 
+
+    # Honeysuckle API
+    path('hsapi/', include('honeysuckleAPI.urls')), 
 ]
 urlpatterns +=  static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
