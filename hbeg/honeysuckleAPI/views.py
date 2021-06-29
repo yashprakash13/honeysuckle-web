@@ -12,9 +12,11 @@ from core.views import instance
 from core.searcher.constants import COLS_TO_SEND_BY_HS_API, API_URL_TO_FETCH_STORIES_META_FROM
 from core.searcher import utils
 
-from .api import get_story_details_from_reponse, get_story_dates_cleaned, save_new_story_into_csvdb
+from .api import get_story_details_from_reponse_ffn, get_story_details_from_response_ao3, get_story_dates_cleaned, save_new_story_into_csvdb, get_story_dates_cleaned_ao3
 
 class GetStoryDetailsFfn(APIView):
+    """View to get story meta from ffn
+    """
     def get(self, request, story_id):
         print('Got:', story_id)
     
@@ -26,19 +28,19 @@ class GetStoryDetailsFfn(APIView):
                                 auth=('weaver', '8D7RT-I;@m9LivXY3DA{Zik(2gmY')
                             )
         # get scraped metadata of story from api.py func
-        story_all_fields = get_story_details_from_reponse(story_id, response)
+        story_all_fields = get_story_details_from_reponse_ffn(story_id, response)
         story_all_fields['story_id'] = story_id
         story_all_fields['link'] = url
 
         # prepare the API response with story details
-        story = {'link':url}
+        story = {'link':url, 'thumb_image': story_all_fields['story_image']}
         for key in COLS_TO_SEND_BY_HS_API:
             story[key] = story_all_fields[key]
             
         # save story fetched into csv db after checking if story does not exist in csv db
         storygotten = instance.get_story_details(int(story_id))[COLS_TO_SEND_BY_HS_API]
         storygotten = storygotten.to_dict(orient='records')
-        if len(storygotten) == 0:
+        if len(storygotten) == 0 and story_all_fields['fandom'] == 'Harry Potter':
             story_all_fields['num_words'] = story_all_fields['num_words_to_store']
             story_all_fields['characters'] = story_all_fields['characters_to_store']
             story_all_fields['published'] = story_all_fields['published_to_store']
@@ -56,3 +58,19 @@ class GetStoryDetailsFfn(APIView):
             return Response(story)
         else:
             return Response('Not found.')
+
+
+
+class GetStoryDetailsAo3(APIView):
+    def get(self, request, story_id):
+        url = f"https://archiveofourown.org/works/{story_id}"
+        print(f'Trying url from Ao3 API: {url}')
+        story = get_story_details_from_response_ao3(story_id)
+        story['link'] = url
+
+        story['date_published'] = get_story_dates_cleaned_ao3(story['date_published'], False)
+        story['date_updated'] = get_story_dates_cleaned_ao3(story['date_updated'], False)
+
+        return Response(story)
+
+

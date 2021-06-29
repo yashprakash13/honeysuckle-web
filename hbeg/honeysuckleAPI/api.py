@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import pandas as pd
+import AO3
 
 from core.searcher.constants import ALL_DF_COLUMNS, MAIN_EN_DATA_PATH
 from core.searcher import utils
@@ -68,6 +69,39 @@ def get_story_dates_cleaned(datestr, updated = False):
             else:
                 story_date = str(diff_in_time.minutes)+" minutes ago"
         return story_date
+
+
+def get_story_dates_cleaned_ao3(datestr, updated=False):
+    datetimeFormat = '%Y-%m-%d'
+    if not updated:
+        story_date = datetime.strptime(str(datestr), datetimeFormat)
+        story_date = story_date.strftime(r'%-d %b, %Y')
+        return story_date
+    else:
+        story_date_raw = datetime.strptime(str(datestr), datetimeFormat)
+        story_date = story_date_raw.strftime(r'%-d %b, %Y')
+        curr_time = datetime.now()
+        diff_in_time = relativedelta(curr_time, story_date_raw)
+
+        # only amend hours & minutes diff
+        if diff_in_time.days:
+            'This week'
+
+        elif diff_in_time.hours:
+            if diff_in_time.hours == 1:
+                story_date = str(diff_in_time.hours)+" hour ago"
+            else:
+                story_date = str(diff_in_time.hours)+" hours ago"
+
+        elif diff_in_time.minutes:
+            if diff_in_time.minutes == 1:
+                story_date = str(diff_in_time.minutes)+" minute ago"
+            else:
+                story_date = str(diff_in_time.minutes)+" minutes ago"
+        return story_date
+
+
+
 
 
 
@@ -168,9 +202,9 @@ def get_characters_from_string(string):
 
 
 
-def get_story_details_from_reponse(story_id, response):
+def get_story_details_from_reponse_ffn(story_id, response):
     """
-    for scraping all story metadata from response text passed
+    for scraping all story metadata from response text passed from ffn
     """
 
     ffn_soup = BeautifulSoup(response.content, 'html.parser')
@@ -411,9 +445,47 @@ def get_story_details_from_reponse(story_id, response):
         'num_reviews_to_store': ffn_story_reviews_to_store,
         'num_follows':ffn_story_follows,
         'num_follows_to_store':ffn_story_follows_to_store,
-        'story_image':ffn_story_image
+        'story_image':ffn_story_image,
+        'fandom':ffn_story_fandom
     }
     return story
 
+
+
+def get_story_details_from_response_ao3(story_id):
+    """
+    for scraping all story metadata from response text passed from ao3
+    """
+    
+    work = AO3.Work(story_id)
+    author_names_list = []
+    for author in work.authors:
+        author_names_list.append(author.username)
+
+    story = {
+            "authors":', '.join(author_names_list),
+            "fandoms":', '.join(work.fandoms[:5]),
+            "bookmarks" : work.bookmarks, 
+            "categories":', '.join(work.categories[:5]),
+            "nchapters":work.nchapters,
+            "characters":','.join(work.characters[:5]),
+            "complete":work.complete,
+            "expected_chapters":work.expected_chapters,
+            "kudos" : work.kudos,
+            "language" : work.language,
+            "rating" : work.rating,
+            "relationships" : ', '.join(work.relationships[:5]),
+            "status": work.status,
+            "summary": work.summary,
+            "tags": ', '.join(work.tags[:5]),
+            "title":work.title,
+            "warnings": ', '.join(work.warnings[:5]),
+            "words": work.words,
+            "date_published": str(work.date_published)[:10],
+            "date_updated": str(work.date_updated)[:10],
+    }
+    return story
+
+    
 
 
