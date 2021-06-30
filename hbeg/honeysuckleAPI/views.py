@@ -21,7 +21,7 @@ class GetStoryDetailsFfn(APIView):
     def get(self, request, story_id):
         print('Got:', story_id)
 
-        story_all_fields = execute_ffn_search_and_response(story_id)
+        story_all_fields, url = execute_ffn_search_and_response(story_id)
 
         # prepare the API response with story details
         story = {'link':url, 'thumb_image': story_all_fields['story_image']}
@@ -77,7 +77,7 @@ def execute_ffn_search_and_response(story_id):
         
     story_all_fields = get_all_story_metadata(story_id, url, response)
 
-    return story_all_fields
+    return story_all_fields, url
 
 
 

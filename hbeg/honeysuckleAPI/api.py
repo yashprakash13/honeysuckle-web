@@ -29,7 +29,7 @@ def get_response_from_storyId_ffn(story_id):
     response = requests.get(API_URL_TO_FETCH_STORIES_META_FROM,
                                 params={'q': url},
                                 data={'apiKey': os.environ.get('WEAVER_DATA_VALUE')},
-                                auth=('weaver', os.environ.get('WEAVER_AUTH_VALUE'))
+                                auth=(os.environ.get('WEAVER_AUTH_USERNAME'), os.environ.get('WEAVER_AUTH_PASSWORD'))
                 )
     return url, response
 
