@@ -100,7 +100,7 @@ def check_if_story_exists_in_csvdb(story_id):
     """
     storygotten = instance.get_story_details(int(story_id))[COLS_TO_SEND_BY_HS_API]
     storygotten = storygotten.to_dict(orient='records')
-    if len(storygotten) == 0 and story_all_fields['fandom'] == 'Harry Potter':
+    if len(storygotten) == 0:
         return False
     else:
         return True
@@ -110,7 +110,7 @@ def initiate_save_story(story_all_fields):
     """
     to check and store if story doesn't existg in csv db or discard if exists, given the story metadata
     """    
-    if not check_if_story_exists_in_csvdb(story_all_fields['story_id']):
+    if not check_if_story_exists_in_csvdb(story_all_fields['story_id']) and story_all_fields['fandom'] == 'Harry Potter':
         story_all_fields['num_words'] = story_all_fields['num_words_to_store']
         story_all_fields['characters'] = story_all_fields['characters_to_store']
         story_all_fields['published'] = story_all_fields['published_to_store']
