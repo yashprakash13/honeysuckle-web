@@ -1,19 +1,41 @@
 from bs4 import BeautifulSoup
 import re
+import os
 import time
+import requests
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import pandas as pd
 import AO3
+from dotenv import load_dotenv
+load_dotenv()
 
-from core.searcher.constants import ALL_DF_COLUMNS, MAIN_EN_DATA_PATH
+from core.searcher.constants import ALL_DF_COLUMNS, MAIN_EN_DATA_PATH, API_URL_TO_FETCH_STORIES_META_FROM
 from core.searcher import utils
+
+# import the searcher instance from core app
+from core.views import instance as inst
 
 """
 THE ENTIRE LOGIC OF EXTRACTING DESIRED STORY DETAILS FROM URL
 """
 
-def save_new_story_into_csvdb(inst, story):
+
+def get_response_from_storyId_ffn(story_id):
+    """to return response from weaver API for ffn
+    """
+    url = f"https://www.fanfiction.net/s/{story_id}"
+    print(f'Trying url from Weaver API: {url}')
+    response = requests.get(API_URL_TO_FETCH_STORIES_META_FROM,
+                                params={'q': url},
+                                data={'apiKey': os.environ.get('WEAVER_DATA_VALUE')},
+                                auth=('weaver', os.environ.get('WEAVER_AUTH_VALUE'))
+                )
+    return url, response
+
+
+
+def save_new_story_into_csvdb(story):
     """
     save the new story into csv db with inst obj of search engine
     """
