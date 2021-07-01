@@ -21,10 +21,10 @@ class GetStoryDetailsFfn(APIView):
     def get(self, request, story_id):
         print('Got:', story_id)
 
-        story_all_fields, url = execute_ffn_search_and_response(story_id)
-
+        story_all_fields = execute_ffn_search_and_response(story_id)
+        
         # prepare the API response with story details
-        story = {'link':url, 'thumb_image': story_all_fields['story_image']}
+        story = {'link':story_all_fields['link'], 'thumb_image': story_all_fields['story_image']}
         for key in COLS_TO_SEND_BY_HS_API:
             story[key] = story_all_fields[key]
             
@@ -73,21 +73,20 @@ def execute_ffn_search_and_response(story_id):
     """
     the main function to begin scraping ffn page from a story id
     """
-    url, response = get_response_from_storyId_ffn(story_id)
+    response = get_response_from_storyId_ffn(story_id)
         
-    story_all_fields = get_all_story_metadata(story_id, url, response)
+    story_all_fields = get_all_story_metadata(story_id, response)
 
-    return story_all_fields, url
+    return story_all_fields
 
 
 
-def get_all_story_metadata(story_id, url, response):
+def get_all_story_metadata(story_id, response):
     """
     get scraped metadata of story from api.py func
     """
     story_all_fields = get_story_details_from_reponse_ffn(story_id, response)
     story_all_fields['story_id'] = story_id
-    story_all_fields['link'] = url
 
     return story_all_fields
 
@@ -110,7 +109,8 @@ def initiate_save_story(story_all_fields):
     """
     to check and store if story doesn't existg in csv db or discard if exists, given the story metadata
     """    
-    if not check_if_story_exists_in_csvdb(story_all_fields['story_id']) and story_all_fields['fandom'] == 'Harry Potter':
+    if not check_if_story_exists_in_csvdb(story_all_fields['story_id']) and \
+        'Harry Potter' in story_all_fields['fandom']:
         story_all_fields['num_words'] = story_all_fields['num_words_to_store']
         story_all_fields['characters'] = story_all_fields['characters_to_store']
         story_all_fields['published'] = story_all_fields['published_to_store']
@@ -124,4 +124,4 @@ def initiate_save_story(story_all_fields):
         save_new_story_into_csvdb(story_all_fields)
     
     else:
-        print(f"Story {story_all_fields['story_id']} exists in csv db.")
+        print(f"Story {story_all_fields['story_id']} exists in csv db, or not of HP fandom.")

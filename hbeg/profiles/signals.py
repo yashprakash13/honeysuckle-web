@@ -27,6 +27,8 @@ def increase_profile_story_contribs(sender, instance, created, **kwargs):
         instance.delete()
 
     elif created:
+        if not 'fanfiction.net/s/' in instance.link:
+            instance.delete() 
         story_id = get_story_id_from_link(instance.link)
         if check_if_story_exists_in_csvdb(story_id):
             # delete the story contrib row, don't need it as the story already exists 

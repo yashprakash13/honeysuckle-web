@@ -31,7 +31,7 @@ def get_response_from_storyId_ffn(story_id):
                                 data={'apiKey': os.environ.get('WEAVER_DATA_VALUE')},
                                 auth=(os.environ.get('WEAVER_AUTH_USERNAME'), os.environ.get('WEAVER_AUTH_PASSWORD'))
                 )
-    return url, response
+    return response
 
 
 
@@ -45,6 +45,17 @@ def save_new_story_into_csvdb(story):
             storytosave[key] = str(story[key])
     storytosave['Pairs'] = utils.find_set_pairings(story['characters'])
     storytosave['Lengths'] = utils.make_length(story['num_words'])
+    if not storytosave['num_reviews']:
+        storytosave['num_reviews'] = 'NoReviews'
+    if not storytosave['num_follows']:
+        storytosave['num_follows'] = 'NoFollows'
+    if not storytosave['num_favs']:
+        storytosave['num_favs'] = 'NoFavourites'
+    if not storytosave['characters']:
+        storytosave['characters'] = 'NoCharacters'
+    if not storytosave['genres']:
+        storytosave['genres'] = 'NoGenres'
+    
 
     if storytosave['language'] == 'English':
         print(pd.DataFrame(storytosave, index=[0]))
@@ -442,6 +453,8 @@ def get_story_details_from_reponse_ffn(story_id, response):
     except:
         ffn_story_image = ''
 
+    ffn_story_link = f'https://www.fanfiction.net/s/{story_id}'
+
     story = {
         'title': ffn_story_name,
         'num_words': ffn_story_length,
@@ -468,7 +481,8 @@ def get_story_details_from_reponse_ffn(story_id, response):
         'num_follows':ffn_story_follows,
         'num_follows_to_store':ffn_story_follows_to_store,
         'story_image':ffn_story_image,
-        'fandom':ffn_story_fandom
+        'fandom':ffn_story_fandom,
+        'link':ffn_story_link
     }
     return story
 

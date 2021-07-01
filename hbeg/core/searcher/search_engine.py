@@ -626,7 +626,7 @@ class SearchEngine(Indices):
 
     def prepare_s_engine(self):
         indices = Indices()
-        # indices.load_psieindices()
+        indices.load_psieindices()
         self.class_indices = indices
 
 
