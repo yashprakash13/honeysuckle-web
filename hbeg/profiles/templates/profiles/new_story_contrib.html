@@ -1,0 +1,36 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
+
+{% for message in messages %}
+    <p class="help is-danger m-1 is-size-6">{{message}}</p>
+{% endfor %}
+<div class="container mt-6" id="form-container">
+    <form action="{% url 'story_contrib' %}" method="POST" autocomplete="off" class="columns is-multiline">
+        {% csrf_token %}
+        <div class="column is-12">
+            <div class="title">Contribute a new story</div>
+        </div>
+        {% comment %} Story contrib form {% endcomment %}
+        <div class="column is-12">
+            <div class="field">
+                 <label class="label">Paste link from fanfiction.net:</label>
+                <div class="control">
+                    {{ form.link }}
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button" id="folder-edit-save-btn">Submit</button>
+                    <a href="{% url 'profile' %}" class="button is-danger is-inverted">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

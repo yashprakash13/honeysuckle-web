@@ -1,0 +1,13 @@
+<div class="card card-link">
+    <div class="card-content">
+        <div class="content">
+            <a href="{% url 'story_detail' story.story_id %}" id="" class="subtitle ">{{story.story_name}}</a>
+        </div>
+        <div class="content is-size-6">
+            by <strong>{{story.author_name}}</strong>
+        </div>
+        <div class="content is-size-6">
+            Rated: <strong>{{rating}}</strong>
+        </div>
+    </div>
+</div>

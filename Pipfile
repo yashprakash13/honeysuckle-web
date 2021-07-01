@@ -20,6 +20,11 @@ psycopg2 = "*"
 whitenoise = "*"
 python-dotenv = "*"
 django-ckeditor = "*"
+django-filter = "*"
+djangorestframework = "*"
+requests = "*"
+beautifulsoup4 = "*"
+ao3-api = "*"
 
 [dev-packages]
 
