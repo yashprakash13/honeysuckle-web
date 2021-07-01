@@ -1,0 +1,37 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-6 mx-2">
+    <div class="title">
+        Stories I've Read
+    </div>
+    <div class="container is-size-6">
+        <form method="get">
+            <div class="is-size-5">Search:</div>
+            <div class="columns is-multiline is-vcentered">
+                <div class="column is-8-mobile is-4-desktop is-4-tablet mt-2 mb-0">
+                    <label for="id_story_name__icontains" class="is-size-6">Story name: </label>  
+                    <input type="text" class="input" name="story_name__icontains" id="id_story_name__icontains">
+                </div>
+                <div class="column is-8-mobile is-4-desktop is-4-tablet mt-1">
+                    <label for="id_story_name__icontains" class="is-size-6">Author name: </label>  
+                    <input type="text" class="input" name="author_name__icontains" id="id_author_name__icontains">
+                </div>
+                <div class="column is-8-mobile is-4-desktop is-4-tablet mt-5">
+                    <input type="submit" class="button is-dark" value="Go" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container is-size-6 mt-5">
+        <div class="columns is-multiline">
+            {% for story, rating in stories %}
+                <div class="column is-3-fullhd is-3-widescreen is-4-desktop is-6-tablet is-12-mobile">
+                    {% include 'simplestorystorage/single_story_card_layout.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

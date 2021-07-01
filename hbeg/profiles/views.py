@@ -16,11 +16,13 @@ class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
         profile = Profile.objects.filter(member = request.user)[0]
         folders = Folder.objects.filter(created_by = request.user)
+        p_badges = ProfileBadges.objects.filter(badges_for=request.user)[0]
         context = {
-            'profile': profile,
-            'folders':folders
+            'profile' : profile,
+            'folders' : folders,
+            'badges' : p_badges,
+            'link_to_public_page': request.get_host() + '/hbeg/@' + request.user.nickname
         }
-
         return render(request, 'profiles/profile.html', context)
 
 
@@ -36,8 +38,7 @@ class ProfileSettingsView(LoginRequiredMixin, View):
                                 instance=request.user.profile, 
                             )
         if form.is_valid():
-            if str(form.cleaned_data.get('bio')).strip() != '':
-                form.save()
+            form.save()
             return redirect('profile')
         else:
             for field, items in form.errors.items():
@@ -200,6 +201,16 @@ class StoryRateView(LoginRequiredMixin, View):
                 story_id = story_id,
                 created_by = request.user
             )
+        # Also, create a Story object if not present 
+        if not Story.objects.filter(story_id=story_id):
+            storygotten = instance.get_story_details(story_id)[COLS_TO_SAVE_STORY]
+            storygotten = storygotten.to_dict(orient='records')[0]
+            storygotten['link'] = instance.get_story_link(story_id)
+            story = Story(story_id=story_id, 
+                            story_name=storygotten['title'], 
+                            author_name=storygotten['author_name'],
+                            link=storygotten['link'])
+            story.save()
         # return to previous page after submitting
         return HttpResponseRedirect(request.session['this_form'])
 
@@ -245,4 +256,33 @@ class StoryAddView(LoginRequiredMixin, View):
                 
         # return to previous page after submitting
         return HttpResponseRedirect(request.session['this_form'])
+
+
+
+class StoryContribView(LoginRequiredMixin, View):
+    """View to contribute a new story link
+    """
+    def get(self, request):
+        # store previous page session path
+        request.session['this_form'] = request.META.get('HTTP_REFERER', '/')
+        form = ContribStoryForm()
+        context = {
+            'form':form
+        }
+        return render(request, 'profiles/new_story_contrib.html', context)
+
+    def post(self, request):
+        form = ContribStoryForm(request.POST)
+        if form.is_valid():
+            story_contrib = form.save(commit=False)
+            story_contrib.given_by = request.user
+            story_contrib.save()
+
+            return redirect('profile')
+        else:
+            for field, items in form.errors.items():
+                for item in items:
+                    messages.error(request, f'{item}')
+            return render(request, 'profiles/new_story_contrib.html', {'form': ContribStoryForm()})
+
 

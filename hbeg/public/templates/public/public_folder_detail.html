@@ -1,0 +1,33 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content  %}
+{% load widget_tweaks %}
+{% include 'profiles/styles.html' %}
+
+
+<div class="container mt-6" id="form-container">
+    <div class="columns is-multiline">
+        <div class="column is-12">
+            <div class="title">{{folder.folder_name}}</div>
+        </div>
+        <div class="column is-12">
+            {% if folder.folder_desc %}
+                <p class="is-size-5">{{folder.folder_desc}}</p>
+            {% else %}
+                <p class="is-size-5">No description added.</p>
+            {% endif %}
+            
+        </div>
+        {% comment %}display stories one by one (max 4)  {% endcomment %}
+    </div>
+    <div class="content mt-4">
+            <div class="container">
+                <div class="columns is-multiline">
+                    {% for story in folder.story.all %}
+                        {% include 'public/public_single_fic_card_layout.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}

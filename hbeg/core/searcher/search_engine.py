@@ -1,10 +1,10 @@
 from .helper import *
 
 def _append_df(df, dfs, num_appends=NUM_SUBSEQUENT_ROW_APPENDS):
-        df0 = dfs[0]
-        for df in dfs[1:]:
-            df0 = df0.append(df.head(num_appends), ignore_index=True)
-        return df0
+    df0 = dfs[0]
+    for df in dfs[1:]:
+        df0 = df0.append(df.head(num_appends), ignore_index=True)
+    return df0
 pd.DataFrame._append_df = _append_df
 
 
@@ -22,7 +22,8 @@ class SearchEngine(Indices):
         self.pairs_selected = None
         self.st_model = None
         self.psie_indices_filt = None
-        
+        self.is_phase_2 = False
+
         self.result_ids = None
         self.dym_title = None
         
@@ -93,6 +94,49 @@ class SearchEngine(Indices):
             
         df_to_return = pd.DataFrame(columns = ALL_DF_COLUMNS)
         rows_appended = 0
+
+        # IF PHASE 2 INVOKED ----------------------------------------------------------------------------
+        if self.is_phase_2:
+            print('Inside phase 2 merge.')
+            print('Result ids inside phase 2 merge: ', self.result_ids)
+
+            dftemp = self._order_rows_from_df(df, 'story_id', self.result_ids)
+
+            if dfdict['div_2']:
+                dftemp2 = self._order_rows_from_df(df, 'author_name', self.au_tokens_filt)  
+            if dfdict['div_3']:
+                dftemp3 = self._select_rows_from_df(dftemp, 'Lengths', self.le_tokens_filt)
+                if dfdict['div_2']:
+                    dftemp4 = self._select_rows_from_df(dftemp2, 'Lengths', self.le_tokens_filt)
+            
+            # make resultant df
+            df_to_return = df_to_return._append_df([dftemp.head(NUM_SUBSEQUENT_ROW_APPENDS)])
+            if dfdict['div_2']:
+                df_to_return = df_to_return._append_df([dftemp2.head(NUM_SUBSEQUENT_ROW_APPENDS)])
+            if dfdict['div_3']:
+                df_to_return = df_to_return._append_df([dftemp3.head(NUM_SUBSEQUENT_ROW_APPENDS)])
+                if dfdict['div_2']: 
+                    df_to_return = df_to_return._append_df([dftemp4.head(NUM_SUBSEQUENT_ROW_APPENDS)])
+            
+            # keep track of num rows appended and num rows left
+            rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
+            # do CA
+            if dfdict['div_2']:
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp2]))
+            if dfdict['div_3']:
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp3]))
+                if dfdict['div_2']:
+                    df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp4]))
+            
+            # remove duplicate rows appended 
+            df_to_return = df_to_return.drop_duplicates(subset=['story_id'])
+            
+            
+            return df_to_return
+            
+            
+            
+        # PHASE 1 INVOKED -------------------------------------------------------------------------------------
         
         # Merge Rule 2 ---- all 4 divs--------------------------------------------------------------
         if dfdict['div_0']  and dfdict['div_1'] and dfdict['div_2'] and dfdict['div_3']:
@@ -267,6 +311,8 @@ class SearchEngine(Indices):
         
         else:
             print('Inside phase 2 condition.')
+            
+            self.is_phase_2 = True
             
             if self.result_ids:
                 print('Indices ids iloc operation.')
@@ -482,7 +528,9 @@ class SearchEngine(Indices):
 
             ids = []
             for hit in results:  
-                ids.append(hit['story_id'])
+                ids.append(int(hit['story_id']))
+
+            print('Phase 2 result ids: ', ids)
         
         # set result id to the story ids found
         if ids:
@@ -508,7 +556,16 @@ class SearchEngine(Indices):
         
 #         return self._return_res_ids(phase_one=False, query_to_search_empty=False)
         
-        
+    def _is_summ_token_present(self):
+        summ_search_word = [word for word in self.query_spl if SUMM_TOKEN in word]
+        if summ_search_word:
+            for word in summ_search_word:
+                word_sans_token = word[2:]
+                self.query = self.query.replace(word, word_sans_token)
+            print('Query after removing summary token: ', self.query)
+            return True
+        else:
+            return False
     
     
     def _perform_phase_1_search(self):
@@ -518,13 +575,16 @@ class SearchEngine(Indices):
         self._perform_pairing_sweep()
         self._perform_special_token_sweep()
         print(f'Query is after pairing and tokens sweep: {self.query_spl}')
-        if self.query.strip() != '' and len(self.query_spl) > 0 and len(self.query_spl) <= 7:
+        
+        if self.query.strip() != '' and len(self.query_spl) > 0 and len(self.query_spl) <= 7 and not self._is_summ_token_present():
             print('Searching for title.')
             self.result_ids, self.dym_title = self._title_search()
             if self.result_ids:
                 return self._return_res_ids(phase_one=True, query_to_search_empty=False)
             else:
                 return self._perform_phase_2_search()
+        elif len(self.query_spl) > 7 or self._is_summ_token_present():
+            return self._perform_phase_2_search()
         else:
             print('No query left except special tokens.')
             if self.au_tokens_filt or self.le_tokens_filt:
@@ -541,6 +601,24 @@ class SearchEngine(Indices):
     
     
     def search(self, query):
+        self.query_special_spl = None
+        self.query = None
+        self.query_spl = None
+        self.author_search_word = None
+        self.length_search_word = None
+        self.df_to_use = None
+        self.au_tokens_filt = None
+        self.le_tokens_filt = None
+        self.pairs_selected = None
+        self.st_model = None
+        self.psie_indices_filt = None
+        self.is_phase_2 = False
+
+        self.result_ids = None
+        self.dym_title = None
+
+
+
         self.query = query
         self._make_queries_and_load_model()
         return self._search_psie()

@@ -10,13 +10,13 @@ class ProfileEditForm(ModelForm):
     """
     class Meta:
         model = Profile
-        fields = ('bio', 'is_author')
+        fields = ('bio', 'is_author', 'ffn_url')
         
     def __init__(self, *args, **kwargs):
         super(ProfileEditForm, self).__init__(*args, **kwargs)
         self.fields['is_author'].widget.attrs['class'] = 'select'
         self.fields['bio'].widget.attrs['class'] = 'textarea'
-
+        self.fields['ffn_url'].widget.attrs['class'] = 'input'
 
 
 class NewFolderForm(ModelForm):
@@ -73,8 +73,12 @@ class ContribStoryForm(ModelForm):
     """Form to Contribute new story to the database
     """
     class Meta:
-        model = Story
+        model = StoryContrib
         fields = ('link',)
+    def __init__(self, *args, **kwargs):
+        super(ContribStoryForm, self).__init__(*args, **kwargs)
+        self.fields['link'].widget.attrs['class'] = 'input'
+
 
 
 class AddStoryToFolderForm(forms.Form):

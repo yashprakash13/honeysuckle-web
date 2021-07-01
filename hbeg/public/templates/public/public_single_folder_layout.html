@@ -1,0 +1,35 @@
+<div class="box">
+    {% comment %} Folder name and detail view button {% endcomment %}
+    <div class="content pb-3">
+        <div class="columns">
+            <div class="column is-8">
+                <div class="is-size-4 mb-3">{{folder.folder_name}}
+                {% if not folder.is_visible %}
+                    {% comment %} display lock if folder is set to invisible {% endcomment %}
+                    <span class="icon">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                {% endif %}
+                </div>
+            </div>
+            <div class="column mb-2">
+                <a id="see-all-outlined-button" 
+                class="button is-dark is-outlined is-pulled-right"
+                href="{% url 'public_folder_detail' folder.id %}">
+                    See All
+                </a>
+            </div>
+        </div>
+    </div>
+     {% comment %}display stories one by one (max 4)  {% endcomment %}
+    <div class="content">
+        <div class="columns">
+        {% if not folder.story.all %}
+            <p class="is-size-6 m-3">Empty Folder.</p>
+        {% endif %}
+        {% for story in folder.story.all|slice:":4"  %}
+            {% include 'public/public_single_fic_card_layout.html' %}
+        {% endfor %}
+        </div>
+    </div>
+</div>

@@ -40,6 +40,16 @@ class StoryRating(models.Model):
     
 
 
+# to contribute a new story
+class StoryContrib(models.Model):
+    link = models.CharField(max_length=100)
+    given_by = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='StoryContrib')
+    is_accepted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.is_accepted}_with_{self.link}_by_{self.given_by.nickname}"
+    
+
 
 # to define a folder to keep stories
 class Folder(models.Model):
@@ -68,15 +78,25 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag_name
     
+
+    
 # Define the profile created upon member registration
 class Profile(models.Model):
     member = models.OneToOneField(Member, on_delete=models.CASCADE)
     bio = RichTextField(null=True, blank=True)
     BOOL_ISAUTHOR_CHOICES = ((True, 'Yes,I am.'), (False, 'Nope.'))
     is_author = models.BooleanField(choices=BOOL_ISAUTHOR_CHOICES, default=False)
-    tags = models.ManyToManyField(Tag, null=True, blank=True)
+    ffn_url = models.CharField(max_length=100, null=True, blank=True)
+    story_contribs = models.PositiveIntegerField(default=0)
+    story_referrals = models.PositiveIntegerField(default=0)
+    is_early_adopter = models.BooleanField(default=True)
     
     def __str__(self):
         return str(self.member.nickname)
 
-    
+
+# Defining the badges associated with the profile
+class ProfileBadges(models.Model):
+    badges_for = models.OneToOneField(Member, on_delete=models.CASCADE)
+    badges = models.ManyToManyField(Tag)
+

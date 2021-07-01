@@ -60,9 +60,14 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
+    'public.apps.PublicConfig',
+    'simplestorystorage.apps.SimplestorystorageConfig',
+    'honeysuckleAPI.apps.HoneysuckleapiConfig',
 
     'storages',
     'ckeditor',
+    'django_filters',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +109,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hbegproject',
-        'USER': 'hbegprojectuser',
+        'USER': os.environ.get('DB_USERNAME'),
         'PASSWORD': os.environ.get("DB_PASSWORD"),
         'HOST': 'localhost',
         'PORT': '',

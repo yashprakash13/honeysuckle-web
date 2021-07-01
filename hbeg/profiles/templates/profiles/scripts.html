@@ -1,0 +1,13 @@
+{% comment %} all scripts for profiles app {% endcomment %}
+<script>
+{% comment %} copy public profile link to clipboard function {% endcomment %}
+function copyToClipboardFunction(){
+        var copyText = document.getElementById("link-span");
+        var textArea = document.createElement("textarea");
+        textArea.value = copyText.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+}
+</script>

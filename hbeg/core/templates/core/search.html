@@ -16,13 +16,13 @@
                     </figure>
                 </div>
                 <div class="column is-12">
-                    <form class="searchForm has-text-centered" method="POST">
-                        {% csrf_token %}
-                        <input class="input is-rounded is-small " 
+                    <form class="searchForm has-text-centered" method="get">
+                        <input class="input is-rounded is-small form-control " 
                             type="text" 
                             id="searchBar"
                             name="query"
-                            placeholder="Search...">
+                            placeholder="Search..."
+                            value="{{query}}">
                     </form>
                 </div>
                 {% if not request.user.is_authenticated %}

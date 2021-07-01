@@ -7,24 +7,6 @@ html{
 .tag:not(body){
     color:white;
 }
-#is-c-lv7-tag{
-    background-color:palevioletred;
-}
-#is-maker-tag{
-    background-color:orangered;
-}
-#is-member-tag{
-    background-color:green;
-}
-#is-author-tag{
-    background-color:sandybrown;
-}
-#is-reader-tag{
-    background-color: plum;
-}
-#is-peoples-choice{
-    background-color: purple;
-}
 #pfp_img {
   border-radius: 50%;
   height: 156px;
@@ -38,18 +20,24 @@ html{
 {% comment %} bio column style for all screen types{% endcomment %}
 @media screen and (min-width: 1200px) {
     #bio-column{
-        height:90vh; position: sticky; top: 3.2rem;
+        height:90vh; 
+        position: sticky; 
+        top: 3.2rem;
     }
 }
 @media screen and (max-width: 1199px) and (min-width: 901px){
     #bio-column{
-        height:90vh; position: sticky; top: 3.2rem;
+        height:90vh; 
+        top: 3.2rem;
     }  
 }
 @media screen and (max-width: 900px) {
     #bio-column{
         height:90vh;
     }
+}
+#folder-column{
+    margin:0;
 }
 
 {% comment %} "see all" outlined button hover should be brown{% endcomment %}
@@ -71,14 +59,15 @@ html{
     font-weight:bold;
 }
 
-{% comment %} The two buttons at the top and settings button{% endcomment %}
+{% comment %} The three buttons at the top and settings button{% endcomment %}
 #search-btn, #contribute-story-btn, #profile-settings-btn, 
 #folder-edit-save-btn, #folder-create-btn, #folder-add-save-btn, 
 #story-add-to-folder-btn, #profile-save-settings-btn,
 #rate-story-btn, #save-rating-story-btn, #add-story-to-folder-btn, 
-#go-to-edit-folder-btn{
+#go-to-edit-folder-btn, #all-read-story-list-btn{
     background-color:#6a676f;
     color:white;
+    margin:3px;
 }
 {% comment %} delete btns  {% endcomment %}
 .button.is-danger.is-inverted, #go-to-story-btn{
@@ -88,5 +77,16 @@ html{
     margin-left:6vw;
     margin-right:6vw;
 }
-
+{% comment %} profile link {% endcomment %}
+#public-profile-link{
+    color:green;
+}
+#public-profile-link:hover{
+    color:#6a676f;
+}
+{% comment %} for public profile story detail view {% endcomment %}
+#go-to-story-btn-without-margin{
+    background-color:#6a676f;
+    color:white;
+}
 </style>
