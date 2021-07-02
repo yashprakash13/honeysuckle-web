@@ -40,5 +40,10 @@ class RegisterView(View):
 
 
 
-    
+class SimpleTermsView(View):
+    """View to show terms to a user
+    """
+    def get(self, request):
+        return render(request, 'accounts/simpleterms.html')
+
         

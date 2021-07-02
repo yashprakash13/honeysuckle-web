@@ -1,0 +1,21 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'core/styles.html' %}
+
+<div class="container ml-6 mt-6">
+    <div class="title">Some simple terms of <span id="about-site-title">His Brown Eyed Girl (HBEG)</span></div>
+    <div class="content is-size-5 mt-4">
+        By signing up to HBEG, please keep in mind that:
+        <ul class="mt-2 mb-3" id="about-feature-list">
+            <li>HBEG does not ask for any personally identifiable information from you.</li>
+            <li>Throughout the website, whatever you share on your public profile is up to your discretion.</li>
+            <li>This is just a hobby fan website, so no guarantees on when and what availability it might have in the future.</li>
+        </ul>
+        That's it! You can go back to register now. :)
+    </div>
+</div>
+
+
+
+{% endblock %}
