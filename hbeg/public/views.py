@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import *
 from .forms import *
-from profiles.models import Folder, Profile, ProfileBadges
+from profiles.models import Folder, Profile
 from accounts.models import Member
 
 # import the searcher instance from core app
@@ -26,11 +26,9 @@ class PublicProfileView(View):
             return render(request, 'public/error_404.html', context_error)
         profile = Profile.objects.filter(member = member).first()
         folders = Folder.objects.filter(created_by = member, is_visible=True)
-        p_badges = ProfileBadges.objects.filter(badges_for=member)[0]
         context = {
             'profile':profile,
             'folders':folders,
-            'badges' : p_badges
         }
         return render(request, 'public/public_profile.html', context)
 

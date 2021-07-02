@@ -5,8 +5,10 @@ from profiles.models import Profile
 
 @receiver(post_save, sender=Member)
 def create_profile(sender, instance, created, **kwargs):
+	"""signal to create profile for a member created
+	"""
 	if created:
-		Profile.objects.create(member=instance)
+		profile_obj = Profile.objects.create(member=instance)
 
 
 @receiver(post_save, sender=Member)

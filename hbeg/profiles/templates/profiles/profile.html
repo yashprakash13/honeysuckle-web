@@ -19,12 +19,6 @@
                 </span>
             </a>
         </div>
-        {% comment %} the tags begin here {% endcomment %}
-        <div class="content has-text-centered" id="tags">
-            {% for badge in badges.badges.all %}
-                <span class="tag is-medium m-1" style="background-color:{{badge.tag_color}};">{{badge.tag_name}}</span>
-            {% endfor %}
-        </div> 
         {% comment %} bio goes here if not None{% endcomment %}
         {% if profile.bio and profile.bio != 'None'%}
             <div class="content has-text-centered">
