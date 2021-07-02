@@ -69,16 +69,6 @@ class Folder(models.Model):
         ordering = ['-created_at']
 
 
-
-# to define tags shown on member profile
-class Tag(models.Model):
-    tag_name = models.CharField(max_length=20)
-    tag_color = models.CharField(max_length=7)
-
-    def __str__(self):
-        return self.tag_name
-    
-
     
 # Define the profile created upon member registration
 class Profile(models.Model):
@@ -93,10 +83,3 @@ class Profile(models.Model):
     
     def __str__(self):
         return str(self.member.nickname)
-
-
-# Defining the badges associated with the profile
-class ProfileBadges(models.Model):
-    badges_for = models.OneToOneField(Member, on_delete=models.CASCADE)
-    badges = models.ManyToManyField(Tag)
-
