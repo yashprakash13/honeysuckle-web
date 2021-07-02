@@ -15,11 +15,6 @@
     </div>
     <div class="section">
         <div class="content is-size-5">
-            {% for badge in badges.badges.all %}
-                <span class="tag is-medium m-1" style="background-color:{{badge.tag_color}};">{{badge.tag_name}}</span>
-            {% endfor %}
-        </div>
-        <div class="content is-size-5">
             {% for folder in folders  %}
                 {% include 'public/public_single_folder_layout.html' %}
             {% endfor %}
