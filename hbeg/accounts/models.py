@@ -32,6 +32,13 @@ class MemberManager(BaseUserManager):
     def create_superuser(self, nickname, password, **extra_fields):
         return self._create_user(nickname, password, True, True, **extra_fields)
 
+    def get_public_profile_link(self, nickname):
+        nickname =  self.get(nickname=nickname).nickname
+        username = nickname[:nickname.index('#')]
+        discriminator = nickname[nickname.index('#')+1:]
+        public_link = f"{username}.{discriminator}"
+        return public_link
+
 
 class Member(AbstractBaseUser, PermissionsMixin):
     nickname = models.CharField(max_length=150, unique=True)

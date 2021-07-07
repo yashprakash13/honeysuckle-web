@@ -10,16 +10,21 @@ from core.views import instance
 from core.searcher.constants import *
 from core.searcher import utils
 
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
 class ProfileView(LoginRequiredMixin, View):
     """View to display profile page
     """
     def get(self, request):
         profile = Profile.objects.filter(member = request.user)[0]
         folders = Folder.objects.filter(created_by = request.user)
+
         context = {
             'profile' : profile,
             'folders' : folders,
-            'link_to_public_page': request.get_host() + '/hbeg/@' + request.user.nickname
+            'link_to_public_page': request.get_host() + '/hbeg/@' + User.objects.get_public_profile_link(request.user.nickname)
         }
         return render(request, 'profiles/profile.html', context)
 
