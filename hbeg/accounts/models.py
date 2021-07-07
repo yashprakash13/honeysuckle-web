@@ -40,7 +40,6 @@ class Member(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(null=True, blank=True)
-    is_superuser = models.BooleanField(default=False)
 
     objects = MemberManager()
 

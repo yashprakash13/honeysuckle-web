@@ -6,7 +6,7 @@ from . import searcher
 
 # prepare the search engine to receive queries, this object will be used by other apps such as profiles too.
 instance = searcher.SearchEngine()
-instance.prepare_s_engine()
+# instance.prepare_s_engine()
  
 # the search view to receive queries and send results
 def search(request):

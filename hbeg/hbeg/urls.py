@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('itisme/', admin.site.urls),
     path('', include('core.urls')),
-    path('acc/', include('accounts.urls')),
+    path('acc/', include('allauth.urls')),
     path('profiles/', include('profiles.urls')),
     path('hbeg/', include('public.urls')), 
     path('profiles/', include('simplestorystorage.urls')), 

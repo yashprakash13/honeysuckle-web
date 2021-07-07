@@ -1,0 +1,48 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+{% comment %} <p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> {% endcomment %}
+
+{% comment %} <div class="socialaccount_ballot"> {% endcomment %}
+
+  {% comment %} <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul> {% endcomment %}
+
+  <a href="{% provider_login_url 'discord' %}" class="btn btn btn-danger btn-lg btn-block" role="button" aria-pressed="true">Sign in with Discord</a>
+
+  {% comment %} <div class="login-or">{% trans 'or' %}</div> {% endcomment %}
+
+{% comment %} </div> {% endcomment %}
+
+{% comment %} {% include "socialaccount/snippets/login_extra.html" %} {% endcomment %}
+
+{% comment %} {% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p> {% endcomment %}
+{% endif %}
+
+{% comment %} <form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+</form> {% endcomment %}
+
+{% endblock %}
