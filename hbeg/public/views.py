@@ -19,11 +19,13 @@ class PublicProfileView(View):
     def get(self, request, nickname):
         #remove @ symbol
         nickname = nickname[1:] 
-        # revert the nickname back to original from the format username.discriminator to 
-        # username#discriminator
-        # TODO: move this to a utils file
-        nickname = nickname.replace('.', '#') 
-        
+        try:
+            # revert the nickname back to original from the format username.discriminator to 
+            # username#discriminator
+            # TODO: move this to a utils file
+            nickname = nickname.replace('.', '#') 
+        except:
+            pass
         # get member object corresponding to the nickname
         member = Member.objects.filter(nickname=nickname).first()
         if not member:

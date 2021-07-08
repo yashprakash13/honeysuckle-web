@@ -34,9 +34,12 @@ class MemberManager(BaseUserManager):
 
     def get_public_profile_link(self, nickname):
         nickname =  self.get(nickname=nickname).nickname
-        username = nickname[:nickname.index('#')]
-        discriminator = nickname[nickname.index('#')+1:]
-        public_link = f"{username}.{discriminator}"
+        try:
+            username = nickname[:nickname.index('#')]
+            discriminator = nickname[nickname.index('#')+1:]
+            public_link = f"{username}.{discriminator}"
+        except:
+            public_link = nickname
         return public_link
 
 

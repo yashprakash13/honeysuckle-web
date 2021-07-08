@@ -41,7 +41,7 @@ class DiscordProvider(OAuth2Provider):
         )
 
     def get_default_scope(self):
-        return ["email", "identify"]
+        return ["email", "identify", "guilds"]
 
     def extract_email_addresses(self, data):
         ret = []
