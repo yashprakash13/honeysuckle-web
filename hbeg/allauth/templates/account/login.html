@@ -1,0 +1,23 @@
+{% extends 'core/main.html' %}
+{% include 'account/styles.html' %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block content %}
+
+{% get_providers as socialaccount_providers %}
+
+<div class="container mt-6 ml-6">
+  <div class="title">Log in to <span id="login-site-title" style="color:#855858;">His Brown Eyed Girl</span></div>
+  {% if socialaccount_providers %}
+    <a href="{% provider_login_url 'discord' %}" class="button is-large" role="button" aria-pressed="true">
+    <span class="icon is-medium">
+        <i class="fab fa-discord"></i>
+    </span>
+    <span>Log in with Discord</span>
+    </a>
+  {% endif %}
+</div>
+
+{% endblock %}

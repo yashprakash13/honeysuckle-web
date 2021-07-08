@@ -17,7 +17,16 @@ class PublicProfileView(View):
     """View to show public profile view of any given nickname from the URL
     """
     def get(self, request, nickname):
-        nickname = nickname[1:] #remove @ symbol
+        #remove @ symbol
+        nickname = nickname[1:] 
+        try:
+            # revert the nickname back to original from the format username.discriminator to 
+            # username#discriminator
+            # TODO: move this to a utils file
+            nickname = nickname.replace('.', '#') 
+        except:
+            pass
+        # get member object corresponding to the nickname
         member = Member.objects.filter(nickname=nickname).first()
         if not member:
             context_error = {
