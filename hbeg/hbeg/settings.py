@@ -71,6 +71,10 @@ INSTALLED_APPS = [
     'simplestorystorage.apps.SimplestorystorageConfig',
     'honeysuckleAPI.apps.HoneysuckleapiConfig',
 
+    # sections
+    'sections',
+    'sections.harmony',
+
     'storages',
     'ckeditor',
     'django_filters',

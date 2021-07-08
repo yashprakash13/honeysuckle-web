@@ -13,6 +13,10 @@ urlpatterns = [
 
     # Honeysuckle API
     path('hsapi/', include('honeysuckleAPI.urls')), 
+
+    # all sections
+    path('pages/', include('sections.urls')),
+
 ]
 urlpatterns +=  static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

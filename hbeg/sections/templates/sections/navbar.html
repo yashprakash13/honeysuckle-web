@@ -1,4 +1,5 @@
 {% load static %}
+{% include 'sections/styles.html' %}
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="{% url 'search' %}">
@@ -20,19 +21,13 @@
             <a href="{% url 'profile' %}" class="navbar-item">
                 My Profile
             </a>
-            <a href="{% url 'logout' %}" class="navbar-item">
-                Sign Out
-            </a>
         {% else %}
             <a href="{% url 'login' %}" class="navbar-item">
                 Log In
             </a>
         {% endif %}
-        <a href="{% url 'about' %}" class="navbar-item">
-                About
-        </a>
-        <a href="{% url 'harmony_central_page' %}" class="navbar-item">
-                Holly and Vinewood
+        <a href="{% url 'search' %}" class="navbar-item">
+                Home
         </a>
       </div>
     </div>
@@ -67,8 +62,9 @@
     });
 </script>
 <style>
+<style>
 .navbar{
-    background: transparent;
+    background-color: #262626;
 }
 {% comment %} making sure logo is displayed correctly in the navbar {% endcomment %}
 .navbar-item img {
@@ -78,7 +74,10 @@
 {% comment %} not blue, GREEN. {% endcomment %}
 a.navbar-item:hover{
     background-color: transparent;
-    color: green;
+    color: lightgreen;
+}
+a.navbar-item{
+    color: #fff;
 }
 .navbar{
     margin-left: 0;
