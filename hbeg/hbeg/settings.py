@@ -57,12 +57,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
 
+    'django.contrib.sites',  # make sure sites is included
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.discord', # for discord login
+
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
     'public.apps.PublicConfig',
     'simplestorystorage.apps.SimplestorystorageConfig',
     'honeysuckleAPI.apps.HoneysuckleapiConfig',
+
+    # sections
+    'sections',
+    'sections.harmony',
 
     'storages',
     'ckeditor',
@@ -122,6 +133,10 @@ DATABASES = {
 #     }
 # }
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # existing backend (for admin)
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -161,6 +176,10 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
+
+SITE_ID = 1
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'nickname'
+ACCOUNT_USERNAME_REQUIRED = True
 
 AUTH_USER_MODEL = 'accounts.Member'
 
