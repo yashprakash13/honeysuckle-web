@@ -13,58 +13,52 @@ from core.views import instance
 from core.searcher.constants import *
 from core.searcher import utils
 
+
 class PublicProfileView(View):
-    """View to show public profile view of any given nickname from the URL
-    """
+    """View to show public profile view of any given nickname from the URL"""
+
     def get(self, request, nickname):
-        #remove @ symbol
-        nickname = nickname[1:] 
+        # remove @ symbol
+        nickname = nickname[1:]
         try:
-            # revert the nickname back to original from the format username.discriminator to 
+            # revert the nickname back to original from the format username.discriminator to
             # username#discriminator
             # TODO: move this to a utils file
-            nickname = nickname.replace('.', '#') 
+            nickname = nickname.replace(".", "#")
         except:
             pass
         # get member object corresponding to the nickname
         member = Member.objects.filter(nickname=nickname).first()
         if not member:
-            context_error = {
-                'nickname':nickname
-            }
-            return render(request, 'public/error_404.html', context_error)
-        profile = Profile.objects.filter(member = member).first()
-        folders = Folder.objects.filter(created_by = member, is_visible=True)
+            context_error = {"nickname": nickname}
+            return render(request, "public/error_404.html", context_error)
+        profile = Profile.objects.filter(member=member).first()
+        folders = Folder.objects.filter(created_by=member, is_visible=True)
         context = {
-            'profile':profile,
-            'folders':folders,
+            "profile": profile,
+            "folders": folders,
         }
-        return render(request, 'public/public_profile.html', context)
+        return render(request, "public/public_profile.html", context)
 
 
 class PublicProfileFolderDetail(View):
-    """View to show public profile folder detail view 
-    """
+    """View to show public profile folder detail view"""
+
     def get(self, request, folder_id):
         folder = Folder.objects.get(pk=folder_id)
-        context = {
-            'folder':folder
-        }
-        return render(request, 'public/public_folder_detail.html', context)
+        context = {"folder": folder}
+        return render(request, "public/public_folder_detail.html", context)
 
 
 class PublicProfileStoryDetailView(View):
-    """View to show public profile story detail view 
-    """
+    """View to show public profile story detail view"""
+
     def get(self, request, story_id):
         storygotten = instance.get_story_details(story_id)[COLS_TO_SHOW_STORY_DETAIL]
-        story = storygotten.to_dict(orient='records')[0]
-        story['link'] =  instance.get_story_link(story_id)
-        story['genres'] = utils.get_clean_genres(story['genres'])
-        story['characters'] = story['characters'][1:-1]
-        context = {
-            'story':story
-        }
+        story = storygotten.to_dict(orient="records")[0]
+        story["link"] = instance.get_story_link(story_id)
+        story["genres"] = utils.get_clean_genres(story["genres"])
+        story["characters"] = story["characters"][1:-1]
+        context = {"story": story}
 
-        return render(request, 'public/public_story_detail.html', context)
-
+        return render(request, "public/public_story_detail.html", context)

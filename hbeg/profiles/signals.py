@@ -2,7 +2,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from .models import StoryContrib, Profile, StoryRating
-from honeysuckleAPI.views import execute_ffn_search_and_response, initiate_save_story, get_story_id_from_link, check_if_story_exists_in_csvdb
+from honeysuckleAPI.views import (
+    execute_ffn_search_and_response,
+    initiate_save_story,
+    get_story_id_from_link,
+    check_if_story_exists_in_csvdb,
+)
 
 
 @receiver(post_save, sender=StoryContrib)
@@ -27,10 +32,9 @@ def increase_profile_story_contribs(sender, instance, created, **kwargs):
         instance.delete()
 
     elif created:
-        if not 'fanfiction.net/s/' in instance.link:
-            instance.delete() 
+        if not "fanfiction.net/s/" in instance.link:
+            instance.delete()
         story_id = get_story_id_from_link(instance.link)
         if check_if_story_exists_in_csvdb(story_id):
-            # delete the story contrib row, don't need it as the story already exists 
-            instance.delete() #TODO: display some notification to show that entered story was present already to user
-
+            # delete the story contrib row, don't need it as the story already exists
+            instance.delete()  # TODO: display some notification to show that entered story was present already to user
