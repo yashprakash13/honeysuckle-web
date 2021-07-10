@@ -27,6 +27,9 @@ beautifulsoup4 = "*"
 ao3-api = "*"
 black = "*"
 isort = "*"
+pytest-django = "*"
+pytest-factoryboy = "*"
+coverage = "*"
 
 [dev-packages]
 black = "*"
