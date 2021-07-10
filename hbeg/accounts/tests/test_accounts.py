@@ -38,3 +38,10 @@ def test_user_password_no_input(user_factory):
     with pytest.raises(ValueError) as e:
         test = user_factory.create(password="")
     assert str(e.value) == "The password cannot be empty."
+
+
+def test_public_profile_link_generation(new_user_get_public_profile_link):
+    """check public profile link"""
+    link_username = new_user_get_public_profile_link
+    # print(link_username)
+    assert link_username == "localhost:8000/hbeg/@test_username"

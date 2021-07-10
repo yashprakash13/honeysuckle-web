@@ -1,9 +1,9 @@
-from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
-    PermissionsMixin,
     BaseUserManager,
+    PermissionsMixin,
 )
+from django.db import models
 from django.utils import timezone
 
 
@@ -37,16 +37,6 @@ class MemberManager(BaseUserManager):
     def create_superuser(self, nickname, password, **extra_fields):
         return self._create_user(nickname, password, True, True, **extra_fields)
 
-    def get_public_profile_link(self, nickname):
-        nickname = self.get(nickname=nickname).nickname
-        try:
-            username = nickname[: nickname.index("#")]
-            discriminator = nickname[nickname.index("#") + 1 :]
-            public_link = f"{username}.{discriminator}"
-        except:
-            public_link = nickname
-        return public_link
-
 
 class Member(AbstractBaseUser, PermissionsMixin):
     nickname = models.CharField(max_length=150, unique=True)
@@ -65,3 +55,15 @@ class Member(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.nickname
+
+    def get_public_profile_link(self, nickname, domain):
+        """to get public profile link to show from public app"""
+        try:
+            username = nickname[: nickname.index("#")]
+            discriminator = nickname[nickname.index("#") + 1 :]
+            public_link = f"{username}.{discriminator}"
+        except:
+            public_link = nickname
+
+        public_link = domain + "/hbeg/@" + public_link
+        return public_link

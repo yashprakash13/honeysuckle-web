@@ -1,17 +1,17 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views import View
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from .models import *
-from .forms import *
+from core.searcher import utils
+from core.searcher.constants import *
 
 # import the searcher instance from core app
 from core.views import instance
-from core.searcher.constants import *
-from core.searcher import utils
-
+from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.views import View
+
+from .forms import *
+from .models import *
 
 User = get_user_model()
 
@@ -23,11 +23,7 @@ class ProfileView(LoginRequiredMixin, View):
         profile = Profile.objects.filter(member=request.user)[0]
         folders = Folder.objects.filter(created_by=request.user)
         try:
-            link_to_profile_page = (
-                request.get_host()
-                + "/hbeg/@"
-                + User.objects.get_public_profile_link(request.user.nickname)
-            )
+            link_to_profile_page = request.user.get_public_profile_link(request.user.nickname, request.get_host())
         except:
             pass
         context = {
@@ -96,9 +92,7 @@ class FolderAddView(LoginRequiredMixin, View):
             for field, items in form.errors.items():
                 for item in items:
                     messages.error(request, f"{item}")
-            return render(
-                request, "profiles/folder_add.html", {"form": NewFolderForm()}
-            )
+            return render(request, "profiles/folder_add.html", {"form": NewFolderForm()})
 
 
 class FolderDeleteView(LoginRequiredMixin, View):
@@ -176,9 +170,7 @@ class StoryRateView(LoginRequiredMixin, View):
     def get(self, request, story_id):
         story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY]
         # check if user rated it before, if yes, then set initial value of rating
-        exists_or_not = StoryRating.objects.filter(
-            created_by=request.user, story_id=story_id
-        )
+        exists_or_not = StoryRating.objects.filter(created_by=request.user, story_id=story_id)
         if exists_or_not:
             form = AddStoryRatingForm(initial={"rating": exists_or_not[0].rating})
         else:
@@ -202,15 +194,11 @@ class StoryRateView(LoginRequiredMixin, View):
         choice = request.POST["rating"]
 
         # check if user rating for this story exists
-        exists_or_not = StoryRating.objects.filter(
-            created_by=request.user, story_id=story_id
-        )
+        exists_or_not = StoryRating.objects.filter(created_by=request.user, story_id=story_id)
         if exists_or_not:
             exists_or_not.update(rating=choice)
         else:
-            StoryRating.objects.create(
-                rating=choice, story_id=story_id, created_by=request.user
-            )
+            StoryRating.objects.create(rating=choice, story_id=story_id, created_by=request.user)
         # Also, create a Story object if not present
         if not Story.objects.filter(story_id=story_id):
             storygotten = instance.get_story_details(story_id)[COLS_TO_SAVE_STORY]
@@ -292,6 +280,4 @@ class StoryContribView(LoginRequiredMixin, View):
             for field, items in form.errors.items():
                 for item in items:
                     messages.error(request, f"{item}")
-            return render(
-                request, "profiles/new_story_contrib.html", {"form": ContribStoryForm()}
-            )
+            return render(request, "profiles/new_story_contrib.html", {"form": ContribStoryForm()})
