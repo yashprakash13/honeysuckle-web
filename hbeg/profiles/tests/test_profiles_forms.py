@@ -91,3 +91,18 @@ def test_contrib_story_form(link, validity):
         },
     )
     assert form.is_valid() is validity
+
+
+@pytest.mark.django_db
+def test_some(get_new_folders, story_add):
+    # get three folders
+    f1, f2, f3 = get_new_folders[0], get_new_folders[1], get_new_folders[2]
+    # print(get_new_folders[0].folder_name, get_new_folders[1].folder_name)
+    assert f1.folder_name == "test_folder_name1"
+    assert f2.folder_name == "test_folder_name2"
+    assert f3.folder_name == "test_folder_name3"
+
+    # get a story
+    assert story_add.story_name == "Harry Potter and the Oroborus Light"
+
+    # TODO use selenium here to test view StoryAddView
