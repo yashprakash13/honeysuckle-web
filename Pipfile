@@ -30,6 +30,7 @@ isort = "*"
 pytest-django = "*"
 pytest-factoryboy = "*"
 coverage = "*"
+selenium = "*"
 
 [dev-packages]
 black = "*"
