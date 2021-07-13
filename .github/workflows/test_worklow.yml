@@ -23,6 +23,8 @@ jobs:
           pip install  pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: App testing with pytest
+        env:
+          SECRET_KEY: ${{secrets.SECRET_KEY}}
         run: |
           cd hbeg/
           pytest
