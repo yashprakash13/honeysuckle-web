@@ -1,6 +1,7 @@
-import requests
-import json
 import ast
+import json
+
+import requests
 
 
 def get_story_details(link):
@@ -12,6 +13,4 @@ def get_story_details(link):
     print(data["title"])
 
 
-get_story_details(
-    "https://www.fanfiction.net/s/2963991/1/Harry-Potter-and-the-Oroborus-Light"
-)
+get_story_details("https://www.fanfiction.net/s/2963991/1/Harry-Potter-and-the-Oroborus-Light")

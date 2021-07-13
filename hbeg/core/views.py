@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.views import View
 
 from . import searcher
@@ -9,7 +9,7 @@ instance = searcher.SearchEngine()
 # instance.prepare_s_engine()
 
 # the search view to receive queries and send results
-def search(request):
+def search(request):  # pragma: no cover
     # get the search query from search bar
     context = {}
     search_query = request.GET.get("query", " ")
@@ -17,9 +17,7 @@ def search(request):
     if search_query.strip() != "":
         # search the db here and get back resultant df
         print("Inside search GET block.")
-        res_df = instance.search(search_query)[
-            searcher.constants.COLS_TO_SHOW_STORY_DETAIL
-        ]
+        res_df = instance.search(search_query)[searcher.constants.COLS_TO_SHOW_STORY_DETAIL]
         # convert to list of dicts
         res_to_show = res_df.to_dict("records")
         context["results"] = res_to_show

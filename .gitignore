@@ -18,9 +18,10 @@
 *_REMOTE_*.txt
 
 data/*
-
+chromedriver
 db.json
 
+hbeg/staticfiles/*
 migrations/
 
 ### JupyterNotebooks ###
