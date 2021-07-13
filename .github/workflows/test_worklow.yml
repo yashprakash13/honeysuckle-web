@@ -1,4 +1,4 @@
-name: HBEG Tests
+name: Tests
 
 on:
   push:
