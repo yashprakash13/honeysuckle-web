@@ -68,6 +68,7 @@ def driver_init(request):
         options.binary_location = binaryPath
         web_driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
         request.cls.browser = "Chrome1920x1080"
+        # THIS IS FOR MOBILE CHROME VERSION
     # if request.param == "chrome411":
     #     options = webdriver.ChromeOptions()
     #     options.add_argument("--headless")
