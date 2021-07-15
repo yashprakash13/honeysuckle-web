@@ -7,6 +7,7 @@
 
 {% block content %}
 
+<title>Logout</title>
 
 <form class="container mt-6 ml-6" method="post" action="{% url 'logout' %}">
   {% csrf_token %}

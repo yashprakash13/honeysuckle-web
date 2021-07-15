@@ -1,0 +1,29 @@
+[run]
+omit =
+   *venv/*
+   *virtualenvs/*
+   conftest.py
+   *tests*
+   *__init__.py*
+   *settings.py*
+   *AppData*
+   core/searcher/*
+   allauth/*
+   */migrations/*
+   hbeg/form_validators.py
+   honeysuckleAPI/api.py
+
+[report]
+omit =
+   *venv/*
+   *virtualenvs/*
+   conftest.py
+   *tests*
+   *__init__.py*
+   *settings.py*
+   *AppData*
+   core/searcher/*
+   allauth/*
+   */migrations/*
+   hbeg/form_validators.py
+   honeysuckleAPI/api.py
