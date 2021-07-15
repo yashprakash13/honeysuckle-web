@@ -1,5 +1,9 @@
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 
 
@@ -9,38 +13,29 @@ class MemberManager(BaseUserManager):
         Creates and saves a new user
         """
         if not nickname:
-            raise ValueError('Nickname is needed to make a new account.')
+            raise ValueError("Nickname is needed to make a new account.")
         if not password:
-            raise ValueError('The password cannot be empty.')
-        user = self.model(nickname = nickname, 
-                            is_staff=is_staff, 
-                            is_active=True,
-                            is_superuser=is_superuser, 
-                            date_joined = timezone.now(),
-                            last_login = timezone.now(), 
-                            **extra_fields)
+            raise ValueError("The password cannot be empty.")
+        user = self.model(
+            nickname=nickname,
+            is_staff=is_staff,
+            is_active=True,
+            is_superuser=is_superuser,
+            date_joined=timezone.now(),
+            last_login=timezone.now(),
+            **extra_fields,
+        )
 
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-
     def create_user(self, nickname, password, **extra_fields):
         return self._create_user(nickname, password, False, False, **extra_fields)
-    
+
     def create_superuser(self, nickname, password, **extra_fields):
         return self._create_user(nickname, password, True, True, **extra_fields)
-
-    def get_public_profile_link(self, nickname):
-        nickname =  self.get(nickname=nickname).nickname
-        try:
-            username = nickname[:nickname.index('#')]
-            discriminator = nickname[nickname.index('#')+1:]
-            public_link = f"{username}.{discriminator}"
-        except:
-            public_link = nickname
-        return public_link
 
 
 class Member(AbstractBaseUser, PermissionsMixin):
@@ -53,7 +48,7 @@ class Member(AbstractBaseUser, PermissionsMixin):
 
     objects = MemberManager()
 
-    USERNAME_FIELD = 'nickname'
+    USERNAME_FIELD = "nickname"
 
     def get_absolute_url(self):
         return "/members/%i/" % (self.pk)
@@ -61,5 +56,14 @@ class Member(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.nickname
 
+    def get_public_profile_link(self, nickname, domain):
+        """to get public profile link to show from public app"""
+        try:
+            username = nickname[: nickname.index("#")]
+            discriminator = nickname[nickname.index("#") + 1 :]
+            public_link = f"{username}.{discriminator}"
+        except:
+            public_link = nickname
 
-
+        public_link = domain + "/hbeg/@" + public_link
+        return public_link
