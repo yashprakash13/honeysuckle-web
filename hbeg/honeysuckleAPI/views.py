@@ -1,17 +1,16 @@
-import requests
-from datetime import datetime, date
 import json
+from datetime import date, datetime
 
-from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
-
-from profiles.models import Story
+import requests
+from core.searcher import utils
+from core.searcher.constants import COLS_TO_SEND_BY_HS_API
 
 # import the searcher instance from core app
 from core.views import instance
-from core.searcher.constants import COLS_TO_SEND_BY_HS_API
-from core.searcher import utils
+from django.shortcuts import render
+from profiles.models import Story
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .api import *
 
@@ -52,12 +51,8 @@ class GetStoryDetailsAo3(APIView):
         story = get_story_details_from_response_ao3(story_id)
         story["link"] = url
 
-        story["date_published"] = get_story_dates_cleaned_ao3(
-            story["date_published"], False
-        )
-        story["date_updated"] = get_story_dates_cleaned_ao3(
-            story["date_updated"], False
-        )
+        story["date_published"] = get_story_dates_cleaned_ao3(story["date_published"], False)
+        story["date_updated"] = get_story_dates_cleaned_ao3(story["date_updated"], False)
 
         return Response(story)
 
@@ -130,6 +125,4 @@ def initiate_save_story(story_all_fields):
         save_new_story_into_csvdb(story_all_fields)
 
     else:
-        print(
-            f"Story {story_all_fields['story_id']} exists in csv db, or not of HP fandom."
-        )
+        print(f"Story {story_all_fields['story_id']} exists in csv db, or not of HP fandom.")

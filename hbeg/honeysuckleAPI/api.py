@@ -1,22 +1,24 @@
-from bs4 import BeautifulSoup
-import re
 import os
+import re
 import time
-import requests
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
-import pandas as pd
+from threading import Thread
+
 import AO3
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from dateutil.relativedelta import relativedelta
 from dotenv import load_dotenv
 
 load_dotenv()
 
+from core.searcher import utils
 from core.searcher.constants import (
     ALL_DF_COLUMNS,
-    MAIN_EN_DATA_PATH,
     API_URL_TO_FETCH_STORIES_META_FROM,
+    MAIN_EN_DATA_PATH,
 )
-from core.searcher import utils
 
 # import the searcher instance from core app
 from core.views import instance as inst
@@ -69,6 +71,11 @@ def save_new_story_into_csvdb(story):
         df = df.append(storytosave, ignore_index=True)
         df.to_csv(MAIN_EN_DATA_PATH, index=False)
         print("New story saved into CSV db.")
+
+        # load newly saved data in a background thread
+        background_thread = Thread(target=inst.class_indices.load_temp_data)
+        background_thread.start()
+
     else:
         # TODO: do it
         print("Can't save a non-English story yet.")
@@ -219,9 +226,7 @@ def get_characters_from_string(string):
         for idx in range(0, num_pairings):
             open_bracket = stripped.find("[")
             close_bracket = stripped.find("]")
-            characters.append(
-                get_characters_from_string(stripped[open_bracket + 1 : close_bracket])
-            )
+            characters.append(get_characters_from_string(stripped[open_bracket + 1 : close_bracket]))
             stripped = stripped[close_bracket + 1 :]
         if stripped != "":
             singles = get_characters_from_string(stripped)
@@ -245,36 +250,28 @@ def get_story_details_from_reponse_ffn(story_id, response):
 
     ffn_story_id = int(story_id)
 
-    ffn_author_name = ffn_soup.find_all("a", {"href": re.compile(r"^/u/\d+/.")})[
-        0
-    ].string.strip()
+    ffn_author_name = ffn_soup.find_all("a", {"href": re.compile(r"^/u/\d+/.")})[0].string.strip()
 
-    ffn_author_url = (
-        ffn_soup.find("div", attrs={"id": "profile_top"}).find("a", href=True)
-    )["href"]
+    ffn_author_url = (ffn_soup.find("div", attrs={"id": "profile_top"}).find("a", href=True))["href"]
 
     ffn_author_id = (re.search(r"\d+", ffn_author_url)).group(0)
 
     try:
-        ffn_story_summary = ffn_soup.find_all(
-            "div", {"style": "margin-top:2px", "class": "xcontrast_txt"}
-        )[0].string.strip()
+        ffn_story_summary = ffn_soup.find_all("div", {"style": "margin-top:2px", "class": "xcontrast_txt"})[
+            0
+        ].string.strip()
 
     except:
         pass
 
     ffn_story_fandom = (
-        ffn_soup.find("span", attrs={"class": "lc-left"})
-        .find("a", attrs={"class": "xcontrast_txt"})
-        .text
+        ffn_soup.find("span", attrs={"class": "lc-left"}).find("a", attrs={"class": "xcontrast_txt"}).text
     )
 
     try:
-        ffn_story_image = (
-            ffn_soup.find("div", attrs={"id": "profile_top"}).find(
-                "img", attrs={"class": "cimage"}
-            )
-        )["src"]
+        ffn_story_image = (ffn_soup.find("div", attrs={"id": "profile_top"}).find("img", attrs={"class": "cimage"}))[
+            "src"
+        ]
 
     except:
         pass
@@ -288,9 +285,7 @@ def get_story_details_from_reponse_ffn(story_id, response):
             .text
         )
 
-    details = ffn_soup.find_all("span", {"class": "xgray xcontrast_txt"})[0].text.split(
-        " - "
-    )
+    details = ffn_soup.find_all("span", {"class": "xgray xcontrast_txt"})[0].text.split(" - ")
 
     dates = [date for date in ffn_soup.find_all("span") if date.has_attr("data-xutime")]
 
@@ -300,22 +295,16 @@ def get_story_details_from_reponse_ffn(story_id, response):
 
             ffn_story_status = "Updated"
 
-            ffn_story_last_updated = datetime.fromtimestamp(
-                int(dates[0]["data-xutime"])
-            )
+            ffn_story_last_updated = datetime.fromtimestamp(int(dates[0]["data-xutime"]))
 
-            ffn_story_published = datetime.fromtimestamp(
-                int(dates[1]["data-xutime"])
-            )  # Published date
+            ffn_story_published = datetime.fromtimestamp(int(dates[1]["data-xutime"]))  # Published date
 
             # change formatting
-            ffn_story_published = datetime.strptime(
-                str(ffn_story_published), "%Y-%m-%d %H:%M:%S"
-            )
+            ffn_story_published = datetime.strptime(str(ffn_story_published), "%Y-%m-%d %H:%M:%S")
 
-            ffn_story_published_to_store = datetime.strptime(
-                str(ffn_story_published), "%Y-%m-%d %H:%M:%S"
-            ).strftime("%m/%d/%Y %H:%M:%S")
+            ffn_story_published_to_store = datetime.strptime(str(ffn_story_published), "%Y-%m-%d %H:%M:%S").strftime(
+                "%m/%d/%Y %H:%M:%S"
+            )
 
             ffn_story_published = ffn_story_published.strftime(r"%-d %b, %Y")
 
@@ -326,22 +315,16 @@ def get_story_details_from_reponse_ffn(story_id, response):
             ffn_story_status = "Complete"
 
             # if Updated not found, pub & last_up will be same
-            ffn_story_last_updated = str(
-                datetime.fromtimestamp(int(dates[0]["data-xutime"]))
-            )  # Published date
+            ffn_story_last_updated = str(datetime.fromtimestamp(int(dates[0]["data-xutime"])))  # Published date
 
-            ffn_story_published = str(
-                datetime.fromtimestamp(int(dates[0]["data-xutime"]))
-            )  # Published dat
+            ffn_story_published = str(datetime.fromtimestamp(int(dates[0]["data-xutime"])))  # Published dat
 
             # change formatting
-            ffn_story_published = datetime.strptime(
-                str(ffn_story_published), "%Y-%m-%d %H:%M:%S"
-            )
+            ffn_story_published = datetime.strptime(str(ffn_story_published), "%Y-%m-%d %H:%M:%S")
 
-            ffn_story_published_to_store = datetime.strptime(
-                str(ffn_story_published), "%Y-%m-%d %H:%M:%S"
-            ).strftime("%m/%d/%Y %H:%M:%S")
+            ffn_story_published_to_store = datetime.strptime(str(ffn_story_published), "%Y-%m-%d %H:%M:%S").strftime(
+                "%m/%d/%Y %H:%M:%S"
+            )
 
             ffn_story_published = ffn_story_published.strftime(r"%-d %b, %Y")
 
@@ -386,9 +369,7 @@ def get_story_details_from_reponse_ffn(story_id, response):
         if details[i].startswith("Rated:"):
 
             ffn_story_rating = details[i].replace("Rated:", "").strip()
-            ffn_story_rating = ffn_story_rating[
-                ffn_story_rating.index("Fiction ") + len("Fiction ") :
-            ]
+            ffn_story_rating = ffn_story_rating[ffn_story_rating.index("Fiction ") + len("Fiction ") :]
 
             break  # if found, exit the loop to prevent overwriting of the variable
 
@@ -435,9 +416,7 @@ def get_story_details_from_reponse_ffn(story_id, response):
     if len(search) == 0:
         ffn_story_chapters = 1  # 1 as the default chapter number
     else:
-        ffn_story_chapters = str(
-            int(search[0][len("Chapters:") :].replace(",", ""))
-        ).strip()
+        ffn_story_chapters = str(int(search[0][len("Chapters:") :].replace(",", ""))).strip()
 
     ffn_author_url = "https://www.fanfiction.net" + ffn_author_url
 

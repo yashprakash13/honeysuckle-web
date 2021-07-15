@@ -5,6 +5,8 @@
 {% include 'profiles/styles.html' %}
 {% include 'profiles/scripts.html' %}
 
+<title>{{request.user.nickname}}</title>
+
 <div class="columns is-centered m-1 p-3 is-multiline" id="profile-everything">
     {% comment %} for bio and info about member {% endcomment %}
     <div class="column is-4-desktop is-12-tablet is-12-mobile" id="bio-column">

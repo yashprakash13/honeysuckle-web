@@ -23,6 +23,8 @@ def search(request):  # pragma: no cover
         context["results"] = res_to_show
         context["query"] = search_query
 
+    context["page_title"] = "HisBrownEyedGirl"
+
     return render(
         request,
         "core/search.html",
@@ -45,4 +47,5 @@ class AboutView(View):
     """View to show About HBEG page"""
 
     def get(self, request):
-        return render(request, "core/about.html")
+        context = {"page_title": "About HBEG"}
+        return render(request, "core/about.html", context=context)

@@ -1,20 +1,20 @@
+import ast
 import os
 import time
-import ast
-import pickle5 as pickle
 
-import pandas as pd
 import numpy as np
-from rapidfuzz import process, fuzz
-import whoosh.index as windex
-from whoosh.index import create_in
-from whoosh.fields import *
-from whoosh import qparser
-from whoosh.qparser import QueryParser, MultifieldParser
+import pandas as pd
+import pickle5 as pickle
 
 # import faiss
 # from sentence_transformers import SentenceTransformer
 import stopwords
+import whoosh.index as windex
+from rapidfuzz import fuzz, process
+from whoosh import qparser
+from whoosh.fields import *
+from whoosh.index import create_in
+from whoosh.qparser import MultifieldParser, QueryParser
 
 stop = stopwords.get_stopwords("en")
 stop.extend(["Harry", "Potter"])
@@ -22,6 +22,7 @@ stop = [word.lower() for word in stop]
 
 # import constants here
 from .constants import *
+
 
 # the Data class
 class Data:
@@ -40,9 +41,7 @@ class Data:
     def _load_una_ids(self, pair):
         una_list = []
         self.data["NoPairs"].apply(
-            lambda row: self._get_ids_una_per_row(
-                row, PAIR_CHARACTER_MAPPING[pair], una_list
-            ),
+            lambda row: self._get_ids_una_per_row(row, PAIR_CHARACTER_MAPPING[pair], una_list),
             axis=1,
         )
         self.data_una[pair] = una_list
@@ -60,13 +59,32 @@ class Data:
     def load_data(self):
         print("Loading data.")
         self.df["title_without_stopwords"] = self.df["title"].apply(
-            lambda x: " ".join(
-                [word for word in x.split() if word.lower() not in (stop)]
-            )
+            lambda x: " ".join([word for word in x.split() if word.lower() not in (stop)])
         )
         for pair in self.pairs:
             self._load_data(pair)
         print("All data loaded.")
+
+    def load_temp_data(self):
+        """to load newly saved data after a contribute story happened"""
+        print("Loading temp data.")
+        tempdf = pd.read_csv(MAIN_EN_DATA_PATH, low_memory=False)
+        tempdf["title_without_stopwords"] = tempdf["title"].apply(
+            lambda x: " ".join([word for word in x.split() if word.lower() not in (stop)])
+        )
+        data_temp = {}
+        for pair in self.pairs:
+            data_temp[pair] = tempdf[tempdf.Pairs.str.contains(pair)]
+        print("All temp data loaded.")
+
+        print("Loading new data...")
+        self.df = tempdf
+        self.data = data_temp
+
+        del tempdf
+        del data_temp
+
+        print("Loaded new data.")
 
 
 # Indices class
