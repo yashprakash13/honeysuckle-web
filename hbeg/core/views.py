@@ -6,8 +6,9 @@ from . import searcher
 
 # prepare the search engine to receive queries, this object will be used by other apps such as profiles too.
 instance = searcher.SearchEngine()
-# instance.prepare_s_engine()
 
+instance.prepare_s_engine()
+ 
 # the search view to receive queries and send results
 def search(request):  # pragma: no cover
     # get the search query from search bar
@@ -49,3 +50,4 @@ class AboutView(View):
     def get(self, request):
         context = {"page_title": "About HBEG"}
         return render(request, "core/about.html", context=context)
+
