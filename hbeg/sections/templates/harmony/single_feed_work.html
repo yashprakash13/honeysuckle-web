@@ -1,0 +1,21 @@
+<article class="message">
+  <div class="message-header">
+    <p class="content is-bold has-text-centered" id="single-work-title">{{work.title}}</p>
+  </div>
+  <div class="message-body has-text-left" id="single-work-body">
+    <strong>Author:</strong> {{work.authors}} <br>
+    <strong>Summary:</strong>{{work.summary}} <br>
+    <strong>Words: </strong> {{work.words}} <br>
+    <strong>Chapters:</strong> {{work.nchapters}} <br>
+    <strong>Rating:</strong> {{work.rating}} <br>
+    <strong>Language:</strong> {{work.language}} <br>
+    <strong>Characters:</strong> {{work.characters}} <br>
+    <strong>Relationships:</strong> {{work.relationships}} <br>
+    <strong>Tags:</strong>{{work.tags}} <br>
+    {% if  work.complete %}
+    <strong>Status:</strong> Complete
+    {% else %}
+    <strong>Status:</strong> In-Progress
+    {% endif %} 
+  </div>
+</article>
