@@ -1,9 +1,10 @@
 <article class="message">
-  <div class="message-header">
-    <p class="content is-bold has-text-centered" id="single-work-title">{{work.title}}</p>
+  <div class="message-header" style="margin-bottom:1 rem; line-height:1.0 rem;">
+    <p  id="single-work-title">{{work.title}}</p>
+    <a href="#" id="single-work-add-link">Add</a>
   </div>
   <div class="message-body has-text-left" id="single-work-body">
-    <strong>Author:</strong> {{work.authors}} <br>
+    <u><strong>Author</strong></u>: {{work.authors}} <br>
     <strong>Summary:</strong>{{work.summary}} <br>
     <strong>Words: </strong> {{work.words}} <br>
     <strong>Chapters:</strong> {{work.nchapters}} <br>
