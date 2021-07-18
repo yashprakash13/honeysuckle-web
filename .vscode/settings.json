@@ -1,27 +1,30 @@
 {
-    "python.pythonPath": "/Users/costa/.local/share/virtualenvs/his_brown_eyed_girl-4Fy-iSFj/bin/python",
-    "python.languageServer": "Microsoft",
-    "python.formatting.provider": "black",
-    "editor.formatOnSave" : true,
-    "python.formatting.blackArgs": [
-      "--line-length=119"
-    ],
-    "python.sortImports.args": [
+  "python.pythonPath": "/Users/costa/.local/share/virtualenvs/hisbrowneyedgirl-4Fy-iSFj/bin/python",
+  // "python.languageServer": "Microsoft",
+  "python.jediEnabled": true,
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "python.formatting.blackArgs": [
+    "--line-length=119"
+  ],
+  "python.sortImports.args": [
     "--profile=black",
-    ],
-    "[python]": {
-      "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-      }
-    },
-    "emmet.includeLanguages": {"django-html": "html"},
-    "[django-html]": {
-
-    },
-    "files.associations": {
-      "*.html": "html"
+  ],
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   },
-  "emmet.triggerExpansionOnTab": true
-
-
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "[django-html]": {},
+  "files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  },
+"emmet.triggerExpansionOnTab": true,
+"python.languageServer": "Jedi"
 }
