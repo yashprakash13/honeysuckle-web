@@ -49,3 +49,10 @@ class AboutView(View):
     def get(self, request):
         context = {"page_title": "About HBEG"}
         return render(request, "core/about.html", context=context)
+
+
+class HoneysuckleDashBoard(View):
+    """Honeysuckle discord bot dashboard"""
+
+    def get(self, request):
+        return render(request, "core/honeysuckle_dashboard.html")

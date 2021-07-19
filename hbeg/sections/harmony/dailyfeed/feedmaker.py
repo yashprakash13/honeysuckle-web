@@ -20,9 +20,12 @@ class FeedMaker:
         """make ao3 and ffn feed from 1st pages if not already present"""
 
         if os.path.exists(os.path.join(FEEDDATA, "ao3feeddata")):
+            print("Found existing ao3 feed data. Loading...")
             with open(os.path.join(FEEDDATA, "ao3feeddata"), "r") as fin:
                 self.feeddict = json.load(fin)
+            print("Loaded existing ao3 feed data.")
         else:
+            print("Not found ao3 feed data. Fetching...")
             self._parse_ao3()
 
     def get_feed(self):
