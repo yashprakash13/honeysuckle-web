@@ -12,11 +12,15 @@
         <a href="https://discord.gg/Rw23m8J" class="button is-inverted" id="discord-link-btn" target="_blank">Join us</a>
     </div>
     <div class="columns is-multiline ">
+        <div class="column mt-2 mb-5 has-text-centered">
+            <div class="content is-size-4">Story of the Day</div>
+            {% include 'harmony/story_of_the_day.html' %}
+        </div>
         <div class="column is-11-mobile is-7-desktop is-7-tablet mt-2 mb-5 has-text-centered">
             <a href="#" class="button is-dark">Fics</a>
             <a href="#" class="button is-dark">Authors</a>
-            <a href="#" class="button is-dark">Prompts</a>
-            <a href="#" class="button is-dark">Drabbles</a>
+            <a href="#" class="button is-dark">Moments</a>
+            <a href="#" class="button is-dark">Appreciation</a>
             <a href="#" class="button is-dark">Tags</a>
             <div class="container is-size-4 mt-5">
                 Fabulous fic feed 
@@ -26,10 +30,6 @@
                     {% include 'harmony/single_feed_work.html' %}
                 {% endfor %}
             </div>
-        </div>
-        <div class="column mt-2 mb-5 has-text-centered">
-            <div class="content is-size-4">Story of the Day</div>
-            {% include 'harmony/story_of_the_day.html' %}
         </div>
     </div>
 </div>
