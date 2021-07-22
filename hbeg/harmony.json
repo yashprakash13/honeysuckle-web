@@ -126,5 +126,485 @@
         "moment": "‘We were – we were –’ Ron stammered, ‘we were going to – to go and see –’\r\n‘Hermione,’ said Harry. Ron and Professor McGonagall both looked at him.\r\n‘We haven’t seen her for ages, Professor,’ Harry went on hurriedly, treading on Ron’s foot, ‘and we thought we’d sneak into the hospital wing, you know, and tell her the\r\nMandrakes are nearly ready and, er, not to worry.’\r\n\r\nProfessor McGonagall was still staring at him, and for a moment, Harry thought she\r\nwas going to explode, but when she spoke, it was in a strangely croaky voice.\r\n‘Of course,’ she said, and Harry, amazed, saw a tear glistening in her beady eye. ‘Of\r\ncourse, I realise this has all been hardest on the friends of those who have been … I quite understand. Yes, Potter, of course you may visit Miss Granger. I will inform Professor Binns where you’ve gone. Tell Madam Pomfrey I have given my permission.’",
         "book": "Book 2"
     }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 17,
+    "fields": {
+        "moment": "And beneath this, a single word had been written, in a hand Harry recognised as\r\nHermione’s. Pipes.\r\nIt was as though somebody had just flicked a light on in his brain.\r\n‘Ron,’ he breathed, ‘this is it. This is the answer.\r\n \r\nand Hermione and that Ravenclaw Prefect were found with a mirror next to them.\r\nHermione had just realised the monster was a Basilisk. I bet you anything she warned the first person she met to look round corners with a mirror first! And that girl pulled out her mirror – and –’",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 18,
+    "fields": {
+        "moment": "‘Your aunt and uncle will be proud, though, won’t they?’ said Hermione, as they got off\r\nthe train and joined the crowd thronging towards the enchanted barrier. ‘When they hear\r\nwhat you did this year?’\r\n‘Proud?’ said Harry. ‘Are you mad? All those times I could’ve died, and I didn’t\r\nmanage it? They’ll be furious …’\r\nAnd together they walked back through the gateway to the Muggle world.",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 19,
+    "fields": {
+        "moment": "Dear Harry,\r\n    Ron wrote to me and told me about his phone call to your Uncle Vernon. I do hope you’re all right. \r\n[…]\r\n   Can you make it? Will your aunt and uncle let you leave? I really hope you can. If not, I’ll see you on the Hogwarts Express on September the first!\r\nLove from,\r\n Hermione",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 20,
+    "fields": {
+        "moment": "Harry laughed as he put Hermione's letter aside and picked up her present. It was very heavy. Knowing Hermione, he was sure it would be a large book full of very difficult spells - but it wasn't. His heart gave a huge bound as he ripped back the paper and saw a sleek black leather case with silver words stamped across it: Broomstick Servicing Kit.\r\n‘Wow, Hermione!’, Harry whispered […]",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 21,
+    "fields": {
+        "moment": "When Harry finished, Ron looked thunderstruck, and Hermione had her hands over her mouth. She finally lowered them to say, ’Sirius Black escaped to come after you? Oh, Harry … you’ll have to be really, really careful. Don’t go looking after trouble, Harry …’",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 22,
+    "fields": {
+        "moment": "‘Are you sure you’re OK, Harry?’ said Hermione, watching Harry anxiously.\r\n‘I don’t get it … what happened?’ said Harry, wiping more sweat off his face.\r\n‘Well – that thing – the Dementor – stood there and looked around (I mean, I think it did, I couldn’t see its face) – and you – you –‘",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 23,
+    "fields": {
+        "moment": "‘First Hogsmeade weekend,’ said Ron, pointing at a notice that had appeared on the battered old noticeboard. ‘End of October. Hallowe’en.’\r\n[...]\r\nHarry threw himself into a chair beside Ron, his high spirits ebbing away. Hermione seemed to read his mind.\r\n‘Harry, I’m sure you’ll be able to go next time,’ she said.",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 24,
+    "fields": {
+        "moment": "‘We thought you’d died,’ said Alicia, who was shaking.\r\nHermione made a small, squeaky noise. Her eyes were extremely bloodshot.",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 25,
+    "fields": {
+        "moment": "‘Harry, please,’ said Hermione, her eyes now shining with tears, ‘please be sensible. Black did a terrible, terrible thing, but d-don’t put yourself in danger, it’s what Black wants … oh, Harry, you’d be playing right into Black’s hands if you went looking for him. Your mum and dad wouldn’t want you to get hurt, would they? They’d never want you to go looking for Black!’",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 26,
+    "fields": {
+        "moment": "‘Come on, Hermione, come and have some food,’ Harry said, looking over at Ron and wondering whether he was in a good enough mood to bury the hatchet.\r\n‘I can’t, Harry, I’ve still got four hundred and twenty-two pages to read!’ said Hermione, now sounding slightly hysterical. ‘Anyway …’ she glanced over at Ron, too, ‘he doesn’t want me to join in.’\r\nThere was no arguing with this, as Ron chose exactly that moment to say loudly, ‘If Scabbers hadn’t just been eaten, he could have had some of these Fudge Flies, he used to really like them -’\r\nHermione burst into tears. Before Harry could say or do anything, she had tucked the enormous book under her arm, and, still sobbing, run towards the staircase to the girls’ dormitories and out of sight.\r\n‘Can’t you give her a break?’ Harry asked Ron quietly.\r\n‘No,’ he said flatly [...]",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 27,
+    "fields": {
+        "moment": "Harry was sitting with Ron and Hermione, removed from the center of things, trying not to think about the next day, because every time he did, he had the horrible sensation that something very large was fighting to get out of his stomach.\r\n‘You’re going to be fine,’ Hermione told him, though she looked positively terrified.",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 28,
+    "fields": {
+        "moment": "‘Ready?’ he whispered to Hermione. ‘You’d better hold on to me –‘\r\nHe nudged Buckbeak’s sides with his heels.\r\nBuckbeak soared into the dark air. Harry gripped his flanks with his knees, feeling the great wings rising powerfully beneath them. Hermione was holding Harry very tightly around the waist; he could hear her muttering, ‘Oh, no – I don’t like this – oh, I really don’t like this – ‘",
+        "book": "Book 3"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 29,
+    "fields": {
+        "moment": "The Veela had started to dance, and Harry's mind had gone completely and blissfully blank. All that mattered in the world was that he kept watching the Veela, because if they stopped dancing, terrible things would happen ... [...]\r\n'Harry, what are you doing?' said Hermione's voice from a long way off.\r\n[...] \r\nHermione made a loud tutting noise. She reached up and pulled Harry back into his seat. 'Honestly!' she said.",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 30,
+    "fields": {
+        "moment": "He walked resolutely over to the portrait hole, pushed it open, climbed out of it and found himself face to face with Hermione.\r\n‘Hello,’ she said, holding up a stack of toast, which she was carrying in a napkin. ‘I brought you this … want to go for a walk?’\r\n‘Good idea,’ said Harry, gratefully.\r\nThey went downstairs, crossed the Entrance Hall quickly without looking in at the Great Hall, and were soon striding across the lawn towards the lake, where the Durmstrang ship was moored, reflected blackly in the water. It was a chilly morning, and they kept moving, munching their toast, as Harry told Hermione exactly what had happened as he left the Gryffindor table the night before. To his immense relief, Hermione accepted the story without question.",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 31,
+    "fields": {
+        "moment": "Hermione had come in for her fair share of unpleasantness, too, but she hadn’t started yelling at innocent bystanders; in fact, Harry was full of admiration for the way she was handling the situation.\r\n‘Stunningly pretty? Her?’ Pansy Parkinson had shrieked, the first time she had come face to face with Hermione after Rita’s article had appeared. ‘What was she judging against - a chipmunk?’\r\n‘Ignore it,’ Hermione said in a dignified voice, holding her head in the air and stalking past the sniggering Slytherin girls as though she couldn’t hear them. ‘Just ignore it, Harry.’\r\nBut Harry couldn’t ignore it.",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 32,
+    "fields": {
+        "moment": "'Hermione - I need you to help me.' [...]\r\nAnd so they practiced. They didn't have lunch, but headed to a free classroom, where Harry tried with all his might to make various objects fly across the room toward him. [...] \r\nAt two o'clock in the morning, Harry stood near the fireplace, surrounded by heaps of objects: [...]\r\n'That's better, Harry, that's loads better,' Hermione said, looking exhausted but very pleased.\r\n[...]\r\nHe raised his wand once more. ‘Accio Dictionary.’\r\nThe heavy book soared out of Hermione’s hand, flew across the room, and Harry caught it.\r\n‘Harry, I really think you’ve got it!’ said Hermione, delightedly.",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 33,
+    "fields": {
+        "moment": "Fat Lady had barely begun to swing forwards, when the sound of racing feet behind them announced Hermione's arrival.\r\n 'Harry!' she panted, skidding to a halt beside him (the Fat Lady stared, down at her, eyebrows raised). 'Harry, you've got to come - you've got to come, the most amazing thing's happened - please -'\r\nShe seized Harry's arm and started to try and drag him back along the corridor\r\n[...]\r\n'I'm not asking you to!' Hermione said impatiently. 'I came down here just now to talk to them all, and I found - oh, come on, Harry, I want to show you!'\r\nShe seized his arm again, pulled him in front of the picture of the giant fruit bowl",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 34,
+    "fields": {
+        "moment": "Krum was at the front of the party, accompanied by a pretty girl in blue robes Harry didn't know.\r\nHis eyes instead fell on the girl next to Krum. His jaw dropped.\r\nIt was Hermione.\r\nBut she didn't look like Hermione at all. She had done something with her hair; it was no longer bushy, but sleek and shiny, and twisted up into an elegant knot at the back of her head. She was wearing robes made of a floaty, periwinkle-blue material, and she was holding herself differently, somehow - or maybe it was merely the absence of the twenty or so books she usually had slung over her back. She was also smiling - rather nervously, it was true - but the reduction in the size of her front teeth was more noticeable than ever. Harry couldn't understand how he hadn't spotted it before.",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 35,
+    "fields": {
+        "moment": "There was a Hogsmeade visit halfway through January. Hermione was very surprised to see that Harry was planning to go.\r\n‘I just thought you’d want to take advantage of the common room being quiet,’ she said. ‘Really get to work on that egg.’\r\n‘Oh - I reckon I’ve a pretty good idea what it’s about now,’ Harry lied.\r\n‘Have you really?’ said Hermione, looking impressed. ‘Well done!’\r\nHarry’s insides gave a guilty squirm, but he ignored them.",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 36,
+    "fields": {
+        "moment": "'Bye, Harry!' said Hermione, and she did something she had never done before, and kissed him on the cheek.",
+        "book": "Book 4"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 37,
+    "fields": {
+        "moment": "Hermione had thrown herself on to him in a hug that nearly knocked him flat, while Ron's tiny owl, Pigwidgeon, zoomed excitedly round and round their heads.\r\n'HARRY! Ron, he's here, Harry's here! We didn't hear you arrive! Oh, how are you? Are you all right? Have you been furious with us? I bet you have, I know our letters were useless - but we couldn't tell you anything, Dumbledore made us swear we wouldn't, oh, we've got so much to tell you, and you've got things to tell us - the Dementors! When we heard - and that Ministry hearing - it's just outrageous, I've looked it all up, they can't expel you, they just can't, there's provision in the Decree for the Reasonable Restriction in Underage Society for\r\nthe use of magic in life-threatening situations -'\r\n'Let him breathe, Hermione,' said Ron, [...]\r\nStill beaming, Hermione let go of Harry",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 38,
+    "fields": {
+        "moment": "With a grin at the thought of what Hermione would say if she could see the statue of the elf, Harry turned his money bag upside-down and emptied not just ten Galleons, but the whole contents into the pool.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 39,
+    "fields": {
+        "moment": "‘They were bound to clear you,’ said Hermione, who had looked positively faint with anxiety when Harry had entered the kitchen and was now holding a shaking hand over her eyes,’there was no case against you, none at all.’",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 40,
+    "fields": {
+        "moment": "And as he thought this, the scar on his forehead burned so badly he clapped his hand to it.\r\n‘What’s up?’ said Hermione, looking alarmed.\r\n‘Scar,’ Harry mumbled. ‘But it’s nothing … it happens all the time now…’\r\nNone of the others had noticed a thing;",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 41,
+    "fields": {
+        "moment": "‘Oh no,’ said Hermione, looking relieved, ‘if you’re going, that means I can go too without being rude. I’m absolutely exhausted and I want to make some more hats tomorrow. Listen, you can help me if you like, it’s quite fun, I’m getting better, I can do patterns and bobbles and all sorts of things now.’\r\nHarry looked into her face, which was shining with glee, and tried to look as though he was vaguely tempted by the offer.\r\n‘Er … no, I don’t think I will, thanks,’ he said. ‘Er - not tomorrow, I’ve got loads of homework to do …’\r\nAnd he traipsed off to the boys’ stairs, leaving her looking slightly disappointed.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 42,
+    "fields": {
+        "moment": "He imagined trying to conceal from Hermione that he had received T's in all his OWLS and immediately resolved to work harder from now on.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 43,
+    "fields": {
+        "moment": "He looked helplessly at Hermione, whose face was stricken.\r\n‘Harry,’ she said timidly, ‘don’t you see? This … this is exactly why we need you … we need to know what it’s r-really like … facing him … facing V-Voldemort.’\r\nIt was the first time she had ever said Voldemort’s name and it was this, more than anything else, that calmed Harry.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 44,
+    "fields": {
+        "moment": "‘But,’ said Ron, following Hermione along a row of quills in copper pots, ‘I thought Ginny fancied Harry!’\r\nHermione looked at him rather pityingly and shook her head.\r\n‘Ginny used to fancy Harry, but she gave up on him months ago. Not that she doesn’t like you, of course,’ she added kindly to Harry while she examined a long black and gold quill.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 45,
+    "fields": {
+        "moment": "For a moment, Harry was tempted to go with Dobby. He was halfway out of his seat, intending to hurry upstairs for his Invisibility Cloak when, not for the first time, a voice very much like Hermione’s whispered in his ear: reckless.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 46,
+    "fields": {
+        "moment": "‘She -’ Harry began, rather hoarsely; he cleared his throat and tried again. ‘She - er -’\r\n‘Did you kiss?’ asked Hermione briskly.\r\nRon sat up so fast he sent his ink bottle flying all over the rug. Disregarding this completely, he stared avidly at Harry.\r\n‘Well?’ he demanded.\r\nHarry looked from Ron’s expression of mingled curiosity and hilarity to Hermione’s slight frown, and nodded.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 47,
+    "fields": {
+        "moment": "‘Are you that bad at kissing?’\r\n‘Dunno,’ said Harry, who hadn’t considered this, and immediately felt rather worried. ‘Maybe I am.’\r\n‘Of course you’re not,’ said Hermione absently, still scribbling away at her letter.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 48,
+    "fields": {
+        "moment": "‘Thanks for the book, Harry,’ she said happily. ‘I’ve been wanting that New Theory of Numerology for ages! And that perfume’s really unusual, Ron.’",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 49,
+    "fields": {
+        "moment": "‘Haven’t we got a counter-jinx for this?’ Fudge asked Umbridge impatiently, gesturing at Marietta’s face. ‘So she can speak freely?’\r\n‘I have not yet managed to find one,’ Umbridge admitted grudgingly, and Harry felt a surge of pride in Hermione’s jinxing ability.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 50,
+    "fields": {
+        "moment": "‘You shouldn’t have told her that you wanted to meet me halfway through your date.’\r\n‘But, but,’ spluttered Harry, ‘but - you told me to meet you at twelve and to bring her along, how was I supposed to do that without telling her?’\r\n‘You should have told her differently,’ said Hermione, still with that maddeningly patient air. ‘You should have said it was really annoying, but I’d made you promise to come along to the Three Broomsticks, and you really didn’t want to go, you’d much rather spend the whole day with her, but unfortunately you thought you really ought to meet me and would she please, please come along with you and hopefully you’d be able to get away more quickly. And it might’ve been a good idea to mention how ugly you think I am, too,’ Hermione added as an afterthought.\r\n‘But I don’t think you’re ugly,’ said Harry, bemused.\r\n‘Harry, you’re worse than Ron … well, no, you’re not,’ she sighed",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 51,
+    "fields": {
+        "moment": "'A lovely person who made a mistake? She sold us all out, including you!’\r\n‘Well … we all got away, didn’t we? said Cho pleadingly. ‘You know, her mum works for the Ministry, it’s really difficult for her -’\r\n‘Ron’s dad works for the Ministry too!’ Harry said furiously. ‘And in case you hadn’t noticed he hasn’t got sneak written across his face -’\r\n‘That was a really horrible trick of Hermione Granger’s,’ said Cho fiercely. ‘She should have told us she’d jinxed that list -’\r\n‘I think it was a brilliant idea,’ said Harry coldly. Cho flushed and her eyes grew brighter.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 52,
+    "fields": {
+        "moment": "One of the giant’s massive hands reached down. Hermione let out a real scream, ran a few steps backwards and fell over. Wandless, Harry braced himself to punch, kick, bite or whatever else it took as the hand swooped towards him and knocked a snow-white centaur off his legs.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 53,
+    "fields": {
+        "moment": "‘Well done, Ha-’\r\nBut the Death Eater Hermione had just struck dumb made a sudden slashing movement with his wand; a streak of what looked like purple flame passed right across Hermione’s chest. She gave a tiny ‘Oh!’ as though of surprise and crumpled on to the floor, where she lay motionless.\r\n‘HERMIONE!’\r\nHarry fell to his knees beside her as Neville crawled rapidly towards her from under the desk, his wand held up in front of him.",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 54,
+    "fields": {
+        "moment": "A whine of panic inside his head was preventing him from thinking properly: he had one hand on Hermione’s shoulder, which was still warm, yet did not dare look at her properly. Don’t let her be dead, don’t let her be dead, it’s my fault if she’s dead …",
+        "book": "Book 5"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 55,
+    "fields": {
+        "moment": "As Harry sat down, a furry ginger cat with a squashed face jumped on to his knees and settled there, purring.\r\n‘So Hermione’s here?’ he asked happily as he tickled Crookshanks behind the ear.",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 56,
+    "fields": {
+        "moment": "“One of my best friends is Muggle-born and she’s the best in our year!” I’m assuming this is the very friend of whom you spoke, Harry?’\r\n‘Yes, sir,’ said Harry.\r\n‘Well, well, take twenty well-earned points for Gryffindor, Miss Granger,’ said Slughorn genially.\r\n[...]\r\n Hermione turned to Harry with a radiant expression and whispered, ‘Did you really tell him I’m the best in our year? Oh, Harry!’",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 57,
+    "fields": {
+        "moment": "‘I dunno why the team’s this popular all of a sudden.’\r\n‘Oh, come on, Harry,’ said Hermione, suddenly impatient. ‘It’s not Quidditch that’s popular, it’s you! You’ve never been more interesting and, frankly, you’ve never been more fanciable.’",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 58,
+    "fields": {
+        "moment": "‘Everyone knows you’ve been telling the truth now, don’t they? The whole wizarding world has had to admit that you were right about Voldemort being back and that you really have fought him twice in the last two years and escaped both times. And now they’re calling you the “Chosen One” - well, come on, can’t you see why people are fascinated by you?’\r\nHarry was finding the Great Hall very hot all of a sudden, even though the ceiling still looked cold and rainy.\r\n‘And you’ve been through all that persecution by the Ministry when they were trying to make out you were unstable and a liar. You can still see the marks where that evil woman made you write with your own blood, but you stuck to your story anyway …’\r\n‘You can still see where those brains got hold of me in the Ministry, look,’ said Ron, shaking back his sleeves.\r\n‘And it doesn’t hurt that you’ve grown about a foot over the summer, either,’ Hermione finished, ignoring Ron.",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 59,
+    "fields": {
+        "moment": "‘Hi, Luna. Hermione, you left your stuff …’\r\nHe held out her books.\r\n‘Oh, yes,’ said Hermione in a choked voice, taking her things and turning away quickly to hide the fact that she was wiping her eyes on her pencil case. ‘Thank you, Harry. Well, I’d better get going …’\r\nAnd she hurried off, without giving Harry any time to offer words of comfort, though admittedly he could not think of any.",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 60,
+    "fields": {
+        "moment": "Harry saw, in his mind’s eye, the expression on Hermione’s face if she ever heard about this abuse of house-elves, and decided to never mention it to her.",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 61,
+    "fields": {
+        "moment": "They had just reached the hospital wing: pushing open the doors, Harry saw Neville lying, apparently asleep, in a bed near the door. Ron, Hermione, Luna, Tonks and Lupin were gathered around another bed near the far end of the ward. At the sound of the doors opening, they all looked up. Hermione ran to Harry and hugged him;",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 62,
+    "fields": {
+        "moment": "‘I’m not going back even if it does reopen,’ said Harry.\r\nRon gaped at him, but Hermione said sadly, ‘I knew you were going to say that. But then what will you do?’",
+        "book": "Book 6"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 63,
+    "fields": {
+        "moment": "Wrenching open the back door, Harry hurtled into their midst. There was a general cry of greeting as Hermione flung her arms around him.",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 64,
+    "fields": {
+        "moment": "‘Ooh, you look much tastier than Crabbe and Goyle, Harry,’ said Hermione, before catching sight of Ron’s raised eyebrows, blushing slightly and saying, ‘oh, you know what I mean",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 65,
+    "fields": {
+        "moment": "‘Do you, William Arthur, take Fleur Isabelle …?’\r\n...\r\nHermione turned and beamed at Harry; her eyes, too, were full of tears.\r\n‘... then I declare you bonded for life.’",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 66,
+    "fields": {
+        "moment": "‘Look what I’ve just found.’\r\nHe held out his mother’s letter. Hermione took it and read it while Harry watched her. When she reached the end of the page, she looked up at him.\r\n‘Oh, Harry …’\r\n‘And there’s this, too.’\r\nHe handed her the torn photograph, and Hermione smiled at the baby zooming in and out of sight on the toy broom.",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 67,
+    "fields": {
+        "moment": "After a couple of mouthfuls, Ron had pushed his portion away, looking queasy; Harry had only persevered so as not to hurt Hermione’s feelings.",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 68,
+    "fields": {
+        "moment": "Ron wrenched the chain from over his head and cast the locket into a nearby chair. He turned to Hermione.\r\n‘What are you doing?’\r\n‘What do you mean?’\r\n‘Are you staying, or what?’\r\n‘I …’ She looked anguished. ‘Yes - yes, I’m staying. Ron, we said we’d go with Harry, we said we’d help -’\r\n‘I get it. You choose him.’",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 69,
+    "fields": {
+        "moment": "The instant they arrived Hermione dropped Harry’s hand and walked away from him, finally sitting down on a large rock, her face on her knees, shaking with what he knew were sobs. He watched her, supposing that he ought to go and comfort her, but something kept him rooted to the spot. Everything inside him felt cold and tight: again he saw the contemptuous expression on Ron’s face.",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 70,
+    "fields": {
+        "moment": "Hermione had taken his hand again and was gripping it tightly. He could not look at her, but returned the pressure, now taking deep, sharp gulps of the night air, trying to steady himself, trying to regain control. He should have brought something to give them, and he had not thought of it, and every plant in the graveyard was leafless and frozen. But Hermione raised her wand, moved it in a circle through the air and a wreath of Christmas roses blossomed before them. Harry caught it and laid it on his parents’ grave. As soon as he stood up, he wanted to leave: he did not think he could stand another moment there. He put his arm around Hermione’s shoulders, and she put hers around his waist, and they turned in silence and walked away through the snow, past Dumbledore’s mother and sister, back towards the dark church and the out-of-sight kissing gate.",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 71,
+    "fields": {
+        "moment": "Harry glanced back at Hermione with a reassuring smile, but he was not sure she had seen it; she stood hugging herself in the midst of the candlelit squalor, looking towards the bookcase.",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 72,
+    "fields": {
+        "moment": "‘You’re still really angry with me aren’t you?’ said Hermione; he looked up to see fresh tears leaking out of her eyes, and knew that his anger must have shown in his face.\r\n‘No,’ he said quietly. ‘No, Hermione, I know it was an accident. You were trying to get us out of there alive, and you were incredible. I’d be dead if you hadn’t been there to help me.’",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 73,
+    "fields": {
+        "moment": "All was ashes: how much more could he lose? Ron, Dumbledore, the phoenix wand ...\r\n‘Harry.’ She seemed to have heard his thoughts.",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 74,
+    "fields": {
+        "moment": "Harry picked up Hermione’s wand, which she had dropped in the snow, and sat back down in the entrance of the tent.\r\n‘Thanks for the tea. I’ll finish the watch. You get back in the warm.’\r\nShe hesitated, but recognized the dismissal. She picked up the book and then walked past him into the tent, but as she did so, she brushed the top of his head lightly with her hand. He closed his eyes at her touch...",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 75,
+    "fields": {
+        "moment": "People were moving around, trying to comfort each other, drinking, kneeling beside the dead, but he could not see any of the people he loved, no hint of Hermione...",
+        "book": "Book 7"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 76,
+    "fields": {
+        "moment": "‘And you’ll be using her actual wand,’ said Harry, nodding towards the walnut wand,\r\n‘so I reckon you’ll be pretty convincing.’\r\nHermione looked frightened that the wand might sting or bite her as she picked it up.\r\n‘I hate this thing,’ she said in a low voice. ‘I really hate it. It feels all wrong, it doesn’t\r\nwork properly for me … it’s like a bit of her.’\r\nHarry could not help but remember how Hermione had dismissed his loathing of the\r\nblackthorn wand, insisting that he was imagining things when it did not work as well as his own, telling him to simply practise. He chose not to repeat her own advice back to her, however; the eve of their attempted assault on Gringotts felt like the wrong moment to antagonise her.",
+        "book": "Book 7"
+    }
 }
 ]
