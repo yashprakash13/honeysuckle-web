@@ -1,0 +1,16 @@
+/* for the sections apps */
+*{
+    font-family: 'Antic Slab', serif;
+
+}
+html{
+    background-color:#262626;
+}
+body{
+	background: #262626;
+    height: 100vh;
+    max-width: 1400px;
+}
+.is-small.input{
+    font-size:1.05rem;
+}
