@@ -1,0 +1,22 @@
+{% extends 'sections/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'harmony/styles.html' %}
+
+<div class="container mt-6 mb-6 ml-6 mr-6" id="moments-container">
+    <div class="is-size-3">Moments</div>
+    <div class="is-size-5 mb-6">All Harmony moments that appear in canon, grouped by each book. These form the foundation on which the ship sails.</div>
+    
+    <div class="content">
+        {% for book, moments in bookwise_moments.items %}
+            <div class="content is-size-4 is-bold is-uppercase">{{book}}</div>
+            {% for moment in moments %}
+                <div class="content is-size-6">{{moment|linebreaks}}</div>
+                <div class="content is-size-6">---</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}

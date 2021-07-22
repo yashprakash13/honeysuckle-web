@@ -1,17 +1,37 @@
 {% extends 'sections/main.html' %}
-{% include 'sections/styles.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container mt-6 ml-6 mr-3" id="mainview-container">
-    <div class="content is-size-2 has-text-centered">
-        The dedicated HHr space on the Internet.<br>Coming soon...
-    </div>
+{% include 'harmony/styles.html' %}
 
-    <div class="content is-size-5 mt-6 has-text-centered">
-        To be a part of the production and recommend/contribute features to this space, join our Harmony community: <br><br>
-            <a href="https://discord.gg/Rw23m8J" class="button is-dark" target="_blank">Join the discord</a>
+<div class="container mt-1 mb-6 ml-6 mr-6" id="mainview-container">
+    <div class="content is-size-1 is-bold has-text-centered mb-0">
+        <figure class="image is-48x48" id="has-image-centered">
+            <img src="{% static 'images/harmony_logo.png' %}" id="hhr-logo-image">
+       </figure>
+        Harmony <br>
+        <a href="https://discord.gg/Rw23m8J" class="button is-inverted" id="discord-link-btn" target="_blank">Join us</a>
     </div>
-
+    <div class="columns is-multiline " id="cols">
+        <div class="column mt-2 mb-5 has-text-centered">
+            <div class="content is-size-4">Story of the Day</div>
+            {% include 'harmony/story_of_the_day.html' %}
+            <a href="#" class="button is-dark">Fics</a>
+            <a href="#" class="button is-dark">Authors</a>
+            <a href="{% url 'harmony_moments' %}" class="button is-dark">Moments</a>
+            <a href="#" class="button is-dark">Drabbles</a>
+            <a href="#" class="button is-dark">Prompts</a>
+        </div>
+        <div class="column is-11-mobile is-7-desktop is-7-tablet mt-2 mb-5 has-text-centered">
+            <div class="container is-size-4 mt-0">
+                Fabulous fic feed 
+            </div>
+            <div class="container mt-5">
+                {% for work in works  %}
+                    {% include 'harmony/single_feed_work.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock  %}

@@ -17,6 +17,9 @@
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-end">
+        <a href="https://discord.gg/Rw23m8J" target="_blank" class="navbar-item">
+                Harmony Discord
+        </a>
         {% if request.user.is_authenticated %}
             <a href="{% url 'profile' %}" class="navbar-item">
                 My Profile
@@ -26,9 +29,6 @@
                 Log In
             </a>
         {% endif %}
-        <a href="{% url 'search' %}" class="navbar-item">
-                Home
-        </a>
       </div>
     </div>
   </nav>

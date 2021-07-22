@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-from pathlib import Path
 import os
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()  # take environment variables from .env file.
@@ -66,6 +67,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.discord",  # for discord login
+    "django_crontab",  # for crontab
     "core.apps.CoreConfig",
     "accounts.apps.AccountsConfig",
     "profiles.apps.ProfilesConfig",
@@ -247,3 +249,10 @@ CKEDITOR_CONFIGS = {
     },
 }
 AWS_QUERYSTRING_AUTH = False
+
+
+# CRON TASKS
+CRONJOBS = [
+    # run refresh harmony feed every 12 hours
+    ("0 */12 * * *", "sections.harmony.cron.feed_ao3_scheduled_job", ">> ~/cron_job.log"),
+]
