@@ -1,0 +1,130 @@
+[
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 1,
+    "fields": {
+        "moment": "Hermione seized Hagrid’s binoculars, but instead of looking up at Harry, she started looking frantically at the crowd. \r\n‘What are you doing?’ moaned Ron, grey-faced.\r\n‘I knew it,’ Hermione gasped. ‘Snape - look.’\r\nRon grabbed the binoculars. Snape was in the middle of the stands opposite them. He had his eyes fixed on Harry and was muttering non-stop under his breath. \r\n‘He’s doing something - jinxing the broom.’ said Hermione.\r\n‘What should we do?’\r\n‘Leave it to me.’\r\nBefore Ron could say another word, Hermione had disappeared.",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 2,
+    "fields": {
+        "moment": "As they jostled their way through a crowd of confused Hufflepuffs, Harry suddenly grabbed Ron’s arm.\r\n‘I’ve just thought - Hermione.’\r\n‘What about her?’\r\n‘She doesn’t know about the troll.’",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 3,
+    "fields": {
+        "moment": "Hermione had fought her way across to the stand where Snape stood and was now racing along the row behind him; she didn’t even stop to say sorry as she knocked Professor Quirrell headfirst into the row in front. Reaching Snape, she crouched down, pulled out her wand and whispered a few, well-chosen words. Bright blue flames shot from her wand to the hem of Snape’s robes.",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 4,
+    "fields": {
+        "moment": "Someone knocked into Harry as they hurried past him. It was Hermione. Harry caught a glimpse of her face - and was startled to see that she was in tears. (",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 5,
+    "fields": {
+        "moment": "Hermione, who had all her fingers crossed in her lap, was squinting fixedly at Harry,\r\n...\r\n‘Ron!’ Hermione said suddenly. ‘Harry -!’\r\n‘What? Where?’\r\nHarry had suddenly gone into a spectacular dive which drew gasps and cheers from the crowd. Hermione stood up, her crossed fingers in her mouth, as Harry streaked towards the ground like a bullet.",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 6,
+    "fields": {
+        "moment": "‘Come on, Harry!’ Hermione screamed, leaping onto her seat to watch as Harry sped straight at Snape - she didn’t even notice Malfoy and Ron rolling around under her seat, [...]\r\n‘Ron! Ron! Where are you? The game’s over! Harry’s won! We’ve won! Gryffindor are in the lead!’ Hermione shrieked, dancing up and down on her seat and hugging Parvati Patil in the row in front.",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 7,
+    "fields": {
+        "moment": "Hermione’s lip trembled and she suddenly dashed at Harry and threw her arms around him.\r\n‘Hermione!’\r\n‘Harry – you’re a great wizard, you know.’\r\n‘I’m not as good as you,’ said Harry, very embarrassed, as she let go of him.\r\n‘Me!’ said Hermione. ‘Books! And cleverness! There are more important things – friendship and bravery and – oh, Harry – be careful!’",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 8,
+    "fields": {
+        "moment": "Harry, who was feeling distinctly hot in the face, said, ‘Whatever you’ve heard about my greatness is a load of rubbish. I’m not even top of my year at Hogwarts, that’s Hermione, she -’\r\nBut he stopped quickly, because thinking about Hermione was painful.",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 9,
+    "fields": {
+        "moment": "‘Weasley, you can partner Finnegan. Potter -’\r\nHarry moved automatically towards Hermione.\r\n‘I don’t think so,’ said Snape, smiling coldly.",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 10,
+    "fields": {
+        "moment": "Harry didn’t know whether the best bit was Hermione running towards him, screaming ‘You solved it! You solved it!’",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 11,
+    "fields": {
+        "moment": "But Harry was only half listening. He didn’t seem to be able to get rid of the picture of Hermione, lying on the hospital bed as though carved out of stone.",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 12,
+    "fields": {
+        "moment": "Hermione, however, stood alone by the door, waiting for them. There was a very\r\nembarrassed pause. Then, none of them looking at each other, they all said ‘Thanks’, and hurried off to get plates.\r\nBut from that moment on, Hermione Granger became their friend.",
+        "book": "Book 1"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 13,
+    "fields": {
+        "moment": "‘D’you realise how much we’re going to have to steal, Hermione? Shredded skin of\r\nBoomslang, that’s definitely not in the students’ cupboard. What’re we going to do, break into Snape’s private stores? I don’t know if this is a good idea …’\r\nHermione shut the book with a snap.\r\n‘Well, if you two are going to chicken out, fine,’ she said. There were bright pink\r\npatches on her cheeks and her eyes were brighter than usual. ‘I don’t want to break rules, you know. I think threatening Muggle-borns is far worse than brewing up a difficult\r\npotion. But if you don’t want to find out if it’s Malfoy, I’ll go straight to Madam Pince\r\nnow and hand the book back in …’\r\n \r\n‘How long will it take to make, anyway?’ said Harry, as Hermione, looking happier,\r\nopened the book again.",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 14,
+    "fields": {
+        "moment": "But Hermione had a steely glint in her eye not unlike the one Professor McGonagall\r\nsometimes had.\r\n‘The Potion will be useless without Crabbe and Goyle’s hair,’ she said sternly. ‘You do\r\nwant to investigate Malfoy, don’t you?’\r\n‘Oh, all right, all right,’ said Harry. ‘But what about you? Whose hair are you ripping out?’\r\n‘I’ve already got mine!’ said Hermione brightly, pulling a tiny bottle out of her pocket\r\nand showing them the single hair inside it.",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 15,
+    "fields": {
+        "moment": "Hermione left the hospital wing, de-whiskered, tail-less and fur-free, at the beginning of\r\nFebruary. On her first evening back in Gryffindor Tower, Harry showed her T. M. Riddle’s\r\ndiary and told her the story of how they had found it.\r\n‘Oooh, it might have hidden powers,’ said Hermione enthusiastically, taking the diary\r\nand looking at it closely.",
+        "book": "Book 2"
+    }
+},
+{
+    "model": "harmony.harmonymomentsmodel",
+    "pk": 16,
+    "fields": {
+        "moment": "‘We were – we were –’ Ron stammered, ‘we were going to – to go and see –’\r\n‘Hermione,’ said Harry. Ron and Professor McGonagall both looked at him.\r\n‘We haven’t seen her for ages, Professor,’ Harry went on hurriedly, treading on Ron’s foot, ‘and we thought we’d sneak into the hospital wing, you know, and tell her the\r\nMandrakes are nearly ready and, er, not to worry.’\r\n\r\nProfessor McGonagall was still staring at him, and for a moment, Harry thought she\r\nwas going to explode, but when she spoke, it was in a strangely croaky voice.\r\n‘Of course,’ she said, and Harry, amazed, saw a tear glistening in her beady eye. ‘Of\r\ncourse, I realise this has all been hardest on the friends of those who have been … I quite understand. Yes, Potter, of course you may visit Miss Granger. I will inform Professor Binns where you’ve gone. Tell Madam Pomfrey I have given my permission.’",
+        "book": "Book 2"
+    }
+}
+]
