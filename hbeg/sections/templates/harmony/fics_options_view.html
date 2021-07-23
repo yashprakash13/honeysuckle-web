@@ -1,0 +1,16 @@
+{% extends 'sections/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'harmony/styles.html' %}
+
+<div class="container mt-1 mb-6 ml-6 mr-6">
+<div class="columns is-multiline">
+    
+    <div class="column has-text-centered">
+        <div class="content is-size-3 has-text-centered">Choose Website:</div>
+        <a href="{% url 'harmony_fics_ffn' %}" class="button is-dark">FFN</a>
+        <a href="{% url 'harmony_fics_ao3' %}" class="button is-dark">AO3</a>
+    </div>
+</div>
+</div>
+{% endblock %}

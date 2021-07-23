@@ -5,10 +5,16 @@ from django.views import View
 
 from .dailyfeed.constants import HP_BOOK_CHOICES
 from .dailyfeed.feedmaker import FeedMaker
+from .fabfics.fabfics import HHrFicLoader
 from .models import *
+
+# load fics+authors
+hhr_fic_loader = HHrFicLoader()
 
 
 class CentralPageView(View):
+    """View to display the main HHr page"""
+
     def get(self, request):
         feed = FeedMaker()
         feed = feed.get_feed()
@@ -17,6 +23,8 @@ class CentralPageView(View):
 
 
 class MomentsView(View):
+    """View for appreciating HHr moments in canon"""
+
     def get(self, request):
         books = [pair[1] for pair in HP_BOOK_CHOICES]
         all_moments = {}
@@ -25,3 +33,39 @@ class MomentsView(View):
         context = {"bookwise_moments": all_moments}
 
         return render(request, "harmony/moments.html", context=context)
+
+
+class FicsOptionsView(View):
+    """View to show different website options for HHr fics"""
+
+    def get(self, request):
+        return render(request, "harmony/fics_options_view.html")
+
+
+class FicsViewFFN(View):
+    """View to show all HHr fics from FFN"""
+
+    def get(self, request):
+        context = {}
+        context["all_fics"] = hhr_fic_loader.ffn_fics
+        context["website"] = "FFN"
+        return render(request, "harmony/fics_view.html", context=context)
+
+
+class FicsViewAO3(View):
+    """View to show all HHr fics from AO3"""
+
+    def get(self, request):
+        context = {}
+        context["all_fics"] = hhr_fic_loader.ao3_fics
+        context["website"] = "AO3"
+        return render(request, "harmony/fics_view.html", context=context)
+
+
+class AuthorsView(View):
+    """View to show all HHr Authors"""
+
+    def get(self, request):
+        all_authors = hhr_fic_loader.authors
+        context = {"all_authors": all_authors}
+        return render(request, "harmony/authors_view.html", context=context)

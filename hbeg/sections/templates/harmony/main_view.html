@@ -13,17 +13,18 @@
     </div>
     <div class="columns is-multiline " id="cols">
         <div class="column mt-2 mb-5 has-text-centered">
-            <div class="content is-size-4">Story of the Day</div>
+            <div class="content is-size-4">Story of the Week</div>
             {% include 'harmony/story_of_the_day.html' %}
-            <a href="#" class="button is-dark">Fics</a>
-            <a href="#" class="button is-dark">Authors</a>
+            <a href="{% url 'harmony_fics_options' %}" class="button is-dark">Fics</a>
+            <a href="{% url 'harmony_authors' %}" class="button is-dark">Authors</a>
             <a href="{% url 'harmony_moments' %}" class="button is-dark">Moments</a>
-            <a href="#" class="button is-dark">Drabbles</a>
-            <a href="#" class="button is-dark">Prompts</a>
         </div>
         <div class="column is-11-mobile is-7-desktop is-7-tablet mt-2 mb-5 has-text-centered">
             <div class="container is-size-4 mt-0">
                 Fabulous fic feed 
+            </div>
+            <div class="container is-size-6 mt-0">
+                (Recently posted/updated HHr fics)
             </div>
             <div class="container mt-5">
                 {% for work in works  %}

@@ -1,0 +1,19 @@
+<article class="message">
+  <div class="message-header" style="margin-bottom:1 rem; line-height:1.0 rem;">
+    <p  id="single-work-title">{{fic.title}}</p>
+    <a href="#" id="single-work-add-link">Add</a>
+  </div>
+  <div class="message-body has-text-left" id="single-work-body">
+    <u><strong>Author</strong></u>: {{fic.author_name}} <br>
+    <strong>Summary:</strong>{{fic.summary}} <br>
+    <strong>Words: </strong> {{fic.num_words}} <br>
+    <strong>Chapters:</strong> {{fic.num_chapters}} <br>
+    <strong>Rating:</strong> {{fic.rated}} <br>
+    <strong>Characters:</strong> {{fic.characters}} <br>
+    {% if  fic.complete %}
+    <strong>Status:</strong> Complete
+    {% else %}
+    <strong>Status:</strong> In-Progress
+    {% endif %} 
+  </div>
+</article>
