@@ -9,17 +9,25 @@ from .fabfics.fabfics import HHrFicLoader
 from .models import *
 
 # load fics+authors
-hhr_fic_loader = HHrFicLoader()
+# hhr_fic_loader = HHrFicLoader()
 
 
 class CentralPageView(View):
     """View to display the main HHr page"""
 
     def get(self, request):
+        context = {}
+        return render(request, "harmony/main_view.html", context=context)
+
+
+class FabulousFicFeed(View):
+    """View to display the HHr fic feed from other ff websites"""
+
+    def get(self, request):
         feed = FeedMaker()
         feed = feed.get_feed()
         context = {"works": feed}
-        return render(request, "harmony/main_view.html", context=context)
+        return render(request, "harmony/f_three.html", context=context)
 
 
 class MomentsView(View):

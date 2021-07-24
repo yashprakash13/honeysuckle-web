@@ -1,0 +1,20 @@
+{% extends 'sections/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'harmony/styles.html' %}
+
+<div class="container mt-2 mb-5 has-text-centered">
+    <div class="container is-size-4 mt-0">
+        Fabulous fic feed 
+    </div>
+    <div class="container is-size-6 mt-0">
+        (Recently posted/updated HHr fics from elsewhere)
+    </div>
+    <div class="container mt-5">
+        {% for work in works  %}
+            {% include 'harmony/single_feed_work.html' %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
