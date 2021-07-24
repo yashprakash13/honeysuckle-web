@@ -1,7 +1,12 @@
+import os
+
+from django.conf import settings
+
 # paths
-MAIN_EN_DATA_PATH = (
-    "data/en/metahp_nonullvalues_noduplicates_addedcols_touseforbackend_en.csv"
+MAIN_EN_DATA_PATH = os.path.join(
+    settings.BASE_DIR, "data", "en", "metahp_nonullvalues_noduplicates_addedcols_touseforbackend_en.csv"
 )
+
 PSIE_INDEX_PATH = "data/en_psie/indices"
 SIE_INDEX_PATH = "data/en_sie/index"
 SIE_INDEX_NAME = "sie_id_embedsumm_tuple_index"
