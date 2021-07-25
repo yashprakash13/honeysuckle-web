@@ -67,10 +67,10 @@ class BlacklistView(APIView):
 
     def get(self, request):
         all_stories_ffn = HarmonyFicsBlacklist.objects.filter(website__in=(WEBSITE_CHOICES[0])).values_list(
-            "author_name", "story_name", "votes"
+            "id", "author_name", "story_name", "votes"
         )
         all_stories_ao3 = HarmonyFicsBlacklist.objects.filter(website__in=(WEBSITE_CHOICES[1])).values_list(
-            "author_name", "story_name", "votes"
+            "id", "author_name", "story_name", "votes"
         )
 
         response = {"all_stories_ffn": all_stories_ffn, "all_stories_ao3": all_stories_ao3}
@@ -87,6 +87,17 @@ class CreateOrAddBlacklistFic(APIView):
             choice = WEBSITE_CHOICES[0]
         elif "AO3" in story_id:
             choice = WEBSITE_CHOICES[1]
+        elif "ID" in story_id:
+            story_id = int(story_id[2:])
+            print("ID got= ", story_id)
+            # story exists, so add a vote
+            try:
+                obj = HarmonyFicsBlacklist.objects.get(id=story_id)
+                obj.votes = obj.votes + 1
+                obj.save()
+                return Response({"resp": "200_VOTE_ADDED"})
+            except:
+                return Response({"resp": "404_WRONG_URL"})
         else:
             return Response({"resp": "404_WRONG_URL"})
 
