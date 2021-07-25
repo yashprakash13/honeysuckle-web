@@ -7,10 +7,10 @@ MAIN_EN_DATA_PATH = os.path.join(
     settings.BASE_DIR, "data", "en", "metahp_nonullvalues_noduplicates_addedcols_touseforbackend_en.csv"
 )
 
-PSIE_INDEX_PATH = "data/en_psie/indices"
-SIE_INDEX_PATH = "data/en_sie/index"
+PSIE_INDEX_PATH = os.path.join(settings.BASE_DIR, "data", "en_psie", "indices")
+SIE_INDEX_PATH = os.path.join(settings.BASE_DIR, "data", "en_sie", "index")
 SIE_INDEX_NAME = "sie_id_embedsumm_tuple_index"
-SIE_EMBED_PATH = "data/en_sie/embeds"
+SIE_EMBED_PATH = os.path.join(settings.BASE_DIR, "data", "en_sie", "embeds")
 SIE_EMBED_NAME = "id_summembed_tuple_en.pickle"
 ST_MODEL_NAME = "distilbert-base-nli-mean-tokens"
 
