@@ -9,7 +9,7 @@ from .fabfics.fabfics import HHrFicLoader
 from .models import *
 
 # load fics+authors
-# hhr_fic_loader = HHrFicLoader()
+hhr_fic_loader = HHrFicLoader()
 
 
 class CentralPageView(View):
