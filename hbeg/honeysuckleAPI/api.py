@@ -308,7 +308,7 @@ def get_story_details_from_reponse_ffn(story_id, response):
 
             ffn_story_published = ffn_story_published.strftime(r"%-d %b, %Y")
 
-            break  # if found, exit the loop to prevent overwriting of the variable
+            break
 
         elif details[i].startswith("Published:"):
 
@@ -327,6 +327,8 @@ def get_story_details_from_reponse_ffn(story_id, response):
             )
 
             ffn_story_published = ffn_story_published.strftime(r"%-d %b, %Y")
+
+            break
 
     for i in range(0, len(details)):
 
@@ -375,6 +377,11 @@ def get_story_details_from_reponse_ffn(story_id, response):
 
         else:
             ffn_story_rating = ""
+
+    for i in range(0, len(details)):
+        if details[i].startswith("Status:"):
+            ffn_story_status = details[i].replace("Status:", "").strip()
+            break
 
     ffn_story_lang = details[1]
     ffn_story_genre = details[2]

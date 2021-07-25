@@ -11,6 +11,11 @@ from django.shortcuts import render
 from profiles.models import Story
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from sections.harmony.models import (
+    WEBSITE_CHOICES,
+    HarmonyFicsBlacklist,
+    HarmonyTropesModel,
+)
 
 from .api import *
 
@@ -57,17 +62,87 @@ class GetStoryDetailsAo3(APIView):
         return Response(story)
 
 
-# UTILITY CLASSES FOR SCRAPING ACTIONS---------------------
+class BlacklistView(APIView):
+    """View to get all blacklisted fics"""
+
+    def get(self, request):
+        all_stories_ffn = HarmonyFicsBlacklist.objects.filter(website__in=(WEBSITE_CHOICES[0])).values_list(
+            "author_name", "story_name", "votes"
+        )
+        all_stories_ao3 = HarmonyFicsBlacklist.objects.filter(website__in=(WEBSITE_CHOICES[1])).values_list(
+            "author_name", "story_name", "votes"
+        )
+
+        response = {"all_stories_ffn": all_stories_ffn, "all_stories_ao3": all_stories_ao3}
+
+        return Response(response)
+
+
+class CreateOrAddBlacklistFic(APIView):
+    """View to create or add votes to a blacklisted fic"""
+
+    def get(self, request, story_id):
+
+        if "FFN" in story_id:
+            choice = WEBSITE_CHOICES[0]
+        elif "AO3" in story_id:
+            choice = WEBSITE_CHOICES[1]
+        else:
+            return Response({"resp": "404_WRONG_URL"})
+
+        story_id = story_id[3:]
+        if HarmonyFicsBlacklist.objects.filter(storyid=story_id).exists():
+            # story exists, so add a vote
+            obj = HarmonyFicsBlacklist.objects.get(storyid=story_id)
+            obj.votes = obj.votes + 1
+            obj.save()
+            return Response({"resp": "200_VOTE_ADDED"})
+        else:
+            # story doesn't exist, so add it
+            if choice == WEBSITE_CHOICES[0]:
+                # FFN
+                story_all_fields = execute_ffn_search_and_response(story_id)
+                HarmonyFicsBlacklist.objects.create(
+                    storyid=story_id,
+                    website=choice[0],
+                    votes=1,
+                    story_name=story_all_fields["title"],
+                    author_name=story_all_fields["author_name"],
+                )
+            else:
+                # AO3
+                story_all_fields = execute_ffn_search_and_response(story_id)
+                HarmonyFicsBlacklist.objects.create(
+                    storyid=story_id,
+                    website=choice[0],
+                    votes=1,
+                    story_name=story_all_fields["title"],
+                    author_name=story_all_fields["authors"],
+                )
+            return Response({"resp": "200_STORY_AND_VOTE_ADDED"})
+
+
+# UTILITY CLASSES FOR SCRAPING ACTIONS---------------------------------------------------------------
 
 
 def get_story_id_from_link(link):
     """
-    just a helper func to get id from link ffn
+    just a helper func to get id from link ffn or ao3
     """
-    try:
-        story_id = link[link.index("s/") + 2 : link.index("/", link.index("s/") + 4)]
-    except:
-        story_id = link[link.index("s/") + 2 :]
+
+    if "fanfiction.net" in link:
+        try:
+            story_id = link[link.index("s/") + 2 : link.index("/", link.index("s/") + 4)]
+        except:
+            story_id = link[link.index("s/") + 2 :]
+    elif "archiveofourown.org" in link:
+        try:
+            story_id = link[link.index("works/") + len("works/") : link.index("/", link.index("works/") + 6)]
+        except:
+            story_id = link[link.index("works/") + len("works/") :]
+    else:
+        story_id = None
+
     return story_id
 
 
