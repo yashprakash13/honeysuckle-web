@@ -4,32 +4,70 @@
 {% include 'harmony/styles.html' %}
 
 <div class="container mt-1 mb-6 ml-6 mr-6" id="mainview-container">
-    <div class="content is-size-1 is-bold has-text-centered mb-0">
-        <figure class="image is-48x48" id="has-image-centered">
-            <img src="{% static 'images/harmony_logo.png' %}" id="hhr-logo-image">
-       </figure>
-        Harmony <br>
-        <a href="https://discord.gg/Rw23m8J" class="button is-inverted" id="discord-link-btn" target="_blank">Join us</a>
-    </div>
-    <div class="columns is-multiline " id="cols">
-        <div class="column mt-2 mb-5 has-text-centered">
-            <div class="content is-size-4">Story of the Day</div>
-            {% include 'harmony/story_of_the_day.html' %}
-            <a href="#" class="button is-dark">Fics</a>
-            <a href="#" class="button is-dark">Authors</a>
-            <a href="{% url 'harmony_moments' %}" class="button is-dark">Moments</a>
-            <a href="#" class="button is-dark">Drabbles</a>
-            <a href="#" class="button is-dark">Prompts</a>
+    {% comment %} the parent tile of left side {% endcomment %}
+    <div class="tile is-ancestor mt-6 mb-6">
+        <div class="tile is-vertical is-9">
+            <div class="tile">
+                <div class="tile is-parent is-vertical is-4">
+                    <article class="tile is-child notification is-dark" id="title-tile">
+                    {% comment %} the title of the site {% endcomment %}
+                    <div class="is-size-2 has-text-centered" id="tile-title-text">Holly and Vinewood</div>
+                    </article>
+                    <article class="tile is-child notification is-dark">
+                    {% comment %} Exclusive H&V fics reading {% endcomment %}
+                    <a href="#" class="content is-size-3" id="tile-title-text-link">Read</a>
+                    <div class="content is-size-5" id="tile-title-text">
+                        Exclusive fics published on Holly and Vinewood
+                    </div>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child notification is-dark">
+                        {% comment %} Author invites {% endcomment %}
+                        <a href="#" class="content is-size-3" id="tile-title-text-link">Inviting Authors</a>
+                        <div class="content is-size-5" id="tile-title-text">
+                            <br> Are you an author? <br><br>
+                            Now, sign up to publish your Harmony fics directly on <span id="tile-title-text-span">Holly and Vinewood</span>!  <br><br>
+                            You have the option of posting them exclusively here, or repost them from an another site. <br><br>
+                            <a href="#" class="content is-size-5" id="tile-title-text-link">Learn more.</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-dark">
+                    {% comment %} All canon/fic lists {% endcomment %}
+                    <p class="content is-size-3" id="tile-title-text">Lists</p>
+                    <div class="content is-size-5" id="tile-title-text">
+                        <a href="{% url 'harmony_moments' %}" class="button is-dark is-size-5 m-1">Moments</a>
+                        <a href="{% url 'harmony_fics_options' %}" class="button is-dark is-size-5 m-1">All Fics</a>
+                        <a href="{% url 'harmony_authors' %}" class="button is-dark is-size-5 m-1">All Authors</a>
+                        <div class="button is-dark is-size-5 m-1">Drabbles</div>
+                        <div class="button is-dark is-size-5 m-1">Prompts</div>
+                        <div class="button is-dark is-size-5 m-1">Tropes</div>
+                        <div class="button is-dark is-size-5 m-1">Blacklist</div>
+                    </div>
+                </article>
+            </div>
         </div>
-        <div class="column is-11-mobile is-7-desktop is-7-tablet mt-2 mb-5 has-text-centered">
-            <div class="container is-size-4 mt-0">
-                Fabulous fic feed 
-            </div>
-            <div class="container mt-5">
-                {% for work in works  %}
-                    {% include 'harmony/single_feed_work.html' %}
-                {% endfor %}
-            </div>
+        <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-dark">
+                {% comment %} All ext. links {% endcomment %}
+                <div class="content is-size-3" id="tile-title-text">
+                    Links
+                </div>
+                <div class="content is-size-6" id="tile-title-text">
+                        <a href="https://discord.gg/Rw23m8J" target="_blank" class="is-size-6 m-1" id="tile-title-text-link">The Harmony Discord</a>
+                        
+                </div>
+            </article>
+            <article class="tile is-child notification is-dark">
+                {% comment %} F3, of course. {% endcomment %}
+                <a href="{% url 'harmony_f_three' %}" class="content is-size-3" id="tile-title-text-link">Fabulous Fic Feed</a>
+                <div class="content is-size-5 mt-3" id="tile-title-text">
+                    Recently published or updated stories from elsewhere on the internet
+                </div>
+            </article>
         </div>
     </div>
 </div>

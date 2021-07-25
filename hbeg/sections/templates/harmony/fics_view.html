@@ -1,0 +1,14 @@
+{% extends 'sections/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'harmony/styles.html' %}
+
+<div class="container mt-1 mb-6 ml-6 mr-6 has-text-centered">
+    <div class="is-size-3">Fics</div>
+    <div class="is-size-5 mb-6">All Harmony fics from {{website}}!</div>
+    
+    {% for fic in all_fics %}
+        {% include 'harmony/single_fic.html' %}
+    {% endfor %}
+</div>
+{% endblock %}
