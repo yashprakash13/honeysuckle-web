@@ -37,6 +37,9 @@ ALL_DF_COLUMNS = [
     "Lengths",
     "title_without_stopwords",
 ]
+
+NO_CHARACTERS_COL_NAME = "NoCharacters"
+
 DEFAULT_PAIR = "Harmony"  # Yes, because that's MY ship. Period.
 PAIRS_TO_LOOK_FOR = [
     "Harmony",

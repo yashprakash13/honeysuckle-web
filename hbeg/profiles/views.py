@@ -158,7 +158,8 @@ class StoryDetailView(LoginRequiredMixin, View):
         story = storygotten.to_dict(orient="records")[0]
         story["link"] = instance.get_story_link(story_id)
         story["genres"] = utils.get_clean_genres(story["genres"])
-        story["characters"] = story["characters"][1:-1]
+        if story["characters"] != NO_CHARACTERS_COL_NAME:
+            story["characters"] = story["characters"][1:-1]
         context = {"story": story}
 
         return render(request, "profiles/story_detail.html", context)
