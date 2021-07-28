@@ -20,6 +20,8 @@ stop = stopwords.get_stopwords("en")
 stop.extend(["Harry", "Potter"])
 stop = [word.lower() for word in stop]
 
+from sections.harmony.fabfics.constants import HHr_AO3_DATA_PATH
+
 # import constants here
 from .constants import *
 
@@ -31,6 +33,7 @@ class Data:
         self.data = {}
         self.data_una = {}
         self.df = pd.read_csv(MAIN_EN_DATA_PATH, low_memory=False)
+        self.df = pd.concat([self.df, pd.read_csv(HHr_AO3_DATA_PATH)])
 
     def _get_ids_una_per_row(self, row, chars_present, list_to_append_to):
         if str(row["characters"]) != "NoCharacters" and set(chars_present).issubset(

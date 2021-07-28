@@ -636,6 +636,9 @@ class SearchEngine(Indices):
     def get_story_link(self, story_id):
         return f"https://www.fanfiction.net/s/{story_id}"
 
+    def get_story_link_ao3(self, story_id):
+        return f"https://archiveofourown.org/works/{story_id}"
+
     def get_story_details(self, story_id):
         df = self.class_indices.df
         return df.loc[df.story_id == story_id]
