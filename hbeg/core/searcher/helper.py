@@ -26,7 +26,7 @@ from .constants import *
 
 # the Data class
 class Data:
-    def __init__(self, pairs):
+    def __init__(self, pairs, override_for_hhr=False):
         self.pairs = pairs
         self.data = {}
         self.data_una = {}
@@ -48,9 +48,24 @@ class Data:
 
     def load_una_ids(self):
         print("Loading una ids.")
-        for pair in PAIRS_TO_CALC_UNA_FOR:
-            self._load_una_ids(pair)
-        print("All una ids loaded.")
+        # if HHr override is enabled from settings
+        if self.override_for_hhr:
+            for pair in self.pairs:
+                if pair == "NoPairs":
+                    continue
+                self._load_una_ids(pair)
+            print("All una ids loaded.")
+
+            self.df = pd.concat(
+                [self.df.loc[self.df["story_id"].isin(self.data_una["Harmony"])], self.data["Harmony"]]
+            )
+            del self.data["NoPairs"]
+        else:
+            for pair in PAIRS_TO_CALC_UNA_FOR:
+                self._load_una_ids(pair)
+
+        print("df size=", len(self.df.index.values))
+        print(self.df.info())
 
     def _load_data(self, pair):
         df = self.df[self.df.Pairs.str.contains(pair)]
@@ -89,8 +104,11 @@ class Data:
 
 # Indices class
 class Indices(Data):
-    def __init__(self, pairs=PAIRS_TO_LOOK_FOR):
-        Data.__init__(self, pairs)
+    def __init__(self, pairs=PAIRS_TO_LOOK_FOR, override_for_hhr=False):
+        print("Pairs got: ", pairs)
+        self.pairs = pairs
+        self.override_for_hhr = override_for_hhr
+        Data.__init__(self, pairs, override_for_hhr)
         self.psieindices = {}
         self.sieindex = None
         self.sie_ids = None
@@ -129,8 +147,10 @@ class Indices(Data):
     def load_psieindices(self):
         print("Loading psie indices.")
         for pair in self.pairs:
+            if self.override_for_hhr and pair == "NoPairs":
+                continue
             self._load_psieindex(pair)
-        print("Loaded psie indices. ")
+        print(f"Loaded psie indices:  {self.psieindices.keys()}")
 
     def _load_sie_ids(self):
         embed_tuple = self._read_sie_tuple()

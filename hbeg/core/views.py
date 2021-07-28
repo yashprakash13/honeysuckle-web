@@ -3,12 +3,13 @@ from django.shortcuts import render
 from django.views import View
 
 from . import searcher
+from .searcher.settings import *
 
 # prepare the search engine to receive queries, this object will be used by other apps such as profiles too.
 instance = searcher.SearchEngine()
+if not DEBUGGING_WITHOUT_SEARCHER:
+    instance.prepare_s_engine(pairs=HHR_SEARCHER_PAIR, override_for_hhr=OVERRIDE_FOR_HHR)
 
-instance.prepare_s_engine()
- 
 # the search view to receive queries and send results
 def search(request):  # pragma: no cover
     # get the search query from search bar
@@ -52,10 +53,8 @@ class AboutView(View):
         return render(request, "core/about.html", context=context)
 
 
-
 class HoneysuckleDashBoard(View):
     """Honeysuckle discord bot dashboard"""
 
     def get(self, request):
         return render(request, "core/honeysuckle_dashboard.html")
-
