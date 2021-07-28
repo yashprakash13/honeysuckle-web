@@ -19,10 +19,15 @@ def search(request):  # pragma: no cover
     if search_query.strip() != "":
         # search the db here and get back resultant df
         print("Inside search GET block.")
-        res_df = instance.search(search_query)[searcher.constants.COLS_TO_SHOW_STORY_DETAIL]
-        # convert to list of dicts
-        res_to_show = res_df.to_dict("records")
-        context["results"] = res_to_show
+        res_df = instance.search(search_query)
+        if res_df is not None:
+            res_df = res_df[searcher.constants.COLS_TO_SHOW_STORY_DETAIL]
+            # convert to list of dicts
+            res_to_show = res_df.to_dict("records")
+            context["results"] = res_to_show
+        else:
+            context["nores"] = True
+            # context["nores"] = range(1, 17)
         context["query"] = search_query
 
     context["page_title"] = "HisBrownEyedGirl"
