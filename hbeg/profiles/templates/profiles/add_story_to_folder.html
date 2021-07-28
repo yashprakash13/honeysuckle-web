@@ -12,7 +12,8 @@
     <form action="." method="POST" autocomplete="off" novalidate>
         {% csrf_token %}
         {% if not folders %}
-            <div class="subtitle">You haven't made any folders yet.</div>
+            <div class="subtitle ml-2">You haven't made any folders yet.</div>
+            <a href="{% url 'folder_add' %}" class="button" id="story-add-to-folder-btn">Make a new Folder</a>
         {% else %}
             <div class="columns is-multiline m-3">
                 {% for folder in folders %}

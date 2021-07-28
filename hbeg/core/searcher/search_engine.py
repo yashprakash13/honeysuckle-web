@@ -35,13 +35,9 @@ class SearchEngine(Indices):
         make searchable queries
         """
         query_full_spl = self.query.strip().split(" ")
-        self.query_spl = [
-            word for word in query_full_spl if word[:2] not in SPECIAL_SEARCH_TOKENS
-        ]
+        self.query_spl = [word for word in query_full_spl if word[:2] not in SPECIAL_SEARCH_TOKENS]
 
-        self.query_special_spl = [
-            word for word in query_full_spl if word[:2] in SPECIAL_SEARCH_TOKENS
-        ]
+        self.query_special_spl = [word for word in query_full_spl if word[:2] in SPECIAL_SEARCH_TOKENS]
         self.query = " ".join(self.query_spl).strip()
 
         # self.st_model = SentenceTransformer(ST_MODEL_NAME)
@@ -73,27 +69,15 @@ class SearchEngine(Indices):
         """
         return df.iloc[:num_rows]
 
-    def _order_rows_from_df(
-        self, df, cat_property, cat_category, num_rows=None, ordered=True
-    ):
+    def _order_rows_from_df(self, df, cat_property, cat_category, num_rows=None, ordered=True):
         """
         to iloc a particular num of rows with condition
         """
         if not num_rows:
-            return df.iloc[
-                (
-                    pd.Categorical(
-                        df[cat_property], categories=cat_category, ordered=ordered
-                    ).argsort()
-                )
-            ]
+            return df.iloc[(pd.Categorical(df[cat_property], categories=cat_category, ordered=ordered).argsort())]
         else:
             return df.iloc[
-                (
-                    pd.Categorical(
-                        df[cat_property], categories=cat_category, ordered=ordered
-                    ).argsort()
-                )
+                (pd.Categorical(df[cat_property], categories=cat_category, ordered=ordered).argsort())
             ].head(num_rows)
 
     def _merge_res_dfs(self, dfdict):
@@ -117,50 +101,30 @@ class SearchEngine(Indices):
             dftemp = self._order_rows_from_df(df, "story_id", self.result_ids)
 
             if dfdict["div_2"]:
-                dftemp2 = self._order_rows_from_df(
-                    df, "author_name", self.au_tokens_filt
-                )
+                dftemp2 = self._order_rows_from_df(df, "author_name", self.au_tokens_filt)
             if dfdict["div_3"]:
-                dftemp3 = self._select_rows_from_df(
-                    dftemp, "Lengths", self.le_tokens_filt
-                )
+                dftemp3 = self._select_rows_from_df(dftemp, "Lengths", self.le_tokens_filt)
                 if dfdict["div_2"]:
-                    dftemp4 = self._select_rows_from_df(
-                        dftemp2, "Lengths", self.le_tokens_filt
-                    )
+                    dftemp4 = self._select_rows_from_df(dftemp2, "Lengths", self.le_tokens_filt)
 
             # make resultant df
-            df_to_return = df_to_return._append_df(
-                [dftemp.head(NUM_SUBSEQUENT_ROW_APPENDS)]
-            )
+            df_to_return = df_to_return._append_df([dftemp.head(NUM_SUBSEQUENT_ROW_APPENDS)])
             if dfdict["div_2"]:
-                df_to_return = df_to_return._append_df(
-                    [dftemp2.head(NUM_SUBSEQUENT_ROW_APPENDS)]
-                )
+                df_to_return = df_to_return._append_df([dftemp2.head(NUM_SUBSEQUENT_ROW_APPENDS)])
             if dfdict["div_3"]:
-                df_to_return = df_to_return._append_df(
-                    [dftemp3.head(NUM_SUBSEQUENT_ROW_APPENDS)]
-                )
+                df_to_return = df_to_return._append_df([dftemp3.head(NUM_SUBSEQUENT_ROW_APPENDS)])
                 if dfdict["div_2"]:
-                    df_to_return = df_to_return._append_df(
-                        [dftemp4.head(NUM_SUBSEQUENT_ROW_APPENDS)]
-                    )
+                    df_to_return = df_to_return._append_df([dftemp4.head(NUM_SUBSEQUENT_ROW_APPENDS)])
 
             # keep track of num rows appended and num rows left
             rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
             # do CA
             if dfdict["div_2"]:
-                df_to_return = df_to_return.append(
-                    self._continuous_append(rows_appended, [dftemp2])
-                )
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp2]))
             if dfdict["div_3"]:
-                df_to_return = df_to_return.append(
-                    self._continuous_append(rows_appended, [dftemp3])
-                )
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp3]))
                 if dfdict["div_2"]:
-                    df_to_return = df_to_return.append(
-                        self._continuous_append(rows_appended, [dftemp4])
-                    )
+                    df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp4]))
 
             # remove duplicate rows appended
             df_to_return = df_to_return.drop_duplicates(subset=["story_id"])
@@ -194,9 +158,7 @@ class SearchEngine(Indices):
             rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
             # do CA
             df_to_return = df_to_return.append(
-                self._continuous_append(
-                    rows_appended, [dftemp2, dftemp, dftemp3, dftemp4]
-                )
+                self._continuous_append(rows_appended, [dftemp2, dftemp, dftemp3, dftemp4])
             )
             # remove duplicate rows appended
             df_to_return = df_to_return.drop_duplicates(subset=["story_id"])
@@ -210,14 +172,10 @@ class SearchEngine(Indices):
                 dftemp = self._order_rows_from_df(df, "story_id", self.result_ids)
             # filter with div2
             elif not dfdict["div_1"] and dfdict["div_2"]:
-                dftemp = self._order_rows_from_df(
-                    df, "author_name", self.au_tokens_filt
-                )
+                dftemp = self._order_rows_from_df(df, "author_name", self.au_tokens_filt)
             # filter with div3 for any of the previous dfs
             if dfdict["div_3"]:
-                dftemp2 = self._select_rows_from_df(
-                    dftemp, "Lengths", self.le_tokens_filt
-                )
+                dftemp2 = self._select_rows_from_df(dftemp, "Lengths", self.le_tokens_filt)
             # make resultant df
             df_to_return = df_to_return._append_df(
                 [
@@ -228,9 +186,7 @@ class SearchEngine(Indices):
             # keep track of num rows appended and num rows left
             rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
             # do CA
-            df_to_return = df_to_return.append(
-                self._continuous_append(rows_appended, [dftemp, dftemp2])
-            )
+            df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp, dftemp2]))
             # remove duplicate rows appended
             df_to_return = df_to_return.drop_duplicates(subset=["story_id"])
 
@@ -240,57 +196,24 @@ class SearchEngine(Indices):
             print("Merge Rule 4 and 5 in effect.")
 
             # series of conditions for merge rule 5---------only 1 div present----------------------
-            if (
-                dfdict["div_0"]
-                and not dfdict["div_1"]
-                and not dfdict["div_2"]
-                and not dfdict["div_3"]
-            ):
+            if dfdict["div_0"] and not dfdict["div_1"] and not dfdict["div_2"] and not dfdict["div_3"]:
                 df_to_return = self._select_rows_from_df_simple(df)
 
-            if (
-                dfdict["div_1"]
-                and not dfdict["div_0"]
-                and not dfdict["div_2"]
-                and not dfdict["div_3"]
-            ):
-                df_to_return = self._order_rows_from_df(
-                    df, "story_id", self.result_ids, NUM_MAX_RESULT_FETCH
-                )
+            if dfdict["div_1"] and not dfdict["div_0"] and not dfdict["div_2"] and not dfdict["div_3"]:
+                df_to_return = self._order_rows_from_df(df, "story_id", self.result_ids, NUM_MAX_RESULT_FETCH)
 
-            if (
-                dfdict["div_2"]
-                and not dfdict["div_0"]
-                and not dfdict["div_1"]
-                and not dfdict["div_3"]
-            ):
-                df_to_return = self._order_rows_from_df(
-                    df, "author_name", self.au_tokens_filt, NUM_MAX_RESULT_FETCH
-                )
+            if dfdict["div_2"] and not dfdict["div_0"] and not dfdict["div_1"] and not dfdict["div_3"]:
+                df_to_return = self._order_rows_from_df(df, "author_name", self.au_tokens_filt, NUM_MAX_RESULT_FETCH)
 
-            if (
-                dfdict["div_3"]
-                and not dfdict["div_0"]
-                and not dfdict["div_1"]
-                and not dfdict["div_2"]
-            ):
-                df_to_return = self._select_rows_from_df(
-                    df, "Lengths", self.le_tokens_filt
-                )
+            if dfdict["div_3"] and not dfdict["div_0"] and not dfdict["div_1"] and not dfdict["div_2"]:
+                df_to_return = self._select_rows_from_df(df, "Lengths", self.le_tokens_filt)
 
             # series of conditions for merge rule 4 --------any 2 divs present---------------------
-            if (
-                not dfdict["div_0"]
-                and dfdict["div_1"]
-                and dfdict["div_2"]
-                and not dfdict["div_3"]
-            ):
+            if not dfdict["div_0"] and dfdict["div_1"] and dfdict["div_2"] and not dfdict["div_3"]:
                 # filter with result ids for div1
                 dftemp = self._order_rows_from_df(df, "story_id", self.result_ids)
                 # filter with div2
-                dftemp2 = self._order_rows_from_df(
-                    df, "author_name", self.au_tokens_filt
-                )
+                dftemp2 = self._order_rows_from_df(df, "author_name", self.au_tokens_filt)
                 # make resultant df
                 df_to_return = df_to_return._append_df(
                     [
@@ -301,18 +224,11 @@ class SearchEngine(Indices):
                 # keep track of num rows appended and num rows left
                 rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
                 # do CA
-                df_to_return = df_to_return.append(
-                    self._continuous_append(rows_appended, [dftemp, dftemp2])
-                )
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp, dftemp2]))
                 # remove duplicate rows appended
                 df_to_return = df_to_return.drop_duplicates(subset=["story_id"])
 
-            elif (
-                not dfdict["div_0"]
-                and dfdict["div_1"]
-                and not dfdict["div_2"]
-                and dfdict["div_3"]
-            ):
+            elif not dfdict["div_0"] and dfdict["div_1"] and not dfdict["div_2"] and dfdict["div_3"]:
                 # filter with result ids for div1
                 dftemp = self._order_rows_from_df(df, "story_id", self.result_ids)
                 # filter for div3
@@ -327,26 +243,15 @@ class SearchEngine(Indices):
                 # keep track of num rows appended and num rows left
                 rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
                 # do CA
-                df_to_return = df_to_return.append(
-                    self._continuous_append(rows_appended, [dftemp, dftemp2])
-                )
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp, dftemp2]))
                 # remove duplicate rows appended
                 df_to_return = df_to_return.drop_duplicates(subset=["story_id"])
 
-            elif (
-                not dfdict["div_0"]
-                and not dfdict["div_1"]
-                and dfdict["div_2"]
-                and dfdict["div_3"]
-            ):
+            elif not dfdict["div_0"] and not dfdict["div_1"] and dfdict["div_2"] and dfdict["div_3"]:
                 # filter with div2
-                dftemp = self._order_rows_from_df(
-                    df, "author_name", self.au_tokens_filt
-                )
+                dftemp = self._order_rows_from_df(df, "author_name", self.au_tokens_filt)
                 # filter for div3
-                dftemp2 = self._order_rows_from_df(
-                    dftemp, "Lengths", [self.le_tokens_filt]
-                )
+                dftemp2 = self._order_rows_from_df(dftemp, "Lengths", [self.le_tokens_filt])
                 # make resultant df
                 df_to_return = df_to_return._append_df(
                     [
@@ -357,39 +262,16 @@ class SearchEngine(Indices):
                 # keep track of num rows appended and num rows left
                 rows_appended += NUM_SUBSEQUENT_ROW_APPENDS
                 # do CA
-                df_to_return = df_to_return.append(
-                    self._continuous_append(rows_appended, [dftemp, dftemp2])
-                )
+                df_to_return = df_to_return.append(self._continuous_append(rows_appended, [dftemp, dftemp2]))
                 # remove duplicate rows appended
                 df_to_return = df_to_return.drop_duplicates(subset=["story_id"])
 
-            elif (
-                dfdict["div_0"]
-                and dfdict["div_1"]
-                and not dfdict["div_2"]
-                and not dfdict["div_3"]
-            ):
-                df_to_return = self._order_rows_from_df(
-                    df, "story_id", self.result_ids, NUM_MAX_RESULT_FETCH
-                )
-            elif (
-                dfdict["div_0"]
-                and not dfdict["div_1"]
-                and dfdict["div_2"]
-                and not dfdict["div_3"]
-            ):
-                df_to_return = self._order_rows_from_df(
-                    df, "author_name", self.au_tokens_filt, NUM_MAX_RESULT_FETCH
-                )
-            elif (
-                dfdict["div_0"]
-                and not dfdict["div_1"]
-                and not dfdict["div_2"]
-                and dfdict["div_3"]
-            ):
-                df_to_return = self._select_rows_from_df(
-                    df, "Lengths", self.le_tokens_filt
-                )
+            elif dfdict["div_0"] and dfdict["div_1"] and not dfdict["div_2"] and not dfdict["div_3"]:
+                df_to_return = self._order_rows_from_df(df, "story_id", self.result_ids, NUM_MAX_RESULT_FETCH)
+            elif dfdict["div_0"] and not dfdict["div_1"] and dfdict["div_2"] and not dfdict["div_3"]:
+                df_to_return = self._order_rows_from_df(df, "author_name", self.au_tokens_filt, NUM_MAX_RESULT_FETCH)
+            elif dfdict["div_0"] and not dfdict["div_1"] and not dfdict["div_2"] and dfdict["div_3"]:
+                df_to_return = self._select_rows_from_df(df, "Lengths", self.le_tokens_filt)
 
         return df_to_return
 
@@ -457,18 +339,14 @@ class SearchEngine(Indices):
             df = self.class_indices.df
 
         res_r = process.extract(
-            " ".join(
-                [word for word in self.query.split() if word.lower() not in (stop)]
-            ),
+            " ".join([word for word in self.query.split() if word.lower() not in (stop)]),
             df["title_without_stopwords"],
             scorer=fuzz.ratio,
             limit=STANDARD_LENGTHS_TO_RETURN,
             score_cutoff=STANDARD_SCORE_CUTOFF,
         )
         res_WR = process.extract(
-            " ".join(
-                [word for word in self.query.split() if word.lower() not in (stop)]
-            ),
+            " ".join([word for word in self.query.split() if word.lower() not in (stop)]),
             df["title_without_stopwords"],
             scorer=fuzz.WRatio,
             limit=STANDARD_LENGTHS_TO_RETURN,
@@ -551,9 +429,7 @@ class SearchEngine(Indices):
         """
         return the length mentioned in the query
         """
-        length_to_search_for = [
-            le for le in ALL_LENGTHS if le.lower() in self.length_search_word.lower()
-        ]
+        length_to_search_for = [le for le in ALL_LENGTHS if le.lower() in self.length_search_word.lower()]
         if length_to_search_for:
             return length_to_search_for[0]
 
@@ -567,9 +443,7 @@ class SearchEngine(Indices):
             df = self.class_indices.df
 
         # author sweep
-        author_search_word = [
-            word for word in self.query_special_spl if AUTHOR_SEARCH_TOKEN in word
-        ]
+        author_search_word = [word for word in self.query_special_spl if AUTHOR_SEARCH_TOKEN in word]
         if author_search_word:
             self.author_search_word = author_search_word[0][2:]
             authors_found = self._author_search()
@@ -577,9 +451,7 @@ class SearchEngine(Indices):
                 self.au_tokens_filt = authors_found
 
         # length sweep
-        length_search_word = [
-            word for word in self.query_special_spl if LENGTH_SEARCH_TOKEN in word
-        ]
+        length_search_word = [word for word in self.query_special_spl if LENGTH_SEARCH_TOKEN in word]
 
         if length_search_word:
             self.length_search_word = length_search_word[0][2:]
@@ -600,9 +472,7 @@ class SearchEngine(Indices):
             # append the una rows of the first pair also
             self.df_to_use = self.df_to_use.append(
                 self.class_indices.df.loc[
-                    self.class_indices.df["story_id"].isin(
-                        self.class_indices.data_una[self.pairs_selected[0]]
-                    )
+                    self.class_indices.df["story_id"].isin(self.class_indices.data_una[self.pairs_selected[0]])
                 ]
             )
             print("Length of df to use: ", len(self.df_to_use.index.values))
@@ -648,9 +518,7 @@ class SearchEngine(Indices):
         if self.df_to_use is None:
             self.psie_indices_filt = self.class_indices.psieindices["Harmony"]
         else:
-            self.psie_indices_filt = self.class_indices.psieindices[
-                self.pairs_selected[0]
-            ]
+            self.psie_indices_filt = self.class_indices.psieindices[self.pairs_selected[0]]
 
         ix = self.psie_indices_filt
         with ix.searcher() as searcher:
@@ -754,8 +622,12 @@ class SearchEngine(Indices):
         self._make_queries_and_load_model()
         return self._search_psie()
 
-    def prepare_s_engine(self):
-        indices = Indices()
+    def prepare_s_engine(self, override_for_hhr=False, pairs=None):
+        if not override_for_hhr:
+            indices = Indices()
+        else:
+            indices = Indices(pairs=pairs, override_for_hhr=override_for_hhr)
+
         indices.load_psieindices()
         self.class_indices = indices
 
@@ -763,6 +635,9 @@ class SearchEngine(Indices):
 
     def get_story_link(self, story_id):
         return f"https://www.fanfiction.net/s/{story_id}"
+
+    def get_story_link_ao3(self, story_id):
+        return f"https://archiveofourown.org/works/{story_id}"
 
     def get_story_details(self, story_id):
         df = self.class_indices.df

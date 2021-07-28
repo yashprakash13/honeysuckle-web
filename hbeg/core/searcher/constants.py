@@ -37,6 +37,11 @@ ALL_DF_COLUMNS = [
     "Lengths",
     "title_without_stopwords",
 ]
+
+NO_CHARACTERS_COL_NAME = "NoCharacters"
+MEDIUM_FFN_COL_NAME = "FFN"
+MEDIUM_AO3_COL_NAME = "AO3"
+
 DEFAULT_PAIR = "Harmony"  # Yes, because that's MY ship. Period.
 PAIRS_TO_LOOK_FOR = [
     "Harmony",
@@ -96,6 +101,7 @@ COLS_TO_SHOW_STORY_DETAIL = [
     "num_words",
     "status",
     "characters",
+    "Medium",
 ]
 COLS_TO_SEND_BY_HS_API = [
     "story_id",

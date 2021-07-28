@@ -3,12 +3,13 @@ from django.shortcuts import render
 from django.views import View
 
 from . import searcher
+from .searcher.settings import *
 
 # prepare the search engine to receive queries, this object will be used by other apps such as profiles too.
 instance = searcher.SearchEngine()
+if not DEBUGGING_WITHOUT_SEARCHER:
+    instance.prepare_s_engine(pairs=HHR_SEARCHER_PAIR, override_for_hhr=OVERRIDE_FOR_HHR)
 
-instance.prepare_s_engine()
- 
 # the search view to receive queries and send results
 def search(request):  # pragma: no cover
     # get the search query from search bar
@@ -18,10 +19,15 @@ def search(request):  # pragma: no cover
     if search_query.strip() != "":
         # search the db here and get back resultant df
         print("Inside search GET block.")
-        res_df = instance.search(search_query)[searcher.constants.COLS_TO_SHOW_STORY_DETAIL]
-        # convert to list of dicts
-        res_to_show = res_df.to_dict("records")
-        context["results"] = res_to_show
+        res_df = instance.search(search_query)
+        if res_df is not None:
+            res_df = res_df[searcher.constants.COLS_TO_SHOW_STORY_DETAIL]
+            # convert to list of dicts
+            res_to_show = res_df.to_dict("records")
+            context["results"] = res_to_show
+        else:
+            context["nores"] = True
+            # context["nores"] = range(1, 17)
         context["query"] = search_query
 
     context["page_title"] = "HisBrownEyedGirl"
@@ -52,10 +58,8 @@ class AboutView(View):
         return render(request, "core/about.html", context=context)
 
 
-
 class HoneysuckleDashBoard(View):
     """Honeysuckle discord bot dashboard"""
 
     def get(self, request):
         return render(request, "core/honeysuckle_dashboard.html")
-

@@ -156,9 +156,16 @@ class StoryDetailView(LoginRequiredMixin, View):
     def get(self, request, story_id):
         storygotten = instance.get_story_details(story_id)[COLS_TO_SHOW_STORY_DETAIL]
         story = storygotten.to_dict(orient="records")[0]
-        story["link"] = instance.get_story_link(story_id)
+        # links for all websites
+        if story["Medium"] == MEDIUM_FFN_COL_NAME:
+            story["link"] = instance.get_story_link(story_id)
+        elif story["Medium"] == MEDIUM_AO3_COL_NAME:
+            story["link"] = instance.get_story_link_ao3(story_id)
         story["genres"] = utils.get_clean_genres(story["genres"])
-        story["characters"] = story["characters"][1:-1]
+        # remove FFN brackets or if no characters present in the story metadata
+        if story["characters"] != NO_CHARACTERS_COL_NAME and story["characters"][0] == "[":
+            story["characters"] = story["characters"][1:-1]
+
         context = {"story": story}
 
         return render(request, "profiles/story_detail.html", context)

@@ -20,6 +20,9 @@
             <div class="is-size-6"><strong>Summary:</strong> {{story.summary}}</div>
         </div>
         <div class="column is-12">
+            <div class="is-size-6"><strong>Available on:</strong> {{story.Medium}}</div>
+        </div>  
+        <div class="column is-12">
             <div class="is-size-6"><strong>Rated:</strong> {{story.rated}}</div>
         </div>
         <div class="column is-12">
@@ -36,7 +39,7 @@
         </div>
         <div class="column is-12">
             <div class="is-size-6"><strong>Status:</strong> {{story.status}}</div>
-        </div>        
+        </div>       
         <div class="column is-12">
             {% comment %} to add story to folder(s) {% endcomment %}
             <a href="{% url 'story_add' story.story_id %}" class="button" id="story-add-to-folder-btn">Add To Folder</a>
