@@ -5,12 +5,17 @@
 
 <div class="container mt-1 mb-6 ml-6 mr-6 has-text-centered">
     <div class="is-size-3">Authors</div>
-    <div class="is-size-5 mb-6">All Harmony authors in one place!</div>
+    <div class="is-size-5 mb-6">All Harmony authors</div>
 
     <div class="columns is-multiline">
-        {% for author in all_authors %}
+        {% for id, author in all_authors_ffn %}
             <div class="column is-3 has-text-centered">
-                {% include 'harmony/single_author.html' %}
+                {% include 'harmony/single_author_ffn.html' with link_prefix="https://fanfiction.net/u/" %}
+            </div>
+         {% endfor %}
+         {% for author in all_authors_ao3 %}
+            <div class="column is-3 has-text-centered">
+                {% include 'harmony/single_author_ao3.html' with link_prefix="https://archiveofourown.org/users/" %}
             </div>
          {% endfor %}
     </div>

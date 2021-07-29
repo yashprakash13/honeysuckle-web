@@ -1,5 +1,6 @@
 from threading import Thread
 
+from core.searcher.settings import DEBUGGING_WITHOUT_SEARCHER
 from django.shortcuts import render
 from django.views import View
 
@@ -9,7 +10,8 @@ from .fabfics.fabfics import HHrFicLoader
 from .models import *
 
 # load fics+authors
-# hhr_fic_loader = HHrFicLoader()
+if not DEBUGGING_WITHOUT_SEARCHER:
+    hhr_fic_loader = HHrFicLoader()
 
 
 class CentralPageView(View):
@@ -74,6 +76,5 @@ class AuthorsView(View):
     """View to show all HHr Authors"""
 
     def get(self, request):
-        all_authors = hhr_fic_loader.authors
-        context = {"all_authors": all_authors}
+        context = {"all_authors_ffn": hhr_fic_loader.authors_ffn, "all_authors_ao3": hhr_fic_loader.authors_ao3}
         return render(request, "harmony/authors_view.html", context=context)
