@@ -2,17 +2,25 @@ import json
 import os
 import pickle
 import time
+from threading import Thread
 
 import AO3
+import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from core.searcher.constants import NOT_AVAILABLE_AUTHOR_COL_ITEM
+from core.searcher.utils import make_length
+from core.views import instance
 
+from ..fabfics.constants import HHr_AO3_DATA_PATH
 from .constants import AO3_HARMONY_FEED_URL, FEEDDATA
 
 
 class FeedMaker:
     def __init__(self, refresh=False):
         self.feeddict = []
+        self.df_ao3_hhr = None
+        self.new_works_to_append = []
         # start making the feed
         if refresh:
             # called from the cron function
@@ -25,7 +33,10 @@ class FeedMaker:
         """make new ao3 and ffn feed from 1st pages: this function is called by the scheduled cronjob"""
 
         # parse ao3 for new feed and save
+        self.df_ao3_hhr = pd.read_csv(HHr_AO3_DATA_PATH)
         self._parse_ao3()
+        self.df_ao3_hhr = None
+        self.new_works_to_append = []
 
     def _make_feed(self):
         """make ao3 and ffn feed from 1st pages if not already present"""
@@ -45,7 +56,10 @@ class FeedMaker:
         return self.feeddict
 
     def _parse_ao3(self):
-        """scrape and get works from 1st page of ao3 Harmony relationship tag and save to file"""
+        """
+        scrape and get works from 1st page of ao3 Harmony relationship tag and save to file,
+        as well as update the csvdb with new works
+        """
 
         html = requests.get(AO3_HARMONY_FEED_URL).content
         soup = BeautifulSoup(html, "html.parser")
@@ -54,21 +68,43 @@ class FeedMaker:
         print("Making AO3 harmony first page feed.")
         for li in all_stories_ol:
             workid = li.get("id")[5:]
+            classtext = str(li.get("class"))
+            try:
+                author_id = classtext[classtext.index("user-") + 5 : classtext.index("]") - 1]
+            except:
+                author_id = NOT_AVAILABLE_AUTHOR_COL_ITEM
+
+            # get work object with all metadata from ao3 api
             work = AO3.Work(int(workid))
-            work = self._get_work_dict(work)
+
+            # check if story in existing csvdb, or append to dataframe to be inserted
+            self._check_if_work_exists_in_csvdb(work)
+
+            # get data to make the feed
+            work = self._get_work_dict_for_feed(work)
             self.feeddict.append(work)
         print("AO3 harmony first page feed made. Time taken: ", round(time.time() - a, 1))
+
+        # Add newly collected works to ao3 csvdb
+        print("Adding new works to csvdb...")
+        self._add_new_works_to_csvdb()
+        print("Added new works to csvdb.")
+
+        # reload data for searcher
+        self._reload_data()
 
         # save the feed fetched
         with open(os.path.join(FEEDDATA, "ao3feeddata"), "w") as fout:
             json.dump(self.feeddict, fout)
 
-    def _get_work_dict(self, work):
+    def _get_work_dict_for_feed(self, work):
         """get work elements from a work object of AO3 api class"""
+
         author_names_list = []
         for author in work.authors:
             author_names_list.append(author.username)
         workdict = {
+            "story_id": work.id,
             "title": work.title,
             "authors": ", ".join(author_names_list),
             "categories": ", ".join(work.categories[:5]),
@@ -83,3 +119,58 @@ class FeedMaker:
             "summary": work.summary,
         }
         return workdict
+
+    def _check_if_work_exists_in_csvdb(self, work):
+        """read the stored ao3 feed and get and store new HHr fics if not already present in csvdb"""
+
+        if not int(work.id) in self.df_ao3_hhr.story_id.values:
+            self._add_work_to_be_appended(work)
+
+    def _add_work_to_be_appended(self, work):
+        """get one full row of the new work to be appeneded"""
+
+        author_names_list = []
+        for author in work.authors:
+            author_names_list.append(author.username)
+
+        if work.complete:
+            status = "Complete"
+        else:
+            status = "Incomplete"
+        try:
+            workdict = {
+                "story_id": work.id,
+                "title": work.title,
+                "author_name": "!".join(author_names_list),
+                "author_id": author_id,
+                "num_chapters": work.nchapters,
+                "characters": ", ".join(work.characters[:7]),  # THIS IS DIFF THAN FFNET
+                "status": status,
+                "language": work.language,
+                "rated": work.rating,
+                "num_words": work.words,
+                "genres": "!".join(work.tags[:7]),
+                "summary": work.summary,
+                "updated": work.date_updated,
+                "published": work.date_published,
+                "Pairs": "Harmony",
+                "Lengths": make_length(int(work.words)),
+                # AO3 EXTRA FIELDS
+                "categories": "!".join(work.categories[:7]),
+                "num_kudos": work.kudos,
+                "Medium": "AO3",
+            }
+            new_works_to_append.append(workdict)
+        except:
+            pass
+
+    def _add_new_works_to_csvdb(self):
+        """save the new data to csvdb"""
+
+        self.df_ao3_hhr = pd.concat([self.df_ao3_hhr, pd.DataFrame(self.new_works_to_append)])
+        self.df_ao3_hhr.to_csv(HHr_AO3_DATA_PATH, index=False)
+
+    def _reload_data(self):
+        # load newly saved data in a background thread
+        background_thread = Thread(target=instance.class_indices.load_temp_data)
+        background_thread.start()

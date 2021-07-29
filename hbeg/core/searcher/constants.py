@@ -41,6 +41,7 @@ ALL_DF_COLUMNS = [
 NO_CHARACTERS_COL_NAME = "NoCharacters"
 MEDIUM_FFN_COL_NAME = "FFN"
 MEDIUM_AO3_COL_NAME = "AO3"
+NOT_AVAILABLE_AUTHOR_COL_ITEM = "NotAvailable"
 
 DEFAULT_PAIR = "Harmony"  # Yes, because that's MY ship. Period.
 PAIRS_TO_LOOK_FOR = [
