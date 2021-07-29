@@ -238,3 +238,5 @@ hbeg/static/data/*
 hbeg/hide/*
 
 .env
+hbeg/ao3feed
+hbeg/sections/harmony/dailyfeed/feeddata/*
