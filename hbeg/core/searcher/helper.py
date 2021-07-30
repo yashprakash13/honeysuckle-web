@@ -85,8 +85,10 @@ class Data:
 
     def load_temp_data(self):
         """to load newly saved data after a contribute story happened"""
+
         print("Loading temp data.")
         tempdf = pd.read_csv(MAIN_EN_DATA_PATH, low_memory=False)
+        tempdf = pd.concat([tempdf, pd.read_csv(HHr_AO3_DATA_PATH)])
         tempdf["title_without_stopwords"] = tempdf["title"].apply(
             lambda x: " ".join([word for word in x.split() if word.lower() not in (stop)])
         )
