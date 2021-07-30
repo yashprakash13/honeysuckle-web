@@ -11,6 +11,7 @@ from .fabfics.fabfics import HHrFicLoader
 from .models import *
 
 # load fics+authors
+
 if not DEBUGGING_WITHOUT_SEARCHER:
     hhr_fic_loader = HHrFicLoader()
 
