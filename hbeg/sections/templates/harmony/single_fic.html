@@ -1,7 +1,7 @@
 <article class="message">
   <div class="message-header" style="margin-bottom:1 rem; line-height:1.0 rem;">
     <p  id="single-work-title">{{fic.title}}</p>
-    <a href="#" id="single-work-add-link">Add</a>
+    <a href="{% url 'story_detail' fic.story_id %}" id="single-work-add-link">Options</a>
   </div>
   <div class="message-body has-text-left" id="single-work-body">
     <u><strong>Author</strong></u>: {{fic.author_name}} <br>

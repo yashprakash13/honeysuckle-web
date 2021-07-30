@@ -642,3 +642,11 @@ class SearchEngine(Indices):
     def get_story_details(self, story_id):
         df = self.class_indices.df
         return df.loc[df.story_id == story_id]
+
+    def get_all_harmony_ffn_fics(self):
+        df = self.class_indices.df
+        return df.loc[(df.Pairs == "Harmony") & (df.Medium == MEDIUM_FFN_COL_NAME)]
+
+    def get_all_harmony_ao3_fics(self):
+        df = self.class_indices.df
+        return df.loc[(df.Pairs == "Harmony") & (df.Medium == MEDIUM_AO3_COL_NAME)]

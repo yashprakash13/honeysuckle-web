@@ -10,4 +10,6 @@ urlpatterns = [
     path("harmony/fics/ffn", FicsViewFFN.as_view(), name="harmony_fics_ffn"),
     path("harmony/fics/ao3", FicsViewAO3.as_view(), name="harmony_fics_ao3"),
     path("harmony/authors", AuthorsView.as_view(), name="harmony_authors"),
+    # author reg
+    path("harmony/author_reg", AuthorRegView.as_view(), name="author_reg"),
 ]

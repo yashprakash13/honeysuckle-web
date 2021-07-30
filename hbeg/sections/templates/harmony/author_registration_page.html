@@ -1,0 +1,30 @@
+{% extends 'sections/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'harmony/styles.html' %}
+
+<div class="container mt-6 mb-6 ml-6 mr-6" id="author-reg-main-box">
+    <div class="box" id="author-reg-main-box">
+        <div class="is-size-3">Welcome to Publishing!</div>
+        <div class="content mt-4 is-size-5">
+            If you are a Harmony author, you can now publish with us! 
+        </div>
+        <div class="content">
+            <div class="is-size-5 mb-3">
+                There are two simple steps to get started:
+            </div> 
+            1. Click the button below to register your request to be an author: <br>
+            <div class="button is-dark mt-4 mb-3 ml-4">I want to be an Author</div>
+
+            <div class="is-size-6 mt-3 mb-3">
+            2. Once you've done that, go ahead and join the 
+            <a href="https://discord.gg/Rw23m8J" target="_blank" class="is-size-6" id="link-color">
+                Harmony discord
+            </a> to get verified. Once you're verified, your author dashboard will become available to you.<br> &nbsp 
+                 If you're already a member, you don't need to do anything else. Go to your profile, select author dashboard, and start writing!
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
