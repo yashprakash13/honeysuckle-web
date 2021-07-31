@@ -14,8 +14,13 @@
                 There are two simple steps to get started:
             </div> 
             1. Click the button below to register your request to be an author: <br>
-            <div class="button is-dark mt-4 mb-3 ml-4">I want to be an Author</div>
-
+            <form action="{% url 'author_reg' %}" method="POST">
+                {% csrf_token %}
+                <button class="button is-dark mt-4 mb-3 ml-4" name="author_reg_btn" type="submit" value="something">I want to be an Author</button>
+            </form>
+            {% if reg_done %}
+                <div class="is-size-6 ml-4" id="request-sent-message">Your request has been sent!</div>
+            {% endif %}
             <div class="is-size-6 mt-3 mb-3">
             2. Once you've done that, go ahead and join the 
             <a href="https://discord.gg/Rw23m8J" target="_blank" class="is-size-6" id="link-color">

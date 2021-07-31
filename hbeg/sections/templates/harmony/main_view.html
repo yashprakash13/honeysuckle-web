@@ -24,12 +24,20 @@
                 <div class="tile is-parent">
                     <article class="tile is-child notification is-dark">
                         {% comment %} Author invites {% endcomment %}
-                        <a href="{% url 'author_reg' %}" class="content is-size-3" id="tile-title-text-link">Inviting Authors!</a>
+                        {% if author_reg_visible %}
+                            <a href="{% url 'author_reg' %}" class="content is-size-3" id="tile-title-text-link">Inviting Authors!</a>
+                        {% else %}
+                            <a href="#"  class="content is-size-3 has-tooltip-multiline" data-tooltip="You're already a registered author." id="tile-title-text-link">Inviting Authors!</a>
+                        {% endif %}
                         <div class="content is-size-5" id="tile-title-text">
                             <br> Are you an author? <br><br>
                             Now, sign up to publish your Harmony fics directly on <span id="tile-title-text-span">Holly and Vinewood</span>!  <br><br>
                             You have the option of posting them exclusively here, or repost them from an another site. <br><br>
-                            <a href="{% url 'author_reg' %}" class="content is-size-5" id="tile-title-text-link">Learn more.</a>
+                            {% if author_reg_visible %}
+                                <a href="{% url 'author_reg' %}" class="content is-size-5" id="tile-title-text-link">Learn more.</a>
+                            {% else %}
+                                <a href="#" class="content is-size-5 has-tooltip-multiline" data-tooltip="You're already a registered author." id="tile-title-text-link">Learn more.</a>
+                            {% endif %}
                         </div>
                     </article>
                 </div>
