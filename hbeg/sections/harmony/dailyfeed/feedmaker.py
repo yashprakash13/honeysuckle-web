@@ -78,7 +78,7 @@ class FeedMaker:
             work = AO3.Work(int(workid))
 
             # check if story in existing csvdb, or append to dataframe to be inserted
-            self._check_if_work_exists_in_csvdb(work)
+            self._check_if_work_exists_in_csvdb(work, author_id)
 
             # get data to make the feed
             work = self._get_work_dict_for_feed(work)
@@ -120,13 +120,13 @@ class FeedMaker:
         }
         return workdict
 
-    def _check_if_work_exists_in_csvdb(self, work):
+    def _check_if_work_exists_in_csvdb(self, work, author_id):
         """read the stored ao3 feed and get and store new HHr fics if not already present in csvdb"""
 
         if not int(work.id) in self.df_ao3_hhr.story_id.values:
-            self._add_work_to_be_appended(work)
+            self._add_work_to_be_appended(work, author_id)
 
-    def _add_work_to_be_appended(self, work):
+    def _add_work_to_be_appended(self, work, author_id):
         """get one full row of the new work to be appeneded"""
 
         author_names_list = []
@@ -160,13 +160,14 @@ class FeedMaker:
                 "num_kudos": work.kudos,
                 "Medium": "AO3",
             }
-            new_works_to_append.append(workdict)
-        except:
-            pass
+            self.new_works_to_append.append(workdict)
+        except Exception as e:
+            print(e)
 
     def _add_new_works_to_csvdb(self):
         """save the new data to csvdb"""
 
+        print("New works to append: ", pd.DataFrame(self.new_works_to_append).info())
         self.df_ao3_hhr = pd.concat([self.df_ao3_hhr, pd.DataFrame(self.new_works_to_append)])
         self.df_ao3_hhr.to_csv(HHr_AO3_DATA_PATH, index=False)
 
