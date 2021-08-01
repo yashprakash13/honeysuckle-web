@@ -77,6 +77,8 @@ INSTALLED_APPS = [
     # sections
     "sections",
     "sections.harmony",
+    "sections.hhrauthors",
+    # extras from externals
     "storages",
     "ckeditor",
     "django_filters",
@@ -119,20 +121,19 @@ WSGI_APPLICATION = "hbeg.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hbegproject',
-        'USER': os.environ.get('DB_USERNAME'),
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': 'localhost',
-        'PORT': '',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "hbegproject",
+        "USER": os.environ.get("DB_USERNAME"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": "localhost",
+        "PORT": "",
     }
 }
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
 
@@ -181,7 +182,7 @@ LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "login"
 
 SITE_ID = 1
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'nickname'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "nickname"
 ACCOUNT_USERNAME_REQUIRED = True
 
 AUTH_USER_MODEL = "accounts.Member"
