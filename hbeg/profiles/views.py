@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views import View
+from sections.harmony.models import HarmonyAuthorReg
 
 from .forms import *
 from .models import *
@@ -26,10 +27,16 @@ class ProfileView(LoginRequiredMixin, View):
             link_to_profile_page = request.user.get_public_profile_link(request.user.nickname, request.get_host())
         except:
             pass
+        if HarmonyAuthorReg.objects.filter(member=request.user)[0].is_verified:
+            dashboard_visible = True
+        else:
+            dashboard_visible = False
+
         context = {
             "profile": profile,
             "folders": folders,
             "link_to_public_page": link_to_profile_page,
+            "dashboard_visible": dashboard_visible,
         }
         return render(request, "profiles/profile.html", context)
 
