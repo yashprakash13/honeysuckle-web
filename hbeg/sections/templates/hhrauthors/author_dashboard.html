@@ -1,28 +1,69 @@
 {% extends 'sections/main.html' %}
 {% load static %}
 {% block content %}
+{% include 'hhrauthors/styles.html' %}
 
-<div class="container mt-6 ml-4 mr-4 mb-6">
-    <section class="section is-medium">
+<div class="container ml-4 mr-4 mb-6">
+    <div class="container mt-6 ml-4 mr-4 mb-4 has-text-centered">
+        <span class="icon">
+            <i class="far fa-edit mb-5" style="font-size:29px;"></i>
+        </span>
+        <div class="title">My Author Dashboard</div>
+        <div class="content is-size-5">
+            {% comment %} all links {% endcomment %}
+            <a href="#" id="link-dashboard" style="text-decoration:underline;">Create New Story</a> &nbsp &nbsp
+            <a href="#" id="link-dashboard" style="text-decoration:underline;">View Profile Stats</a>
+        </div>
+    </div>
+    <section class="section" id="main-dash-section">
         <h1 class="title">Works</h1>
-        <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
-        </h2>
+        {% if no_works %}
+            <h2 class="subtitle">
+                You haven't posted anything yet.
+            </h2>
+        {% else %}
+            Wooho!
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+        {% endif %}    
     </section>
+    <hr class="ml-4 mr-4" id="hr">
     <section class="section is-medium">
-        <h1 class="title">Reviews</h1>
-        <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
-        </h2>
+        <div class="title">Reviews</div>
+        {% if no_reviews %}
+            <h2 class="subtitle">
+                You haven't gotten any reviews yet.
+            </h2>
+        {% else %}
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+        {% endif %}
     </section>
+    <hr class="ml-4 mr-4" id="hr">
     <section class="section is-medium">
         <h1 class="title">Drafts</h1>
-        <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
-        </h2>
-    </section>
-
+        {% if no_drafts %}
+            <h2 class="subtitle">
+                You haven't saved any drafts yet.
+            </h2>
+        {% else %}
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+        {% endif %}
+    </section>    
 
 </div>
-{% endblock content %}
+{% endblock %}
 

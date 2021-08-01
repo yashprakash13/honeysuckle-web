@@ -17,6 +17,7 @@ class Works(models.Model):
     num_words = models.PositiveIntegerField(default=0)
     status = models.IntegerField(choices=WORK_STATUS)
     genres = models.IntegerField(choices=WORK_GENRES)
+    is_published = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "Works"
@@ -43,6 +44,7 @@ class Chapters(models.Model):
 class Reviews(models.Model):
     review = models.TextField(max_length=512)
     review_by = models.ForeignKey(Member, on_delete=models.CASCADE)
+    work = models.ForeignKey(Works, on_delete=models.CASCADE)
     review_on = models.DateField(auto_now_add=True)
 
     class Meta:
