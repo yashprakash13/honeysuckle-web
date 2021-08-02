@@ -230,6 +230,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # THESE ARE FOR CKEDITOR
 CKEDITOR_CONFIGS = {
     "default": {
+        "skin": "n1theme",
         "toolbar": "Custom",
         "toolbar_Custom": [
             ["Bold", "Italic", "Underline", "-", "Strike", "Subscript", "Superscript"],
