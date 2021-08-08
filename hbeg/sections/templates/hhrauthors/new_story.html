@@ -1,0 +1,98 @@
+{% extends 'sections/main.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+{% comment %} display form error messages {% endcomment %}
+<div class="column is-12">
+    {% for message in messages %}
+        <p class="help is-danger m-1 ml-4 is-size-6">{{message}}</p>
+    {% endfor %}
+</div>
+
+<div class="container">
+    <form  method="post" autocomplete="off" class="columns is-multiline" novalidate>
+        {% csrf_token %}
+        <div class="column is-12">
+            <div class="title">New Story</div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                 <label class="label">Story title:</label>
+                <div class="control">
+                    {{ form.title }}
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                 <label class="label">Description:</label>
+                <div class="control">
+                    {{ form.description }}
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                <label class="label">Rating:</label>
+                <div class="control">
+                    <div class="select">
+                        {{form.rating}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                <label class="label">Genres:</label>
+                <div class="control">
+                    <div class="select">
+                        {{form.genres}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="field">
+                <label class="label">Status:</label>
+                <div class="control">
+                    <div class="select">
+                        {{form.status}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-12">
+            <label class="label mt-4">In the next page, you'll be able to add chapters to this story.</label>
+        </div>
+        <div class="column is-12 mb-6">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-dark is-medium" id="done-btn">Done</button>
+                    <a href="{% url 'author_dashboard' %}" class="button is-danger is-outlined is-medium" id="cancel-btn" >Cancel</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+{% comment %} select field {% endcomment %}
+#select-options-new-work {
+    background-color:#444;
+    color:#fff;
+}
+ {% comment %} submit/cancel buttons {% endcomment %}
+#cancel-btn{
+     background-color:transparent;
+     border-color:transparent;
+     color:#9A5F6E;
+ }
+ #done-btn{
+     background-color:#D98270;
+ }
+ .input, .textarea{
+     background-color:#444;
+ }
+</style>
+{% endblock %}

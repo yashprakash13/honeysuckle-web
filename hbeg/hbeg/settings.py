@@ -120,22 +120,24 @@ WSGI_APPLICATION = "hbeg.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "hbegproject",
-        "USER": os.environ.get("DB_USERNAME"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": "localhost",
-        "PORT": "",
+if not DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "hbegproject",
+            "USER": os.environ.get("DB_USERNAME"),
+            "PASSWORD": os.environ.get("DB_PASSWORD"),
+            "HOST": "localhost",
+            "PORT": "",
+        }
     }
-}
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",  # existing backend (for admin)
@@ -181,7 +183,11 @@ LOGIN_REDIRECT_URL = "profile"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "login"
 
-SITE_ID = 1
+if not DEBUG:
+    SITE_ID = 1
+else:
+    SITE_ID = 2
+
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "nickname"
 ACCOUNT_USERNAME_REQUIRED = True
 
