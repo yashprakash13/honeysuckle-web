@@ -1,0 +1,90 @@
+{% extends 'sections/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container ml-4 mr-4 mb-6">
+    <div class="container mt-6 ml-4 mr-4 mb-4 has-text-centered">
+        <span class="icon">
+            <i class="far fa-edit mb-5" style="font-size:29px;"></i>
+        </span>
+        <div class="title">My Author Dashboard</div>
+        <div class="content is-size-5">
+            {% comment %} all links {% endcomment %}
+            <a href="{% url 'author_create_story' %}" class="button is-dark" id="link-dashboard">Create New Story</a> &nbsp &nbsp
+            <a href="#" class="button is-dark" id="link-dashboard">View Profile Stats</a>
+        </div>
+    </div>
+    <section class="section" id="main-dash-section">
+        <h1 class="title">Works</h1>
+        {% if no_works %}
+            <h2 class="subtitle">
+                You haven't posted anything yet.
+            </h2>
+        {% else %}
+            <div class="columns is-multiline">
+                {% for work in works %}
+                    {% include 'hhrauthors/single_work.html' %}
+                {% endfor %}
+        {% endif %}    
+        </div>
+    </section>
+    <hr class="ml-4 mr-4" id="hr">
+    <section class="section">
+        <div class="title">Reviews</div>
+        {% if no_reviews %}
+            <h2 class="subtitle">
+                You haven't gotten any reviews yet.
+            </h2>
+        {% else %}
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+        {% endif %}
+    </section>
+    <hr class="ml-4 mr-4" id="hr">
+    <section class="section is-medium">
+        <h1 class="title">Drafts</h1>
+        {% if no_drafts %}
+            <h2 class="subtitle">
+                You haven't saved any drafts yet.
+            </h2>
+        {% else %}
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ab!</div>
+        {% endif %}
+    </section>    
+
+</div>
+
+<style>
+{% comment %} links just below the dashboard title {% endcomment %}
+#link-dashboard{
+    text-decoration:underline; 
+    color:#fff;
+    background-color:transparent;
+}
+{% comment %} horizontal line in dashboard separating sections of work, reviews, and drafts {% endcomment %}
+#hr{
+    background-color: #c8c8c8 !important;
+    opacity:40%;
+    border-radius:13px;
+    height:1px;
+}
+{% comment %} single work {% endcomment %}
+#singe-work-card{
+    background-color:#444;
+}
+#text{
+    color:#fff;
+    background-color:#444;
+}
+</style>
+{% endblock %}
+

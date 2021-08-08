@@ -1,8 +1,11 @@
 import json
 
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from .dailyfeed.constants import HP_BOOK_CHOICES
+
+Member = get_user_model()
 
 WEBSITE_CHOICES = (
     ("FFN", "Fanfiction.net"),
@@ -60,3 +63,16 @@ class HarmonyFicsBlacklist(models.Model):
 
     class Meta:
         verbose_name_plural = "Harmony Blacklisted Fics"
+
+
+class HarmonyAuthorReg(models.Model):
+    """for users who give their consent to be an author"""
+
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name="Members")
+    is_verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.member.nickname + "_" + str(self.is_verified)
+
+    class Meta:
+        verbose_name_plural = "Harmony Author Requests"

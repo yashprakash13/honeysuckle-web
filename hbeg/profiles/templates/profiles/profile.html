@@ -46,6 +46,14 @@
     <div class="column is-8-desktop is-12-tablet is-12-mobile"id="folder-column">
         {% comment %} include contribute and search buttons {% endcomment %}
         <div class="content">
+            {% if dashboard_visible %}
+                <a class="button" id="search-btn" href="{% url 'author_dashboard' %}">
+                    <span class="icon">
+                        <i class="fas fa-feather-alt"></i>
+                    </span>
+                    <span>Author Dashboard</span>
+                </a>
+            {% endif %}
             <a class="button" id="search-btn" href="{% url 'search' %}">
                 <span class="icon">
                     <i class="fas fa-search"></i>

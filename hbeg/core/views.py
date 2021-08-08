@@ -19,7 +19,11 @@ def search(request):  # pragma: no cover
     if search_query.strip() != "":
         # search the db here and get back resultant df
         print("Inside search GET block.")
-        res_df = instance.search(search_query)
+        try:  # temp fix until I get the API up and running
+            res_df = instance.search(search_query)
+        except:
+            res_df = None
+
         if res_df is not None:
             res_df = res_df[searcher.constants.COLS_TO_SHOW_STORY_DETAIL]
             # convert to list of dicts

@@ -21,6 +21,10 @@ class CentralPageView(View):
 
     def get(self, request):
         context = {}
+        if HarmonyAuthorReg.objects.filter(member=request.user).exists():
+            context["author_reg_visible"] = False
+        else:
+            context["author_reg_visible"] = True
         return render(request, "harmony/main_view.html", context=context)
 
 
@@ -87,3 +91,11 @@ class AuthorRegView(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, "harmony/author_registration_page.html")
+
+    def post(self, request):
+        context = {}
+        # store author request if not already present from the author
+        if request.POST.get("author_reg_btn") and not HarmonyAuthorReg.objects.filter(member=request.user).exists():
+            HarmonyAuthorReg.objects.create(member=request.user)
+            context["reg_done"] = True
+        return render(request, "harmony/author_registration_page.html", context=context)
