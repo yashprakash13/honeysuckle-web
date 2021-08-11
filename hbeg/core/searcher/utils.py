@@ -10,8 +10,12 @@ def get_clean_genres(genres):
     Returns:
         [string]: string with , separated genres
     """
-    genre_list = genres.split("!")
-    return ", ".join(genre_list)
+    try:
+        genre_list = genres.split("!")
+        return ", ".join(genre_list)
+    except Exception as e:
+        print("Exception in get clean genres: ", e)
+        return None
 
 
 def find_pair(pair_found):
@@ -45,11 +49,7 @@ def find_pair(pair_found):
         return "Tomarry"
     elif "Harry P." in pair_found and "Severus S." in pair_found:
         return "Snarry"
-    elif (
-        "Harry P." in pair_found
-        and "Draco M." in pair_found
-        and "Hermione G." in pair_found
-    ):
+    elif "Harry P." in pair_found and "Draco M." in pair_found and "Hermione G." in pair_found:
         return "Dramionarry"
     else:
         return "OtherPair"

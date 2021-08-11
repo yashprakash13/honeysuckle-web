@@ -25,12 +25,16 @@
         <div class="column is-12">
             <div class="is-size-6"><strong>Rated:</strong> {{story.rated}}</div>
         </div>
-        <div class="column is-12">
-            <div class="is-size-6"><strong>Characters:</strong> {{story.characters}}</div>
-        </div>
-        <div class="column is-12">
-            <div class="is-size-6"><strong>Genres:</strong> {{story.genres}}</div>
-        </div>
+        {% if story.characters %}
+            <div class="column is-12">
+                <div class="is-size-6"><strong>Characters:</strong> {{story.characters}}</div>
+            </div>
+        {% endif %}
+        {% if story.genres %}
+            <div class="column is-12">
+                <div class="is-size-6"><strong>Genres:</strong> {{story.genres}}</div>
+            </div>
+        {% endif %}
         <div class="column is-12">
             <div class="is-size-6"><strong>Chapters:</strong> {{story.num_chapters}}</div>
         </div>
