@@ -168,6 +168,7 @@ class StoryDetailView(LoginRequiredMixin, View):
             story["link"] = instance.get_story_link(story_id)
         elif story["Medium"] == MEDIUM_AO3_COL_NAME:
             story["link"] = instance.get_story_link_ao3(story_id)
+        # get clean genres or None
         story["genres"] = utils.get_clean_genres(story["genres"])
         # remove FFN brackets or if no characters present in the story metadata
         if story["characters"] != NO_CHARACTERS_COL_NAME and story["characters"][0] == "[":
