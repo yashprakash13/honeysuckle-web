@@ -260,7 +260,13 @@ AWS_QUERYSTRING_AUTH = False
 
 
 # CRON TASKS
-CRONJOBS = [
-    # run refresh harmony feed every 12 hours
-    ("0 */12 * * *", "sections.harmony.cron.feed_ao3_scheduled_job", ">> ~/cron_job.log"),
-]
+if not DEBUG:
+    CRONJOBS = [
+        # run refresh harmony feed every 12 hours
+        ("0 */12 * * *", "sections.harmony.cron.feed_ao3_scheduled_job", ">> ~/cron_job.log"),
+    ]
+else:
+    CRONJOBS = [
+        # run refresh harmony feed every 5 mins
+        ("*/5 * * * *", "sections.harmony.cron.feed_ao3_scheduled_job", ">> ~/cron_job.log"),
+    ]
