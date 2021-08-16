@@ -27,8 +27,9 @@ class ProfileView(LoginRequiredMixin, View):
             link_to_profile_page = request.user.get_public_profile_link(request.user.nickname, request.get_host())
         except:
             pass
-        if HarmonyAuthorReg.objects.filter(member=request.user)[0].is_verified:
-            dashboard_visible = True
+        if HarmonyAuthorReg.objects.filter(member=request.user).exists():
+            if HarmonyAuthorReg.objects.filter(member=request.user)[0].is_verified:
+                dashboard_visible = True
         else:
             dashboard_visible = False
 
