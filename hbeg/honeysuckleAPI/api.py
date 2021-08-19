@@ -508,3 +508,19 @@ def get_story_details_from_response_ao3(story_id):
         "date_updated": str(work.date_updated)[:10],
     }
     return story
+
+
+def get_author_details_ffn(url):
+    """return author ffn profile crawl html"""
+
+    print(f"Trying au url from Weaver API: {url}")
+    response = requests.get(
+        API_URL_TO_FETCH_STORIES_META_FROM,
+        params={"q": url},
+        data={"apiKey": os.environ.get("WEAVER_DATA_VALUE")},
+        auth=(
+            os.environ.get("WEAVER_AUTH_USERNAME"),
+            os.environ.get("WEAVER_AUTH_PASSWORD"),
+        ),
+    )
+    return response.text

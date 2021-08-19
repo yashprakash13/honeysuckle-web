@@ -62,6 +62,17 @@ class GetStoryDetailsAo3(APIView):
         return Response(story)
 
 
+class GetAuthorProfileDetailsFFN(APIView):
+    """View to get author profile info from ffn"""
+
+    def get(self, request, au_id):
+        print("Got:", au_id)
+        url = f"https://www.fanfiction.net/u/{au_id}"
+        au_details_crawl = get_author_details_ffn(url)
+
+        return Response(au_details_crawl)
+
+
 class BlacklistView(APIView):
     """View to get all blacklisted fics"""
 

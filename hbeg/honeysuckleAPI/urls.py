@@ -25,4 +25,9 @@ urlpatterns = [
         views.CreateOrAddBlacklistFic.as_view(),
         name="hhr_blacklist_add_or_modify",
     ),
+    path(
+        "au_ffn_profile/<str:au_id>",
+        views.GetAuthorProfileDetailsFFN.as_view(),
+        name="get_author_profile_ffn",
+    ),
 ]
