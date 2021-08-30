@@ -11,8 +11,8 @@
     {% comment %} for bio and info about member {% endcomment %}
     <div class="column is-4-desktop is-12-tablet is-12-mobile" id="bio-column">
         <div class="title has-text-centered">{{request.user.nickname}}</div>
-        {% comment %} public profile link {% endcomment %}
-        <div class="content has-text-centered">
+        {% comment %} public profile link TODO: fix the public profile page things{% endcomment %} 
+        {% comment %} <div class="content has-text-centered">
             <a href="#" onclick="return copyToClipboardFunction();" class="has-text-centered is-centered has-tooltip-bottom has-tooltip-multiline" id="public-profile-link" data-tooltip="Copy link to your public profile">
                 <span class="icon-text">
                     <span class="icon">
@@ -20,7 +20,7 @@
                     </span>
                 </span>
             </a>
-        </div>
+        </div> {% endcomment %}
         {% comment %} bio goes here if not None{% endcomment %}
         {% if profile.bio and profile.bio != 'None'%}
             <div class="content has-text-centered">

@@ -27,8 +27,9 @@ class ProfileView(LoginRequiredMixin, View):
             link_to_profile_page = request.user.get_public_profile_link(request.user.nickname, request.get_host())
         except:
             pass
-        if HarmonyAuthorReg.objects.filter(member=request.user)[0].is_verified:
-            dashboard_visible = True
+        if HarmonyAuthorReg.objects.filter(member=request.user).exists():
+            if HarmonyAuthorReg.objects.filter(member=request.user)[0].is_verified:
+                dashboard_visible = True
         else:
             dashboard_visible = False
 
@@ -161,8 +162,7 @@ class StoryDetailView(LoginRequiredMixin, View):
     """
 
     def get(self, request, story_id):
-        storygotten = instance.get_story_details(story_id)[COLS_TO_SHOW_STORY_DETAIL]
-        story = storygotten.to_dict(orient="records")[0]
+        story = instance.get_story_details(story_id)
         # links for all websites
         if story["Medium"] == MEDIUM_FFN_COL_NAME:
             story["link"] = instance.get_story_link(story_id)
@@ -183,7 +183,7 @@ class StoryRateView(LoginRequiredMixin, View):
     """View to rate a story"""
 
     def get(self, request, story_id):
-        story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY]
+        story_to_rate = instance.get_story_details(story_id)
         # check if user rated it before, if yes, then set initial value of rating
         exists_or_not = StoryRating.objects.filter(created_by=request.user, story_id=story_id)
         if exists_or_not:
@@ -191,7 +191,7 @@ class StoryRateView(LoginRequiredMixin, View):
         else:
             form = AddStoryRatingForm()
         context = {
-            "storyname": story_to_rate[COL_NAME_STORY].values[0][0],
+            "storyname": story_to_rate[COL_NAME_STORY[0]],
             "form": form,
         }
 
@@ -202,7 +202,7 @@ class StoryRateView(LoginRequiredMixin, View):
 
     def post(self, request, story_id):
         # get the story name from story_id
-        story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY]
+        story_to_rate = instance.get_story_details(story_id)[COL_NAME_STORY[0]]
         # display rating form
         form = FolderEditForm(request.POST)
         # get the rating choice selected
@@ -216,9 +216,11 @@ class StoryRateView(LoginRequiredMixin, View):
             StoryRating.objects.create(rating=choice, story_id=story_id, created_by=request.user)
         # Also, create a Story object if not present
         if not Story.objects.filter(story_id=story_id):
-            storygotten = instance.get_story_details(story_id)[COLS_TO_SAVE_STORY]
-            storygotten = storygotten.to_dict(orient="records")[0]
-            storygotten["link"] = instance.get_story_link(story_id)
+            storygotten = instance.get_story_details(story_id)
+            if storygotten["Medium"] == MEDIUM_FFN_COL_NAME:
+                storygotten["link"] = instance.get_story_link(story_id)
+            elif storygotten["Medium"] == MEDIUM_AO3_COL_NAME:
+                storygotten["link"] = instance.get_story_link_ao3(story_id)
             story = Story(
                 story_id=story_id,
                 story_name=storygotten["title"],
@@ -256,9 +258,11 @@ class StoryAddView(LoginRequiredMixin, View):
                 story = Story.objects.get(story_id=story_id)
                 folder.story.add(Story.objects.get(story_id=story_id))
             except Story.DoesNotExist:
-                storygotten = instance.get_story_details(story_id)[COLS_TO_SAVE_STORY]
-                storygotten = storygotten.to_dict(orient="records")[0]
-                storygotten["link"] = instance.get_story_link(story_id)
+                storygotten = instance.get_story_details(story_id)
+                if storygotten["Medium"] == MEDIUM_FFN_COL_NAME:
+                    storygotten["link"] = instance.get_story_link(story_id)
+                elif storygotten["Medium"] == MEDIUM_AO3_COL_NAME:
+                    storygotten["link"] = instance.get_story_link_ao3(story_id)
                 story = Story(
                     story_id=story_id,
                     story_name=storygotten["title"],

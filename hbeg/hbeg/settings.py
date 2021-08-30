@@ -37,21 +37,21 @@ ALLOWED_HOSTS = [
     "www.hisbrowneyedgirl.com",
 ]
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['console'],
-#              'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-#         },
-#     },
-# }
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "DEBUG"),
+        },
+    },
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -120,7 +120,7 @@ WSGI_APPLICATION = "hbeg.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if not DEBUG:
+if DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
@@ -183,7 +183,7 @@ LOGIN_REDIRECT_URL = "profile"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "login"
 
-if not DEBUG:
+if DEBUG:
     SITE_ID = 1
 else:
     SITE_ID = 2

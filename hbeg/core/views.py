@@ -7,8 +7,6 @@ from .searcher.settings import *
 
 # prepare the search engine to receive queries, this object will be used by other apps such as profiles too.
 instance = searcher.SearchEngine()
-if not DEBUGGING_WITHOUT_SEARCHER:
-    instance.prepare_s_engine(pairs=HHR_SEARCHER_PAIR, override_for_hhr=OVERRIDE_FOR_HHR)
 
 # the search view to receive queries and send results
 def search(request):  # pragma: no cover
@@ -20,15 +18,13 @@ def search(request):  # pragma: no cover
         # search the db here and get back resultant df
         print("Inside search GET block.")
         try:  # temp fix until I get the API up and running
-            res_df = instance.search(search_query)
-        except:
-            res_df = None
+            res_dict = instance.search(search_query)
+        except Exception as e:
+            res_dict = None
+            print(e)
 
-        if res_df is not None:
-            res_df = res_df[searcher.constants.COLS_TO_SHOW_STORY_DETAIL]
-            # convert to list of dicts
-            res_to_show = res_df.to_dict("records")
-            context["results"] = res_to_show
+        if res_dict is not None:
+            context["results"] = res_dict
         else:
             context["nores"] = True
             # context["nores"] = range(1, 17)

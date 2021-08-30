@@ -12,7 +12,6 @@ from core.searcher.constants import NOT_AVAILABLE_AUTHOR_COL_ITEM
 from core.searcher.utils import make_length
 from core.views import instance
 
-from ..fabfics.constants import HHr_AO3_DATA_PATH
 from .constants import AO3_HARMONY_FEED_URL, FEEDDATA
 
 
