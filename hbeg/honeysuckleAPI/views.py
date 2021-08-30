@@ -37,7 +37,7 @@ class GetStoryDetailsFfn(APIView):
             story[key] = story_all_fields[key]
 
         # save the story or not, check and save here if needed
-        initiate_save_story(story_all_fields)
+        # initiate_save_story(story_all_fields)
 
         # if story gotten, return it as a response
         if story:
