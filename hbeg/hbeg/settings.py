@@ -121,7 +121,7 @@ WSGI_APPLICATION = "hbeg.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
@@ -184,7 +184,7 @@ LOGIN_REDIRECT_URL = "profile"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "login"
 
-if DEBUG:
+if not DEBUG:
     SITE_ID = 1
 else:
     SITE_ID = 2
