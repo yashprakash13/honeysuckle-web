@@ -20,8 +20,6 @@ stop = stopwords.get_stopwords("en")
 stop.extend(["Harry", "Potter"])
 stop = [word.lower() for word in stop]
 
-from sections.harmony.fabfics.constants import HHr_AO3_DATA_PATH
-
 # import constants here
 from .constants import *
 

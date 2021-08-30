@@ -67,15 +67,7 @@ def save_new_story_into_csvdb(story):
 
     if storytosave["language"] == "English":
         print(pd.DataFrame(storytosave, index=[0]))
-        df = inst.class_indices.df
-        df = df.append(storytosave, ignore_index=True)
-        df.to_csv(MAIN_EN_DATA_PATH, index=False)
-        print("New story saved into CSV db.")
-
-        # load newly saved data in a background thread
-        background_thread = Thread(target=inst.class_indices.load_temp_data)
-        background_thread.start()
-
+        inst.save_story_into_csvdb(storytosave, 1)
     else:
         # TODO: do it
         print("Can't save a non-English story yet.")

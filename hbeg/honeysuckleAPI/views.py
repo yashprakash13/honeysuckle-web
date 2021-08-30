@@ -193,8 +193,7 @@ def check_if_story_exists_in_csvdb(story_id):
     """
     to check if story does not exist in csv db
     """
-    storygotten = instance.get_story_details(int(story_id))[COLS_TO_SEND_BY_HS_API]
-    storygotten = storygotten.to_dict(orient="records")
+    storygotten = instance.get_story_details(int(story_id))
     if len(storygotten) == 0:
         return False
     else:

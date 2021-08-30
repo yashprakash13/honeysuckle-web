@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
 ]
 
 LOGGING = {
+
      'version': 1,
      'disable_existing_loggers': False,
      'handlers': {
@@ -120,7 +121,7 @@ WSGI_APPLICATION = "hbeg.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if not DEBUG:
+if DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
@@ -183,7 +184,7 @@ LOGIN_REDIRECT_URL = "profile"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "login"
 
-if not DEBUG:
+if DEBUG:
     SITE_ID = 1
 else:
     SITE_ID = 2
@@ -260,7 +261,13 @@ AWS_QUERYSTRING_AUTH = False
 
 
 # CRON TASKS
-CRONJOBS = [
-    # run refresh harmony feed every 12 hours
-    ("0 */12 * * *", "sections.harmony.cron.feed_ao3_scheduled_job", ">> ~/cron_job.log"),
-]
+if not DEBUG:
+    CRONJOBS = [
+        # run refresh harmony feed every 12 hours
+        ("0 */12 * * *", "sections.harmony.cron.feed_ao3_scheduled_job", ">> ~/cron_job.log"),
+    ]
+else:
+    CRONJOBS = [
+        # run refresh harmony feed every 5 mins
+        ("*/5 * * * *", "sections.harmony.cron.feed_ao3_scheduled_job", ">> ~/cron_job.log"),
+    ]
