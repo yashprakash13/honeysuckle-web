@@ -33,7 +33,7 @@ It began as a hobby project by a couple of voracious Harry Potter webfiction rea
 HBEG now has a database spanning more than 1M+ stories, and is regularly updated with new ones that pop up on sites. The current list of features include:
 
 
-* Use the search engine to find stories from fanfiction.net and archiveofourown.org
+* Use the search engine to find stories from Fanfiction.net, ArchiveOfOurOwn, and Fictionally(partially)
 * Custom profile page and design for every member of the site
 * Organise stories into public and hidden folders
 * Rate individual stories as per your taste to help others on the site
