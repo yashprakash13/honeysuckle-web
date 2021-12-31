@@ -15,7 +15,7 @@
 ## About the project
 HBEG is *the* web-fiction website with an intelligent search engine to find, help you read, and keep track of every story you read on the internet. 
 
-It began as a hobby project by a couple of voracious Harry Potter fanfiction readers, and it grew to the point that it now sports a unique, intelligent search engine<sup>Beta</sup> based on all stories from two major websites!
+It began as a hobby project by a couple of voracious Harry Potter webfiction readers, and it grew to the point that it now sports a unique, intelligent search engine<sup>Beta</sup> based on all stories from two major websites!
 
 <br>
 
@@ -30,7 +30,7 @@ It began as a hobby project by a couple of voracious Harry Potter fanfiction rea
 
 ## Features
 
-HBEG now has a database spanning more than 200K+ stories, and is regularly updated with new stories that pop up on sites. The current list of features include:
+HBEG now has a database spanning more than 1M+ stories, and is regularly updated with new ones that pop up on sites. The current list of features include:
 
 
 * Use the search engine to find stories from fanfiction.net and archiveofourown.org
@@ -51,10 +51,10 @@ Upcoming features consist of:
 <br>
 
 ## Tech Stack 
-1. Django --> Features core of the website
+1. Django --> Features the core of the website
 2. PostgreSQL --> Storing the entirety story and user dtabase.
-3. Bulma CSS Framework --> For the colour, structure and design
-4. sentence-bert, FAISS, Whoosh --> For similarity search engine
+3. Bulma CSS Framework --> For the look and feel, structure and a sprinkle of design
+4. Transformers, Whoosh --> For the similarity search engine
 5. FastAPI --> For powering the [Eleven API](https://github.com/yashprakash13/Eleven) for the search engine. (If you can guess that reference and why, I'll give you a cookie :wink: )
 6. Discord py --> Used for making the [Honeysuckle Discord Bot](https://github.com/yashprakash13/Honeysuckle) bringing some functionalities of the website straight to the discord server
 7. Flask and Click --> Featuring in the [Tank CLI](https://github.com/yashprakash13/Tank) for downloading full text content from websites. (If you can guess that reference and why here as well, I'll give you a cookie and a donut :wink: )
