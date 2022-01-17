@@ -4,11 +4,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <p align="center"><img src="https://img.shields.io/badge/Built%20for-Bookworms-red?style=for-the-badge">    <img src="https://img.shields.io/badge/python-3.9.1-brightgreen?style=for-the-badge"> <img src="https://img.shields.io/badge/Django-3.2-brightgreen?style=for-the-badge">    <img src="https://img.shields.io/badge/maintained-yes-blue?style=for-the-badge"></p>
 <p align="center"><img src="https://img.shields.io/badge/Launched-June '21-yellow?style=for-the-badge"></p>
-<p align="center">
+<!-- <p align="center">
 <a href="https://hisbrowneyedgirl.com/"> 
 <img alt="Website" src="https://img.shields.io/badge/-Website-orange?style=for-the-badge">
 </a>
-</p>
+</p> -->
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
