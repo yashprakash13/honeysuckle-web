@@ -54,7 +54,7 @@ Upcoming features consist of:
 1. Django --> Features the core of the website
 2. PostgreSQL --> Storing the entirety story and user dtabase.
 3. Bulma CSS Framework --> For the look and feel, structure and a sprinkle of design
-4. Transformers, Whoosh --> For the similarity search engine
+4. Spacy, Transformers, Whoosh --> For the similarity search engine
 5. FastAPI --> For powering the [Eleven API](https://github.com/yashprakash13/Eleven) for the search engine. (If you can guess that reference and why, I'll give you a cookie :wink: )
 6. Discord py --> Used for making the [Honeysuckle Discord Bot](https://github.com/yashprakash13/Honeysuckle) bringing some functionalities of the website straight to the discord server
 7. Flask and Click --> Featuring in the [Tank CLI](https://github.com/yashprakash13/Tank) for downloading full text content from websites. (If you can guess that reference and why here as well, I'll give you a cookie and a donut :wink: )
