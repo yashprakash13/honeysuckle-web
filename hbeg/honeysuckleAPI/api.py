@@ -516,3 +516,27 @@ def get_author_details_ffn(url):
         ),
     )
     return response.text
+
+
+def get_author_details_ao3(username):
+    """return author ao3 profile crawl html"""
+
+    user = AO3.User(username)
+    user_all_works = user.get_works(use_threading=True)
+    user_url = user.url
+    user_works = user.works
+
+    intro_line = f"{username} has written {user_works} stories."
+    work_content = []
+    for work in user_all_works:
+        work_content.append(
+            {
+                "title": work.title,
+                "summary": work.summary,
+                "words": work.words,
+                "fandoms": ", ".join(work.fandoms[:5]),
+            }
+        )
+    # to send
+    author_details = {"intro": intro_line, "works": work_content}
+    return author_details

@@ -30,4 +30,7 @@ urlpatterns = [
         views.GetAuthorProfileDetailsFFN.as_view(),
         name="get_author_profile_ffn",
     ),
+    path(
+        "au_ao3_profile/<str:au_username>", views.GetAuthorProfileDetailsAo3.as_view(), name="get_author_profile_ao3"
+    ),
 ]

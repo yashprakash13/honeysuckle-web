@@ -73,6 +73,16 @@ class GetAuthorProfileDetailsFFN(APIView):
         return Response(au_details_crawl)
 
 
+class GetAuthorProfileDetailsAo3(APIView):
+    """View to get author profile info from ao3"""
+
+    def get(self, request, au_username):
+        print("Got: ", au_username)
+        au_details_crawl = get_author_details_ao3(au_username)
+
+        return Response(au_details_crawl)
+
+
 class BlacklistView(APIView):
     """View to get all blacklisted fics"""
 
