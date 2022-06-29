@@ -528,7 +528,7 @@ def get_author_details_ao3(username):
 
     intro_line = f"{username} has written {user_works} stories."
     work_content = []
-    for work in user_all_works:
+    for work in user_all_works[:5]:
         work_content.append(
             {
                 "title": work.title,
