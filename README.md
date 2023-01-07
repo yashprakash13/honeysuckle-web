@@ -1,5 +1,5 @@
-<p align="center"><img width=73.5% src="readme_things/logo.png"></p>
-<h1 align="center">His Brown Eyed Girl</h1>
+<p align="center"><img width=73.5% src="readme_things/bookworm.png"></p>
+<h1 align="center">Bookworm</h1>
 <p align="center">Because you don't need a time machine if you know how to read.</p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <p align="center"><img src="https://img.shields.io/badge/Built%20for-Bookworms-red?style=for-the-badge">    <img src="https://img.shields.io/badge/python-3.9.1-brightgreen?style=for-the-badge"> <img src="https://img.shields.io/badge/Django-3.2-brightgreen?style=for-the-badge">    <img src="https://img.shields.io/badge/maintained-yes-blue?style=for-the-badge"></p>
@@ -21,7 +21,8 @@ It began as a hobby project by a couple of voracious Harry Potter webfiction rea
 
 <p >
 <a href="https://hisbrowneyedgirl.com/"> 
-<img width=73.5% alt="Website front page" src="readme_things/hbeg_front_page.png"></a>
+<img width=83.5% alt="Website front page" src="readme_things/hbeg_front_page.png"></a>
+<img width=83.5% alt="Website front page" src="readme_things/hbeg_home_page.png"></a>
 </p>
 
 
