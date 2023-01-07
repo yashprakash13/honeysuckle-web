@@ -13,9 +13,9 @@
 
 
 ## About the project
-HBEG is *the* web-fiction website with an intelligent search engine to find, help you read, and keep track of every story you read on the internet. 
+The bookworm honeysuckle project is *the* web-fiction website with an intelligent search engine to find, help you read, and keep track of every story you read on the internet. 
 
-It began as a hobby project by a couple of voracious Harry Potter webfiction readers, and it grew to the point that it now sports a unique, intelligent search engine<sup>Beta</sup> based on all stories from two major websites!
+It began as a hobby project by a couple of voracious webfiction readers, and it grew to the point that it now sports a unique, intelligent search engine<sup>Beta</sup> based on all stories from two major websites!
 
 <br>
 
@@ -31,7 +31,7 @@ It began as a hobby project by a couple of voracious Harry Potter webfiction rea
 
 ## Features
 
-HBEG now has a database spanning more than 1M+ stories, and is regularly updated with new ones that pop up on sites. The current list of features include:
+bookworm now has a database spanning more than 1M+ stories, and is regularly updated with new ones that pop up on sites. The current list of features include:
 
 
 * Use the search engine to find stories from Fanfiction.net, ArchiveOfOurOwn, and Fictionally(partially)
@@ -45,7 +45,7 @@ Upcoming features consist of:
 <ul id="about-feature-list">
     <li><s>Share your public profile with everyone</s> ✔ </li>
     <li><s>Listing of all stories that you've ever read and rated on the site </s> ✔ </li>
-    <li>Refer stories to another member of HBEG</li>
+    <li>Refer stories to another member of the site</li>
     <li>Get new recommended stories to read straight in your dashboard curated specially for you keeping your reading habits in mind</li>
 </ul>
 
