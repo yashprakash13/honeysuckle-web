@@ -19,8 +19,7 @@ It began as a hobby project by a couple of voracious webfiction readers, and it 
 
 <br>
 
-<p >
-<a href="https://hisbrowneyedgirl.com/"> 
+<p > 
 <img width=83.5% alt="Website front page" src="readme_things/hbeg_front_page.png"></a>
 <img width=83.5% alt="Website front page" src="readme_things/hbeg_home_page.png"></a>
 </p>
@@ -67,7 +66,7 @@ Upcoming features consist of:
 All your contributions are most welcome! 
 
 <div class="content is-size-5 is-bold">
-HBEG is ambitioned to be a community-driven project. As a user of the website, you can:
+bookworm is ambitioned to be a community-driven project. As a user of the website, you can:
 </div>
 <div class="content is-size-5">
     <ul id="about-feature-list">
@@ -79,7 +78,7 @@ HBEG is ambitioned to be a community-driven project. As a user of the website, y
 
 <br>
 
-## How to use the HBEG search engine<sup>Beta</sup> 
+## How to use the bookworm search engine<sup>Beta</sup> 
 
 
 <div class="content is-size-5">
